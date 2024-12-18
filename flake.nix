@@ -20,6 +20,8 @@
         ./modules/nixos
         inputs.home-manager.nixosModules.default
       ];
+    };
+
       
       exampleIso = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
@@ -27,6 +29,5 @@
             ./hosts/iso/configuration.nix
           ];
         };
-    };
 };
 }

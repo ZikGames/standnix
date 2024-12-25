@@ -3,11 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    labwc-manager.url = "github:JaydenPahukula/labwc-manager";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
      home-manager = {
        url = "github:nix-community/home-manager";
        inputs.nixpkgs.follows = "nixpkgs";
+       labwc-manager.url = "github:JaydenPahukula/labwc-manager";
      };
   };
 
@@ -19,6 +21,7 @@
         ./hosts/zik-pc/configuration.nix
         ./modules/nixos
         inputs.home-manager.nixosModules.default
+        inputs.labwc-manager.homeManagerModules.default
       ];
     };
 
@@ -29,5 +32,13 @@
             ./hosts/iso/configuration.nix
           ];
         };
+
+      nixosConfigurations.nixos = mkNixosConfiguration {
+        hostname = "zik-pc";
+        username = "zik";
+        modules = [
+          nixos-wsl.nixosModules.wsl
+          ./hosts/wsl-win/wsl.nix
+        ];
 };
 }

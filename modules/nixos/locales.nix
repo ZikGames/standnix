@@ -2,7 +2,7 @@
 {pkgs, lib, config, ... }: {
 
 
- options ={
+ options = {
   locales.enable =
   lib.mkEnableOption "locale";
 };

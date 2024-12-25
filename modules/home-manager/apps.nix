@@ -8,12 +8,10 @@ let cfg = config.apps; in {
   home.packages = with pkgs; [
      prismlauncher
      openmw
-     steam-run
-     discordo
      ranger
-     steam-tui
      
      tuifimanager
+     helvum
   #   chess-tui
   #   felix
   #   vim
@@ -25,7 +23,7 @@ let cfg = config.apps; in {
    #  youtube-tui
    #  textual-paint
    #  libresprite
-   # termusic
+   #  termusic
 ];
 programs.vscode = {
   enable = true;

@@ -1,5 +1,5 @@
 # Set background color.
-swaybg -c '#341144' >/dev/null 2>&1 &
+swaybg -c ./wallpaper.png >/dev/null 2>&1 &
 
 # Launch a panel such as yambar or waybar.
 # sfwbar -f /home/zik/standnix/modules/configs/sfwbar/sfwbar.conf >/dev/null 2>&1 &

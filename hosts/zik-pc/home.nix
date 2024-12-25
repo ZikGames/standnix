@@ -18,6 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     ../../modules/home-manager
+    inputs.labwc-manager.homeManagerModules.default
   ];
 
   nixpkgs = {

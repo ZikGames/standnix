@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${cfg.userName} = {
       isNormalUser = true;
-      initialPassword = "1213";
+      initialPassword = "121312";
       description = "zik";
       extraGroups = [ "networkmanager" "wheel" "adbusers" "sudoers"];
      # shell = pkgs.zsh;

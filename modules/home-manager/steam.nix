@@ -3,7 +3,7 @@
   steam.enable =
  lib.mkEnableOption "steam enable";
  };
- config = lib.mkIf config.grub.enable {
+ config = lib.mkIf config.steam.enable {
  programs.steam = {
   enable = true;
   remotePlay.openFirewall = true;

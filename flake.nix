@@ -41,4 +41,5 @@
           ./hosts/wsl-win/wsl.nix
         ];
 };
+};
 }

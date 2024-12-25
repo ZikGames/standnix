@@ -22,13 +22,6 @@ let cfg = config.labwc; in {
     enable = true;
     options = {
       core.decoration = "server";
-      environment = [
-    XDG_CURRENT_DESKTOP=wlroots
-     
-    XKB_DEFAULT_LAYOUT=ru
-    XKB_DEFAULT_LAYOUT=ru,us(intl)
-    XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
-      ];
     autostart = [
     swaybg -c ../../configs/labwc/wallpaper.png # явите мне борца за свееееееееет, вам вестника тьмы покажу я =]
 

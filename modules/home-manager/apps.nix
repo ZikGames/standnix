@@ -12,20 +12,24 @@ let cfg = config.apps; in {
      discordo
      ranger
      steam-tui
-     clamav
-     clamtk
-     dooit
-     tuir
-     youtube-tui
-    # textual-paint
-     libresprite
-     termusic
      
      tuifimanager
-     chess-tui
-     felix
-     vim
-     cl-wordle
+  #   chess-tui
+  #   felix
+  #   vim
+  #   cl-wordle
+   #  clamav
+   #  clamtk
+   #  dooit
+   #  tuir
+   #  youtube-tui
+   #  textual-paint
+   #  libresprite
+   # termusic
 ];
+programs.vscode = {
+  enable = true;
+};
+
 };
 }

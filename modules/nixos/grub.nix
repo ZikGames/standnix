@@ -6,14 +6,16 @@
   config = lib.mkIf config.grub.enable {
     boot.loader = {
 
-  efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot";
-    };
+ # efi = {
+ #   canTouchEfiVariables = true;
+ #   efiSysMountPoint = "/boot";
+ #   };
 
   grub = {
-     efiSupport = true;
-     device = "nodev";
+#     efiSupport = true;
+     device = "/dev/sda";
+     gfxmodeBios = "text";
+     useOSProber = true;
 
      };
 };

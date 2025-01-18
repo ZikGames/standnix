@@ -6,27 +6,43 @@ let cfg = config.apps; in {
   };
    config = lib.mkIf cfg.enable {
   home.packages = with pkgs; [
-     prismlauncher
+     prismlauncher-unwrapped
      openmw
      ranger
+     xarchiver
+     pavucontrol
      
      tuifimanager
-     helvum
+    blockbench
+    vscode
   #   chess-tui
   #   felix
-  #   vim
   #   cl-wordle
    #  clamav
    #  clamtk
    #  dooit
    #  tuir
-   #  youtube-tui
-   #  textual-paint
-   #  libresprite
+  #   youtube-tui
+  #   textual-paint
+  #   libresprite
    #  termusic
+   obs-studio
+  # pcsx2
+  # rpcs3
+   deluge-gtk
+  # nnn
+  mucommander
+  telegram-desktop
+  doomretro
+  tg
+  discordo
+  flameshot
+  neofetch
+  vscode
 ];
-programs.vscode = {
-  enable = true;
+programs.neovim = {
+   enable = true;
+   defaultEditor = true;
 };
 
 };

@@ -35,9 +35,10 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
   
 
 
@@ -46,5 +47,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 }

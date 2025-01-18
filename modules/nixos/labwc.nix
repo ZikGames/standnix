@@ -16,31 +16,35 @@ let cfg = config.labwc; in {
       slurp
       alacritty
       wofi
-      labwc-gtktheme
+      sfwbar
       labwc-tweaks-gtk
-      labwc-menu-generator
+      labwc-gtktheme
+      swaybg
+	  wmenu
+	  dunst
+	python3
+	blueman
+	mission-center
+	sfm
     ];
+
+    fonts.packages = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk-sans
+  noto-fonts-emoji
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+  roboto
+  dejavu_fonts
+];
+
+    
   programs.labwc = {
     enable = true;
-    options = {
-      core.decoration = "server";
-      environment = [
-    XDG_CURRENT_DESKTOP=wlroots
-     
-    XKB_DEFAULT_LAYOUT=ru
-    XKB_DEFAULT_LAYOUT=ru,us(intl)
-    XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
-      ];
-    autostart = [
-    swaybg -c #341144
-
-      
-    ];
-
-      
-      
-      }
   };
-
-  };
-}
+};
+  }

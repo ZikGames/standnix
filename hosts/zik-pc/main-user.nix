@@ -17,12 +17,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+  services.getty.autologinUser = "${cfg.userName}";
     users.users.${cfg.userName} = {
       isNormalUser = true;
       initialPassword = "121312";
       description = "zik";
       extraGroups = [ "networkmanager" "wheel" "adbusers" "sudoers"];
-     # shell = pkgs.zsh;
+      shell = pkgs.zsh;
     };
   };
 }

@@ -8,7 +8,8 @@ let cfg = config.network; in {
   networking.hostName = "zik-pc";
   networking.firewall.enable = true;
   networking.firewall.allowPing = true;
-  networking.wireless.enable = true;
+  hardware.bluetooth.enable = true;
+  networking.wireless.iwd.enable = true;
 
   services.openssh = {
   enable = true;

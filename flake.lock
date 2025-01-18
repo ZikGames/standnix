@@ -20,21 +20,6 @@
         "type": "github"
       }
     },
-    "labwc-manager": {
-      "locked": {
-        "lastModified": 1727568235,
-        "narHash": "sha256-pxKdwMngF3vAtRTtostspeCfMYaKwjKQf40ZInKOA9I=",
-        "owner": "JaydenPahukula",
-        "repo": "labwc-manager",
-        "rev": "3dc7bafdcf847f818f6f1330f6be113526a2e625",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JaydenPahukula",
-        "repo": "labwc-manager",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1731139594,
@@ -54,8 +39,28 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "labwc-manager": "labwc-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yandex-browser": "yandex-browser"
+      }
+    },
+    "yandex-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734514214,
+        "narHash": "sha256-3dWZRtyJ9ibwDzRRnXVTWfzIXAa1r8bx6Ewz8iNmdHg=",
+        "owner": "Teu5us",
+        "repo": "nix-yandex-browser",
+        "rev": "09fa3d3cd3c00ca22039c1090c00cbb7e86d3908",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Teu5us",
+        "repo": "nix-yandex-browser",
+        "type": "github"
       }
     }
   },

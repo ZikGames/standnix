@@ -14,12 +14,12 @@ programs.zsh = {
   autosuggestions.enable = true;
   syntaxHighlighting.enable = true;
 
-  shellAliases = {
+  ohMyZsh = {
+    enable = true;
+    plugins = [ "git" ];
+    theme = "gallifrey";
   };
- #   history.size = 10000;
- #   history.ignoreAllDups = true;
- #   history.path = "../configs/.zsh_history";
- #   history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+
 };
 };
 }

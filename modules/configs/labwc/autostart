@@ -1,10 +1,10 @@
 # Set background color.
-swaybg -c ./wallpaper.png >/dev/null 2>&1 &
-
+swaybg -i /home/zik/standnix/modules/configs/labwc/wallpaper.png >/dev/null 2>&1 &
+sfwbar -f /home/zik/standnix/modules/configs/sfwbar.config >/dev/null 2>&1 &
 # Launch a panel such as yambar or waybar.
 # sfwbar -f /home/zik/standnix/modules/configs/sfwbar/sfwbar.conf >/dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
 # as mako to function correctly. Thunderbird is an example of this.
-mako >/dev/null 2>&1 &
+dunst >/dev/null 2>&1 &

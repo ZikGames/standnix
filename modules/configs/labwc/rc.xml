@@ -8,7 +8,7 @@
 <labwc_config>
 
   <theme>
-    <name></name>
+    <name>GTK</name>
     <cornerRadius>8</cornerRadius>
     <font name="sans" size="10" />
   </theme>
@@ -26,6 +26,14 @@
     <keybind key="W-F4">
       <action name="None" />
     </keybind>
+
+    <keybind key="C-l">
+      <action name="GoToDesktop" to="left" wrap="yes" />
+    </keybind>
+
+    <keybind key="C-r">
+      <action name="GoToDesktop" to="right" wrap="yes" />
+    </keybind>
   </keyboard>
 
   <mouse>
@@ -34,6 +42,12 @@
     <context name="Root">
       <mousebind button="Right" action="Press">
         <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>    
+      <mousebind button="Right" action="Press">
+        <action name="Execute" command="bash -c 'wofi --show=drun -p Program'"/>
+      </mousebind>
+      <mousebind button="Middle" action="Press">
+        <action name="Execute" command="bash -c 'killall wofi'"/>
       </mousebind>
     </context>
   </mouse>

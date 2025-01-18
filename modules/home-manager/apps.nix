@@ -6,39 +6,52 @@ let cfg = config.apps; in {
   };
    config = lib.mkIf cfg.enable {
   home.packages = with pkgs; [
-     prismlauncher-unwrapped
-     openmw
+    ## работа с файлами
      ranger
-     xarchiver
-     pavucontrol
-     
-     tuifimanager
+     #xarchiver
+     #mucommander
+     #tuifimanager
+      # nnn
+       felix-fm
+
+    ## майнкрафт
     blockbench
     vscode
+    prismlauncher-unwrapped
+
+    ## интернет
+    obs-studio
+    deluge-gtk
+    telegram-desktop
+
+  ## системное
+  #neofetch
+  fastfetch
+  zenith
+  htop-vim
+  
+  ## игры
+# pcsx2
+# rpcs3
+  doomretro
+  openmw
+  
+    ## консольная солянка
   #   chess-tui
-  #   felix
+  #   tg
+  #   discordo
   #   cl-wordle
-   #  clamav
-   #  clamtk
-   #  dooit
-   #  tuir
+  #   dooit
+  #   tuir
   #   youtube-tui
   #   textual-paint
+  #   termusic
+
+    ## чёто
   #   libresprite
-   #  termusic
-   obs-studio
-  # pcsx2
-  # rpcs3
-   deluge-gtk
-  # nnn
-  mucommander
-  telegram-desktop
-  doomretro
-  tg
-  discordo
-  flameshot
-  neofetch
-  vscode
+  #   clamav
+  #   clamtk
+  #   flameshot
 ];
 programs.neovim = {
    enable = true;

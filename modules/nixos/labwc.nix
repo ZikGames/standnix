@@ -10,37 +10,16 @@ let cfg = config.labwc; in {
       swayidle
       wl-clipboard
       wf-recorder
-      mako
+      dunst
       grim
      #kanshi
       slurp
       alacritty
-      wofi
-      sfwbar
+      wmenu
       labwc-tweaks-gtk
       labwc-gtktheme
       swaybg
-	  wmenu
-	  dunst
-	python3
-	blueman
-	mission-center
-	sfm
     ];
-
-    fonts.packages = with pkgs; [
-  noto-fonts
-  noto-fonts-cjk-sans
-  noto-fonts-emoji
-  liberation_ttf
-  fira-code
-  fira-code-symbols
-  mplus-outline-fonts.githubRelease
-  dina-font
-  proggyfonts
-  roboto
-  dejavu_fonts
-];
 
     
   programs.labwc = {

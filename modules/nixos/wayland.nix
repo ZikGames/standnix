@@ -30,7 +30,6 @@ xdg.portal.config.common.default = "*";
     wayland-utils
   	xwayland
   	xwaylandvideobridge
-	zapret
   ];
 
 security.pam.services.swaylock = {};

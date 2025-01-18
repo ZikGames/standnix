@@ -1,13 +1,13 @@
 {pkgs, lib, config, ...}: {
 imports = [
  ./apps.nix
- ./steam.nix
  ./discord.nix
+ ./fonts.nix
+ ./sfwbar.nix
  ];
 
  apps.enable = true;
- steam.enable = true;
-
- 
+ fonts.enable = true;
+ sfwbar.enable = true;
 
 }

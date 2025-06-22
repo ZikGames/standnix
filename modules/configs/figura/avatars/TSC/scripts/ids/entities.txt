@@ -1,0 +1,6 @@
+# Put custom/modded entities here.
+# Lines starting with "#" are comments.
+
+# Syntax:
+# examplemod:example_entity_id | **Example Mod:** Example Entity Name
+

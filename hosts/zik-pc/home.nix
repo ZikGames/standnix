@@ -18,7 +18,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     ../../modules/home-manager
+    inputs.plasma-manager.homeManagerModules.plasma-manager
+   # inputs.labwc-manager.homeManagerModule.default
   ];
+  
 
   nixpkgs = {
     config = {
@@ -38,10 +41,13 @@
   programs.firefox.enable = false;
   programs.home-manager.enable = true;
   programs.git.enable = true;
-
-  
-
-
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+    clock24 = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    mouse = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

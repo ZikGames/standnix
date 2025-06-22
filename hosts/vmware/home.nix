@@ -33,7 +33,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+   home.packages = with pkgs; [ zsh ];
 
   programs.firefox.enable = true;
   programs.home-manager.enable = true;

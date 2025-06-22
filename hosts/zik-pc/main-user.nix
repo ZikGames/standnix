@@ -22,7 +22,7 @@ in
       isNormalUser = true;
       initialPassword = "121312";
       description = "zik";
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "sudoers"];
+      extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm"];
       shell = pkgs.zsh;
     };
   };

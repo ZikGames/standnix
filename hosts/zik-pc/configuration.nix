@@ -15,7 +15,6 @@
      font = "cyr-sun16";
      keyMap = "ruwin_alt_sh-UTF-8";
    };
-
   main-user.enable = true;
   main-user.userName = "zik";
 

@@ -10,20 +10,25 @@ let cfg = config.labwc; in {
       swayidle
       wl-clipboard
       wf-recorder
-      dunst
+	    dunst
       grim
-     #kanshi
+#      kanshi
       slurp
+      wdisplays
       alacritty
-      wmenu
+      wofi
+      sfwbar
       labwc-tweaks-gtk
       labwc-gtktheme
       swaybg
+      gscreenshot
+      pavucontrol
+      nemo-with-extensions
+      nemo-fileroller
+      file-roller
     ];
-
-    
-  programs.labwc = {
+    programs.labwc = {
     enable = true;
-  };
 };
+  };
   }

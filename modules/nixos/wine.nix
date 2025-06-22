@@ -12,8 +12,9 @@ environment.systemPackages = with pkgs; [
     wineWowPackages.stable
     wineWowPackages.waylandFull
     winetricks
-    protonplus
+  #  protonplus
     protontricks
+    bottles
 ];
 };
 }

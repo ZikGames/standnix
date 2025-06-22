@@ -1,0 +1,10 @@
+{
+  "Skin": {
+    "type": "INT",
+    "data": 2
+  },
+  "Mode": {
+    "type": "INT",
+    "data": 2
+  }
+}

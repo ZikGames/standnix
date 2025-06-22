@@ -6,5 +6,9 @@
      withOpenASAR = true;
      withVencord = true;
     })
+      (discord.override {
+     withOpenASAR = true;
+     withVencord = true;
+    })
   ];
 }

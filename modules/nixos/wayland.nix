@@ -11,6 +11,7 @@
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";  # for VSCode Discord etc
     XDG_CURRENT_DESKTOP = "wlroots";
+    LD_LIBRARY_PATH = "${pkgs.chromium}/lib";
   };
 
   services.dbus.enable = true;
@@ -29,9 +30,8 @@ xdg.portal.config.common.default = "*";
   environment.systemPackages = with pkgs; [
     wayland-utils
   	xwayland
-  	xwaylandvideobridge
+  #	xwaylandvideobridge
   ];
-
 security.pam.services.swaylock = {};
 
 };

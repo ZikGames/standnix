@@ -1,0 +1,17 @@
+{
+  "waypoints": {
+    "type": "TABLE",
+    "data": [
+      {
+        "key": {
+          "type": "STRING",
+          "data": "bWluZWNyYWZ0Om92ZXJ3b3JsZA=="
+        },
+        "value": {
+          "type": "TABLE",
+          "data": []
+        }
+      }
+    ]
+  }
+}

@@ -22,7 +22,7 @@ in
       initialPassword = "121312";
       description = "zik";
       extraGroups = [ "networkmanager" "wheel" "adbusers" "sudoers"];
-     # shell = pkgs.zsh;
+      shell = pkgs.zsh;
     };
   };
 }

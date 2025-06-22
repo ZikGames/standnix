@@ -1,0 +1,6 @@
+# Put custom/modded items here.
+# Lines starting with "#" are comments.
+
+# Syntax:
+# examplemod:example_item_id | **Example Mod:** Example Item Name
+

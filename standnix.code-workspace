@@ -4,5 +4,7 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"figura.librariesFolderPath": "/home/zik/.local/share/.minecraft/figura/avatars/libraries/"
+	}
 }

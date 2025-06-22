@@ -5,12 +5,13 @@ let
 in
 {
   options.zapret = {
-    enable = mkEnableOption "Enable DPI (Deep packet inspection) bypass";
+  zapret.enable =
+  lib.mkEnableOption "Enable DPI (Deep packet inspection) bypass";
   };
   
 
 
-  config = mkIf cfg.enable {
+ config = lib.mkIf config.zapret.enable {
     users.users.tpws = {
       isSystemUser = true;
       group = "tpws";

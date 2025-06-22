@@ -1,0 +1,9 @@
+# Put custom/modded blocks here.
+# Lines starting with "#" are comments.
+
+# Syntax, Block with no item:
+# examplemod:example_block_id | **Example Mod:** Example Block Name
+
+# Syntax, Block with matching item (the "item" is literal):
+# examplemod:example_block_id | **Example Mod:** Example Block Name | item
+

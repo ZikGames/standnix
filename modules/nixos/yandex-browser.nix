@@ -1,22 +1,20 @@
-{pkgs, lib, config, imports, ...}: {
-
- options = {
-
+{ config, pkgs, lib, ... }: {
+   options = {
   yandex-browser.enable =
- lib.mkEnableOption "яндекс слежка анонимно срать в подъезде минус";
- };
-	config = lib.mkIf config.yandex-browser.enable {
+  lib.mkEnableOption "яндекс браузер по рофлу по приколу";
+};
+ config = lib.mkIf config.yandex-browser.enable {
   programs.yandex-browser = {
     enable = true;
     # default is "stable", you can also have "both"
     package = "beta";
-#    extensions = config.programs.chromium.extensions;
+    extensions = config.programs.chromium.extensions;
 
-    # NOTE: the following are only for nixosModule
-    extensionInstallBlocklist = [
-      # disable the "buggy" extension in beta
-      "imjepfoebignfgmogbbghpbkbcimgfpd"
-    ];
+  #  NOTE: the following are only for nixosModule
+   extensionInstallBlocklist = [
+     # disable the "buggy" extension in beta
+     "imjepfoebignfgmogbbghpbkbcimgfpd"
+   ];
     homepageLocation = "https://ya.ru";
     extraOpts = {
       "HardwareAccelerationModeEnabled" = true;
@@ -38,5 +36,5 @@
       "NtpContentDisabled" = true;
     };
   };
-  };
-  }
+ };
+}

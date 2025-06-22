@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731235328,
-        "narHash": "sha256-NjavpgE9/bMe/ABvZpyHIUeYF1mqR5lhaep3wB79ucs=",
+        "lastModified": 1750304462,
+        "narHash": "sha256-Mj5t4yX05/rXnRqJkpoLZTWqgStB88Mr/fegTRqyiWc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "60bb110917844d354f3c18e05450606a435d2d10",
+        "rev": "863842639722dd12ae9e37ca83bcb61a63b36f6c",
         "type": "github"
       },
       "original": {
@@ -20,13 +20,28 @@
         "type": "github"
       }
     },
+    "labwc-manager": {
+      "locked": {
+        "lastModified": 1735402716,
+        "narHash": "sha256-lfyMdxkyGyVdrtOTHufekJrmozeIlFZ+0Jsmi5NB8NE=",
+        "owner": "ZikGames",
+        "repo": "labwc-manager",
+        "rev": "04006a6c87eaab56043c8283aabbac5289788c07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ZikGames",
+        "repo": "labwc-manager",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1731139594,
-        "narHash": "sha256-IigrKK3vYRpUu+HEjPL/phrfh7Ox881er1UEsZvw9Q4=",
+        "lastModified": 1750365781,
+        "narHash": "sha256-XE/lFNhz5lsriMm/yjXkvSZz5DfvKJLUjsS6pP8EC50=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "76612b17c0ce71689921ca12d9ffdc9c23ce40b2",
+        "rev": "08f22084e6085d19bcfb4be30d1ca76ecb96fe54",
         "type": "github"
       },
       "original": {
@@ -36,10 +51,35 @@
         "type": "github"
       }
     },
+    "plasma-manager": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748196248,
+        "narHash": "sha256-1iHjsH6/5UOerJEoZKE+Gx1BgAoge/YcnUsOA4wQ/BU=",
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "rev": "b7697abe89967839b273a863a3805345ea54ab56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "labwc-manager": "labwc-manager",
         "nixpkgs": "nixpkgs",
+        "plasma-manager": "plasma-manager",
         "yandex-browser": "yandex-browser"
       }
     },
@@ -50,15 +90,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1734514214,
-        "narHash": "sha256-3dWZRtyJ9ibwDzRRnXVTWfzIXAa1r8bx6Ewz8iNmdHg=",
-        "owner": "Teu5us",
+        "lastModified": 1738661312,
+        "narHash": "sha256-jB/D+7rTUMAhp6m3BPIJ8QgN5if6xi6tjJ/Rwt3U8hI=",
+        "owner": "teu5us",
         "repo": "nix-yandex-browser",
-        "rev": "09fa3d3cd3c00ca22039c1090c00cbb7e86d3908",
+        "rev": "bdc6fca259f9435e7e9606fca2256905a36f48e9",
         "type": "github"
       },
       "original": {
-        "owner": "Teu5us",
+        "owner": "teu5us",
         "repo": "nix-yandex-browser",
         "type": "github"
       }

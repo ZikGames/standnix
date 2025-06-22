@@ -1,13 +1,16 @@
 {pkgs, lib, config, ...}: {
 imports = [
  ./apps.nix
- ./discord.nix
- ./fonts.nix
+  ./discord.nix
  ./sfwbar.nix
+# ./kde.nix
+ ./heroic.nix
+ ./gnome.nix
+ ./hyprland.nix
  ];
 
  apps.enable = true;
- fonts.enable = true;
- sfwbar.enable = true;
-
+  sfwbar.enable = true;
+  heroic.enable  =  true;
+  hyprland.enable = true;
 }

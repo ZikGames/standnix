@@ -1,0 +1,6 @@
+# Put custom/modded particles here.
+# Lines starting with "#" are comments.
+
+# Syntax:
+# examplemod:example_particle_id | **Example Mod:** Example Particle Name
+

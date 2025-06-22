@@ -58,6 +58,9 @@
   <item label="Poweroff">
     <action name="Execute" command="systemctl -i poweroff" />
   </item>
+  <item label="reboot">
+    <action name="Execute" command="systemctl -i reboot" />
+  </item>
 </menu>
 
 </openbox_menu>

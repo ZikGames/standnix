@@ -8,6 +8,13 @@ let cfg = config.qemu; in {
     environment.systemPackages = with pkgs; [
 virt-manager
 qemu
+libvirt
 ];
+
+users.groups.libvirtd.members = ["zik"];
+
+virtualisation.libvirtd.enable = true;
+
+virtualisation.spiceUSBRedirection.enable = true;
   };
 }

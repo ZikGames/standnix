@@ -1,1 +1,4 @@
-./modules/configs/figura/.
+modules/configs/figura/
+!modules/configs/figura/avatars/
+!modules/configs/figura/avatars/** 
+!modules/configs/figura/config 

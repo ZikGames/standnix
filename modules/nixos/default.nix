@@ -41,7 +41,7 @@ zerotier.enable = false;
 labwc.enable = true;
 kde.enable = false;
 xfce.enable = false;
-gnome.enable = true;
+gnome.enable = false;
 
 android.enable = true;
 steam.enable = true;

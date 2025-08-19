@@ -12,7 +12,7 @@ let cfg = config.labwc; in {
       wf-recorder
 	    dunst
       grim
-#      kanshi
+      kanshi
       slurp
       wdisplays
       alacritty

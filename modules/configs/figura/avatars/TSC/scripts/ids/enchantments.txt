@@ -1,6 +1,0 @@
-# Put custom/modded enchantments here.
-# Lines starting with "#" are comments.
-
-# Syntax:
-# examplemod:example_enchantment_id | **Example Mod:** Example Enchantment Name
-

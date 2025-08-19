@@ -1,6 +1,0 @@
-# Put custom/modded dimensions here.
-# Lines starting with "#" are comments.
-
-# Syntax:
-# examplemod:example_dimension_id | **Example Mod:** Example Dimension Name
-

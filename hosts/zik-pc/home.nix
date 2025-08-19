@@ -20,8 +20,8 @@
     ../../modules/home-manager
     inputs.plasma-manager.homeManagerModules.plasma-manager
    # inputs.labwc-manager.homeManagerModule.default
+   inputs.nixcord.homeModules.nixcord
   ];
-  
 
   nixpkgs = {
     config = {
@@ -38,7 +38,7 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
-  programs.firefox.enable = false;
+  programs.firefox.enable = true;
   programs.home-manager.enable = true;
   programs.git.enable = true;
   programs.tmux = {

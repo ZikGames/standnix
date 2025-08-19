@@ -11,12 +11,13 @@ let cfg = config.network; in {
   networking = {
     hostName = "zik-pc";
     interfaces.wlan0 = {
-      useDHCP = false;
+      useDHCP = true;
       ipv4.addresses = [{
     address = "62.183.96.183";
     prefixLength = 24;  
   }];
    };
+  
      nameservers = [ "77.88.8.8" "77.88.8.1" ];
      defaultGateway = "192.168.0.1";
     # wireless = {

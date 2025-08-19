@@ -1,6 +1,0 @@
-# Put custom/modded biomes here.
-# Lines starting with "#" are comments.
-
-# Syntax:
-# examplemod:example_biome_id | **Example Mod:** Example Biome Name
-

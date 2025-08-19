@@ -1,6 +1,0 @@
-# Put custom/modded effects here.
-# Lines starting with "#" are comments.
-
-# Syntax:
-# examplemod:example_effect_id | **Example Mod:** Example Effect Name
-

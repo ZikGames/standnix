@@ -5,10 +5,6 @@ let cfg = config.pipewire; in {
   };
 
   config = lib.mkIf cfg.enable {
-
-
-  services.pulseaudio.enable = false;
-  hardware.pulseaudio.support32Bit = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

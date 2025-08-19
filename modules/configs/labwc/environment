@@ -60,7 +60,7 @@
 ## then uncomment and adjust.
 ##
 
- XDG_CURRENT_DESKTOP=wlroots
+ XDG_CURRENT_DESKTOP=hyprland
 
 XKB_DEFAULT_LAYOUT=us,ru
 XCURSOR_THEME=Qogir

@@ -1,9 +1,9 @@
-{pkgs, lib, config, packages, ...}: {
+{lpkgs, lib, config, packages, pkgs, ...}: {
  options = {
   xfce.enable =
   lib.mkEnableOption "wayland";
 };
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
 	xfce.thunar
 	xfce.thunar-archive-plugin
 	xfce.xfce4-panel
@@ -16,5 +16,4 @@
 	xfce.xfce4-settings
 	xfce.xfce4-whiskermenu-plugin
     ];
-    };
-}
+    }

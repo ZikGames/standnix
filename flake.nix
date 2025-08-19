@@ -7,6 +7,11 @@
   url = "github:teu5us/nix-yandex-browser";
   inputs.nixpkgs.follows = "nixpkgs";
   };
+  nixcord = {
+    url = "github:kaylorben/nixcord";
+  };
+   nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+       playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
 
      home-manager = {
        url = "github:nix-community/home-manager";
@@ -22,7 +27,6 @@
     url = "github:ZikGames/labwc-manager";
      };
   };
-
   outputs = { self, nixpkgs, ... }@inputs: {
 
     nixosConfigurations.zik-pc = nixpkgs.lib.nixosSystem {
@@ -31,8 +35,11 @@
         ./hosts/zik-pc/configuration.nix
         ./modules/nixos
         inputs.home-manager.nixosModules.default
+        inputs.playit-nixos-module.nixosModules.default
+         inputs.nix-minecraft.nixosModules.minecraft-servers
       #  inputs.yandex-browser.nixosModules.system
       ];
+
     };
 
       

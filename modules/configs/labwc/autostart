@@ -1,9 +1,9 @@
 # Set background color.
-swaybg -i /home/zik/standnix/modules/configs/labwc/wallpaper.png >/dev/null 2>&1 &
+swaybg -i /home/zik/standnix/modules/configs/fansite_kit_hires_background_01.jpg >/dev/null 2>&1 &
 # Launch a panel such as yambar or waybar.
 sfwbar -f /home/zik/standnix/modules/configs/t2.config >/dev/null 2>&1 &
 lavalauncher -c /home/zik/standnix/modules/configs/lavalauncher.conf >/dev/null 2>&1 &
-kanshi -c /home/zik/standnix/modules/configs/kanshi.conf >/dev/null 2>&1 &
+#kanshi -c /home/zik/standnix/modules/configs/kanshi.conf >/dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such

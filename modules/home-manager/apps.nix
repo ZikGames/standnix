@@ -66,22 +66,23 @@ let cfg = config.apps; in {
   limo
   archipelago
   godot
+  beyond-all-reason
   
     ## консольная солянка
   #   chess-tui
   #   tg
-     discordo
-     cl-wordle
-     dooit
-     tuir
+  #   discordo
+  #   cl-wordle
+  #   dooit
+  #   tuir
      youtube-tui
   #   textual-paint
   #   termusic
-      t
-      tuisky
-      tuifeed
+  #    t
+  #    tuisky
+  #    tuifeed
   #    hiddify-app
-      ruby
+  #    ruby
   #    browsh
 
     ## чёто
@@ -92,7 +93,7 @@ let cfg = config.apps; in {
   #   thunderbird
 #  qdirstat
 #  gparted
-keepassxc
+#  keepassxc
 ];
 };
 }

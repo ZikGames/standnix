@@ -1,85 +1,436 @@
 { config, lib, pkgs, ... }:
 with lib;
+
 let
   cfg = config.zapret;
 in
 {
   options.zapret = {
-  zapret.enable =
-  lib.mkEnableOption "Enable DPI (Deep packet inspection) bypass";
+    enable = mkEnableOption "Enable DPI (Deep Packet Inspection) bypass";
   };
-  
 
+  config = mkIf cfg.enable {
+  services.zapret = {
+  enable = true;
+  whitelist = [
+    "
+cloudflare-ech.com
+dis.gd
+discord-attachments-uploads-prd.storage.googleapis.com
+discord.app
+discord.co
+discord.com
+discord.design
+discord.dev
+discord.gift
+discord.gifts
+discord.gg
+discord.media
+discord.new
+discord.store
+discord.status
+discord-activities.com
+discordactivities.com
+discordapp.com
+discordapp.net
+discordcdn.com
+discordmerch.com
+discordpartygames.com
+discordsays.com
+discordsez.com
+yt3.ggpht.com
+yt4.ggpht.com
+yt3.googleusercontent.com
+googlevideo.com
+jnn-pa.googleapis.com
+stable.dl2.discordapp.net
+wide-youtube.l.google.com
+youtube-nocookie.com
+youtube-ui.l.google.com
+youtube.com
+youtubeembeddedplayer.googleapis.com
+youtubekids.com
+youtubei.googleapis.com
+youtu.be
+yt-video-upload.l.google.com
+ytimg.com
+ytimg.l.google.com
+frankerfacez.com
+ffzap.com
+betterttv.net
+"
 
- config = lib.mkIf config.zapret.enable {
-    users.users.tpws = {
-      isSystemUser = true;
-      group = "tpws";
-    };
-    users.groups.tpws = {};
-    systemd.services.zapret = {
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
-      path = with pkgs; [
-        iptables
-        nftables
-        ipset
-        curl
-	(zapret.overrideAttrs (finalAttrs: previousAttrs: {
-	  src = pkgs.fetchFromGitHub {
-	    owner = "bol-van";
-	    repo = "zapret";
-	    rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
-	    hash = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
-	  };
-	}))
-        gawk
-      ];
-      serviceConfig = {
-        Type = "forking";
-        Restart = "no";
-        TimeoutSec = "30sec";
-        IgnoreSIGPIPE = "no";
-        KillMode = "none";
-        GuessMainPID = "no";
-        ExecStart = "${pkgs.bash}/bin/bash -c 'zapret start'";
-        ExecStop = "${pkgs.bash}/bin/bash -c 'zapret stop'";
-        EnvironmentFile = pkgs.writeText "zapret-environment" ''
-          MODE="nfqws"
-          FWTYPE="iptables"
-          MODE_HTTP=1
-          MODE_HTTP_KEEPALIVE=0
-          MODE_HTTPS=1
-          MODE_QUIC=1
-	  QUIC_PORTS=50000-65535
-          MODE_FILTER=none
-          DISABLE_IPV6=1
-          INIT_APPLY_FW=1
-          NFQWS_OPT_DESYNC="--dpi-desync=syndata,fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-repeats=6"
-	  NFQWS_OPT_DESYNC_QUIC="--dpi-desync=fake,tamper --dpi-desync-any-protocol"
-          TMPDIR=/tmp
-        '';
-      };
-    };
-    services = {
-      resolved.enable = true;
-      dnscrypt-proxy2 = {
-        enable = true;
-        settings = {
-          server_names = [ "cloudflare" "scaleway-fr" "google" "yandex" ];
-          listen_addresses = [ "127.0.0.1:53" "[::1]:53" ];
-        };
-      };
-    };
-    networking = {
-      nameservers = [ "::1" "127.0.0.1" ];
-      resolvconf.dnsSingleRequest = true;
-      firewall = {
-        enable = true;
-        allowedTCPPorts = [ 22 80 9993 51820 8080 443 1935 49152 8125 ];
-        allowedUDPPorts = [ 22 80 9993 51820 8080 443 1935 49152 8125 ];
-      };
-    };
+"1e100.net"
+"ggpht.com"
+"googleusercontent.com"
+"googlevideo.com"
+"gstatic.com"
+"gvt1.com"
+"l.google.com"
+"m.youtube.com"
+"nhacmp3youtube.com"
+"play.google.com"
+"wide-youtube.l.google.com"
+"www.youtube.com"
+"youtu.be"
+"youtube-nocookie.com"
+"youtube-studio.com"
+"youtube-ui.l.google.com"
+"youtube.be"
+"youtube.ca"
+"youtube.co"
+"youtube.co.in"
+"youtube.co.uk"
+"youtube.com"
+"youtube.com.au"
+"youtube.com.br"
+"youtube.com.mx"
+"youtube.com.tr"
+"youtube.com.ua"
+"youtube.de"
+"youtube.es"
+"youtube.fr"
+"youtube.googleapis.com"
+"youtube.jp"
+"youtube.nl"
+"youtube.pl"
+"youtube.pt"
+"youtube.ru"
+"youtubeapi.com"
+"youtubechildren.com"
+"youtubecommunity.com"
+"youtubecreators.com"
+"youtubeeducation.com"
+"youtubeembeddedplayer.googleapis.com"
+"youtubei.googleapis.com"
+"youtubekids.com"
+"yt-video-upload.l.google.com"
+"yt.be"
+"yt3.ggpht.com"
+"ytimg.com"
+"10tv.app"
+"7tv.app"
+"7tv.gg"
+"7tv.io"
+"api.7tv.app"
+"cdn.7tv.app"
+"cdn.7tv.gg"
+"emotes.7tv.app"
+"events.7tv.app"
+"static.7tv.app"
+"betterttv.net"
+"frankerfacez.com"
+"cdn.betterttv.net"
+"cdn2.frankerfacez.com"
+"cdn.frankerfacez.com"
+"api.ffzap.com"
+"api.frankerfacez.com""*.discord.app:*"
+"*.discord.com"
+"*.discord.com:*"
+"*.discord.gg"
+"*.discord.gg:*"
+"*.discord.media"
+"*.discordapp.com"
+"*.discordapp.com:*"
+"*.discordapp.net"
+"*.discordapp.net:*"
+"airhorn.solutions"
+"airhornbot.com"
+"bigbeans.solutions"
+"cdn.discordapp.com"
+"dis.gd"
+"discord-activities.com"
+"discord-attachments-uploads-prd.storage.googleapis.com"
+"discord.app"
+"discord.co"
+"discord.com"
+"discord.design"
+"discord.dev"
+"discord.gg"
+"discord.gift"
+"discord.gifts"
+"discord.media"
+"discord.new"
+"discord.store"
+"discord.tools"
+"discordactivities.com"
+"discordapp.com"
+"discordapp.io"
+"discordapp.net"
+"discordcdn.com"
+"discordmerch.com"
+"discordpartygames.com"
+"discordsays.com"
+"discordsez.com"
+"discordstatus.com"
+"gateway.discord.gg"
+"hammerandchisel.ssl.zendesk.com"
+"images-ext-1.discordapp.net"
+"media.discordapp.net"
+"watchanimeattheoffice.com"
+"www.discord.app"
+"www.discord.com""rutracker.org"
+"rutracker.net"
+"rutracker.cr"
+"rutracker.nl"
+"rutracker.ru"
+"rutracker.cc"
+"rutracker.cloud"
+"rutracker.in"
+"rutracker.me"
+"rutracker.is""soundcloud.com"
+"m.soundcloud.com"
+"api.soundcloud.com"
+"developers.soundcloud.com"
+"soundcloud.app"
+"soundcloud.org"
+"soundcloud.net"
+"soundcloud.co"
+"soundcloud.co.uk"
+"soundcloud.fr"
+"soundcloud.de"
+"soundcloud.me"
+"soundclouddesign.com"
+"soundcloudpress.com"
+"stream.soundcloud.com"
+"soundcloudstatus.com"
+"soundcloudforartists.com"
+"w.soundcloud.com"
+"sndcdn.com""cdn.akamai.steamstatic.com"
+"cdn.cloudflare.steamstatic.com"
+"cdn.edgecast.steamstatic.com"
+"cdn.highwinds.steamstatic.com"
+"cdn.steampipe.steamcontent.com"
+"cdn.steampowered.com"
+"cdn.steamstatic.com"
+"csgo.wmsj.cn"
+"dl.steam.clngaa.com"
+"dl.steam.ksyna.com"
+"dota2.wmsj.cn"
+"edge.steam-dns.top.comcast.net"
+"help.steampowered.com"
+"media.steampowered.com"
+"partner.steamgames.com"
+"playartifact.com"
+"s.team"
+"st.dl.bscstorage.net"
+"st.dl.eccdnx.com"
+"st.dl.pinyuncloud.com"
+"steam-api.com"
+"steam-chat.com"
+"steam.apac.qtlglb.com"
+"steam.cdn.on.net"
+"steam.cdn.orcon.net.nz"
+"steam.cdn.slingshot.co.nz"
+"steam.cdn.webra.ru"
+"steam.eca.qtlglb.com"
+"steam.naeu.qtlglb.com"
+"steam.ru.qtlglb.com"
+"steam.tv"
+"steamapi.com"
+"steambroadcast-l3-prod-prd.steamos.cloud"
+"steambroadcast.akamaized.net"
+"steambroadcast.steampowered.com"
+"steambroadcastmedia-a.akamaihd.net"
+"steamcdn-a.akamaihd.net"
+"steamchina.com"
+"steamcommunity-a.akamaihd.net"
+"steamcommunity.com"
+"steamcontent.com"
+"steamdeck.com"
+"steamgames.com"
+"steamgift.com"
+"steaminfra.com"
+"steammobile.akamaized.net"
+"steampipe-kr.akamaized.net"
+"steampipe-partner.akamaized.net"
+"steampipe.akamaized.net"
+"steampipe.steamcontent.tnkjmec.com"
+"steampowered.cn"
+"steampowered.com"
+"steampowered.com.8686c.com"
+"steamserver.net"
+"steamstatic.cn"
+"steamstatic.com"
+"steamstatic.com.8686c.com"
+"steamstore-a.akamaihd.net"
+"steamstore.com"
+"steamtracker.com"
+"steamusercontent-a.akamaihd.net"
+"steamusercontent.com"
+"steamuserimages-a.akamaihd.net"
+"steamvideo-a.akamaihd.net"
+"store.steampowered.com"
+"underlords.com"
+"valvesoftware.com"
+"wmsjsteam.com"
+"xz.pphimalayanrt.com""telegram.org"
+"t.me"
+"web.telegram.org"
+"desktop.telegram.org"
+"macos.telegram.org"
+"telegram.me"
+"telegram.dog"
+"core.telegram.org"
+"tdesktop.com"
+"telegram.tips"
+"telegramusercontent.com"
+"webk.telegram.org"
+"k.telegram.org"
+"telesco.pe""app.twitch.tv"
+"blog.twitch.tv"
+"clips.twitch.tv"
+"d1g1f25tn8m2e6.cloudfront.net"
+"d1m7jfoe9zdc1j.cloudfront.net"
+"d1mhjrowxxagfy.cloudfront.net"
+"d1oca24q5dwo6d.cloudfront.net"
+"d1w2poirtb3as9.cloudfront.net"
+"d1xhnb4ptk05mw.cloudfront.net"
+"d1ymi26ma8va5x.cloudfront.net"
+"d2aba1wr3818hz.cloudfront.net"
+"d2dylwb3shzel1.cloudfront.net"
+"d2e2de1etea730.cloudfront.net"
+"d2nvs31859zcd8.cloudfront.net"
+"d2um2qdswy1tb0.cloudfront.net"
+"d2vjef5jvl6bfs.cloudfront.net"
+"d2xmjdvx03ij56.cloudfront.net"
+"d36nr0u3xmc4mm.cloudfront.net"
+"d3aqoihi2n8ty8.cloudfront.net"
+"d3c27h4odz752x.cloudfront.net"
+"d3vd9lfkzbru3h.cloudfront.net"
+"d6d4ismr40iw.cloudfront.net"
+"d6tizftlrpuof.cloudfront.net"
+"dashboard.twitch.tv"
+"ddacn6pr5v0tl.cloudfront.net"
+"developer.twitch.tv"
+"dgeft87wbj63p.cloudfront.net"
+"dqrpb9wgowsf5.cloudfront.net"
+"ds0h3roq6wcgc.cloudfront.net"
+"dykkng5hnh52u.cloudfront.net"
+"ext-twitch.tv"
+"help.twitch.tv"
+"jtvnw.net"
+"live-video.net"
+"m.twitch.tv"
+"passport.twitch.tv"
+"player.twitch.tv"
+"status.twitch.tv"
+"ttvnw.net"
+"twitch.tv"
+"twitchadvertising.tv"
+"twitchcdn.net"
+"twitchcon.com"
+"twitchsvc.net"
+"vod-secure.twitch.tv""ads-twitter.com"
+"cms-twdigitalassets.com"
+"periscope.tv"
+"pscp.tv"
+"t.co"
+"tellapart.com"
+"tweetdeck.com"
+"twimg.com"
+"twitpic.com"
+"twitter.biz"
+"twitter.com"
+"twitter.jp"
+"twittercommunity.com"
+"twitterflightschool.com"
+"twitterinc.com"
+"twitteroauth.com"
+"twitterstat.us"
+"twtrdns.net"
+"twttr.com"
+"twttr.net"
+"twvid.com"
+"vine.co"
+"x.com"
+  ];
+  params = [
+    "--dpi-desync=fake,disorder2"
+    "--dpi-desync-ttl=1"
+    "--dpi-desync-autottl=2"
+  ];
+};
+  services.dnsproxy = {
+  enable = true;
+  settings = {
+    "listen-addrs" = [ "127.0.0.1" ];
+    "listen-ports" = [ 53 ];
+    upstream = [
+      # DoH endpoint Comss.one
+      "https://dns.comss.one/dns-query"
+    ];
+  };
+};
+
+  #   users.users.tpws = {
+  #     isSystemUser = true;
+  #     group = "tpws";
+  #   };
+  #   users.groups.tpws = {};
+  #   systemd.services.zapret = {
+  #     after = [ "network-online.target" ];
+  #     wants = [ "network-online.target" ];
+  #     wantedBy = [ "multi-user.target" ];
+  #     path = with pkgs; [
+  #       iptables
+  #       nftables
+  #       ipset
+  #       curl
+	# (zapret.overrideAttrs (finalAttrs: previousAttrs: {
+	#   src = pkgs.fetchFromGitHub {
+	#     owner = "bol-van";
+	#     repo = "zapret";
+	#     rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
+	#     hash = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
+	#   };
+	# }))
+  #       gawk
+  #     ];
+  #     serviceConfig = {
+  #       Type = "forking";
+  #       Restart = "no";
+  #       TimeoutSec = "30sec";
+  #       IgnoreSIGPIPE = "no";
+  #       KillMode = "none";
+  #       GuessMainPID = "no";
+  #       ExecStart = "${pkgs.bash}/bin/bash -c 'zapret start'";
+  #       ExecStop = "${pkgs.bash}/bin/bash -c 'zapret stop'";
+  #       EnvironmentFile = pkgs.writeText "zapret-environment" ''
+  #         MODE="nfqws"
+  #         FWTYPE="iptables"
+  #         MODE_HTTP=1
+  #         MODE_HTTP_KEEPALIVE=0
+  #         MODE_HTTPS=1
+  #         MODE_QUIC=1
+	#   QUIC_PORTS=50000-65535
+  #         MODE_FILTER=none
+  #         DISABLE_IPV6=1
+  #         INIT_APPLY_FW=1
+  #         NFQWS_OPT_DESYNC="--dpi-desync=syndata,fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-repeats=6"
+	#   NFQWS_OPT_DESYNC_QUIC="--dpi-desync=fake,tamper --dpi-desync-any-protocol"
+  #         TMPDIR=/tmp
+  #       '';
+  #     };
+  #   };
+  #   services = {
+  #     resolved.enable = true;
+  #     dnscrypt-proxy2 = {
+  #       enable = true;
+  #       settings = {
+  #         server_names = [ "cloudflare" "scaleway-fr" "google" "yandex" ];
+  #         listen_addresses = [ "127.0.0.1:53" "[::1]:53" ];
+  #       };
+  #     };
+  #   };
+  #   networking = {
+  #     nameservers = [ "::1" "127.0.0.1" ];
+  #     resolvconf.dnsSingleRequest = true;
+  #     firewall = {
+  #       enable = true;
+  #       allowedTCPPorts = [ 22 80 9993 51820 8080 443 1935 49152 8125 ];
+  #       allowedUDPPorts = [ 22 80 9993 51820 8080 443 1935 49152 8125 ];
+  #     };
+  #   };
   };
 }

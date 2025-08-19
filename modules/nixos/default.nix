@@ -9,7 +9,7 @@
  # network
  ./network.nix
  ./zerotier.nix
- #./zapret.nix
+ ./zapret.nix
  ./v2ray.nix
   # DE/WM
   ./kde.nix
@@ -34,8 +34,8 @@ wayland.enable = true;
 zsh.enable = true;
 
 network.enable = true;
-zerotier.enable = false;
-#zapret.enable = false;
+zerotier.enable = true;
+zapret.enable = true;
 #v2ray.enable = true;
 
 labwc.enable = true;

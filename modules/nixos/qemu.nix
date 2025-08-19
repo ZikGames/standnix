@@ -9,6 +9,7 @@ let cfg = config.qemu; in {
 virt-manager
 qemu
 libvirt
+  dotnet-sdk_8
 ];
 
 users.groups.libvirtd.members = ["zik"];

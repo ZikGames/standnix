@@ -1,23 +1,22 @@
-{ config, pkgs, ... }:
-{
-  imports =
-    [
+{ inputs, outputs, ... }: {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
       ./hardware-configuration.nix
-      ./home-integration.nix
-      ./main-user.nix
-    ];
+  ];
+    services.getty.autologinUser = "zik";
+    users.users.zik = {
+      isNormalUser = true;
+      initialPassword = "121312";
+      description = "zik";
+      extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm" "libvirtd" "docker"];
+      shell = pkgs.zsh;
+    };
 
-  nix.settings.auto-optimise-store = true;
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  i18n.defaultLocale = "ru_RU.UTF-8";
-  console = {
-     font = "cyr-sun16";
-     keyMap = "ruwin_alt_sh-UTF-8";
-   };
-  main-user.enable = true;
-  main-user.userName = "zik";
-
-system.stateVersion = "24.05";
-
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      # Import your home-manager configuration
+      zik = import ./home.nix;
+    };
+  };
 }

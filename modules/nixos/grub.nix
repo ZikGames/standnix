@@ -14,7 +14,7 @@
   grub = {
 #     efiSupport = true;
      device = "/dev/sda";
-     gfxmodeBios = "text";
+#     gfxmodeBios = "text";
      useOSProber = true;
 
      };

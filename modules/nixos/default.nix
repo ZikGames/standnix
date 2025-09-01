@@ -35,7 +35,7 @@ zsh.enable = true;
 
 network.enable = true;
 zerotier.enable = true;
-zapret.enable = true;
+zapret.enable = false;
 #v2ray.enable = true;
 
 labwc.enable = true;
@@ -45,7 +45,7 @@ gnome.enable = false;
 
 android.enable = true;
 steam.enable = true;
-#yandex-browser.enable = false;
+#yandex-browser.enable = true;
 qemu.enable = true;
 wine.enable = true;
 }

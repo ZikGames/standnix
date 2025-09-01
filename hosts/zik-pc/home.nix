@@ -18,7 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     ../../modules/home-manager
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+  # inputs.plasma-manager.homeManagerModules.plasma-manager
    # inputs.labwc-manager.homeManagerModule.default
    inputs.nixcord.homeModules.nixcord
   ];
@@ -47,6 +47,9 @@
     clock24 = true;
     shell = "${pkgs.zsh}/bin/zsh";
     mouse = true;
+    plugins = with pkgs; [
+      tmuxPlugins.tilish
+    ];
   };
 
   # Nicely reload system units when changing configs

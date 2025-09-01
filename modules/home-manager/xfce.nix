@@ -1,7 +1,7 @@
 {lpkgs, lib, config, packages, pkgs, ...}: {
  options = {
   xfce.enable =
-  lib.mkEnableOption "wayland";
+  lib.mkEnableOption "xfce things";
 };
   home.packages = with pkgs; [
 	xfce.thunar

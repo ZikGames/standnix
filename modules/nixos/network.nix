@@ -5,31 +5,31 @@ let cfg = config.network; in {
   };
 
   config = lib.mkIf cfg.enable {
-#  networking.hostName = "zik-pc";
+  networking.hostName = "zik-pc";
   hardware.bluetooth.enable = true;
   networking.wireless.iwd.enable = true;
-  networking = {
-    hostName = "zik-pc";
-    interfaces.wlan0 = {
-      useDHCP = true;
-      ipv4.addresses = [{
-    address = "62.183.96.183";
-    prefixLength = 24;  
-  }];
-   };
+  # networking = {
+  #   hostName = "zik-pc";
+  #   interfaces.wlan0 = {
+  #     useDHCP = true;
+  #     ipv4.addresses = [{
+  #   address = "62.183.96.183";
+  #   prefixLength = 24;  
+  # }];
+  #  };
   
-     nameservers = [ "77.88.8.8" "77.88.8.1" ];
-     defaultGateway = "192.168.0.1";
-    # wireless = {
-    #   enable = true;
-    #   interfaces = ["wlp3s0"];
-    #   networks = {
-    #     he-mnie = {
-    #       psk = "32412wdsa";
-    #     };
-    #   };
-    # };
-  };
+  #    nameservers = [ "77.88.8.8" "77.88.8.1" ];
+  #    defaultGateway = "192.168.0.1";
+  #   wireless = {
+  #     enable = true;
+  #     interfaces = ["wlp3s0"];
+  #     networks = {
+  #       he-mnie = {
+  #         psk = "32412wdsa";
+  #       };
+  #     };
+  #   };
+  # };
   services.openssh = {
   enable = true;
   ports = [ 22 ];

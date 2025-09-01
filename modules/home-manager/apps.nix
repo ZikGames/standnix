@@ -25,6 +25,7 @@ let cfg = config.apps; in {
     ## майнкрафт
     blockbench
     vscode
+     jnoortheen.nix-ide
       (prismlauncher.override {
     # Add binary required by some mod
     additionalPrograms = [ ffmpeg  ];
@@ -67,6 +68,7 @@ let cfg = config.apps; in {
   archipelago
   godot
   beyond-all-reason
+  tetrio-desktop
   
     ## консольная солянка
   #   chess-tui

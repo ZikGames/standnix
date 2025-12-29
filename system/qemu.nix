@@ -8,9 +8,8 @@ let cfg = config.qemu; in {
     environment.systemPackages = with pkgs; [
 qemu
 libvirt
-deluge
 virtiofsd
-mangohud
+gparted
 ];
 
 users.groups.libvirtd.members = ["zik"];

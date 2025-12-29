@@ -11,34 +11,38 @@
     config = {
       useQuickCss = false;   # use out quickCSS
       themeLinks = [        # or use an online theme
-        "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-vencord.theme.css"
+        ""
+https://raw.githubusercontent.com/otsegolo/system24-catppuccin-macchiato-red/refs/heads/main/theme/flavors/system24-catppuccin-macchiato.theme.css        
+#https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-vencord.theme.css
       ];
-      frameless = false;                   # Set some Vencord options
+      frameless = true;                   # Set some Vencord options
       transparent = true;
       plugins = {
         alwaysTrust.enable = true;
         betterRoleDot.enable = true;
         betterSessions.enable = true;
         betterSettings.enable = true;
-        clearURLs.enable = true;
-        customRPC = {
+        clearUrLs.enable = true;
+        customRpc = {
           enable = true;
+          config = {
           appID = "1058352493676986378";
-          appName = "Spooky Month";
+          appName = "something";
           buttonOneText = "rickroll";
-          buttonOneURL = "https://www.youtube.com/watch?v=rhOC1x8XEOY";
+          buttonOneURL = "https://www.youtube.com/watch?v=ZbZSe6N_BXs";
           buttonTwoText = "rickroll";
-          buttonTwoURL = "https://www.youtube.com/watch?v=FtutLA63Cp8";
-          details = "=]";
-          imageBig = "https://media.tenor.com/vYm_m_fp18EAAAAM/spooky-spooky-month.gif";
-          imageBigTooltip = "yei";
-          imageSmall = "";
-          imageSmallTooltip = "";
-          state = "=/";
+          buttonTwoURL = "https://www.youtube.com/watch?v=ilfYnhXD-bE";
+          details = "hello";
+          imageBig = "https://media1.tenor.com/m/guTUVan0WHUAAAAC/hello-chat-saul-goodman.gif";
+          imageBigTooltip = "o/";
+          imageSmall = "https://media.tenor.com/8_ZIDjNl92gAAAAM/gus-gustavo.gif";
+          imageSmallTooltip = "/o";
+          state = "have a nice time, buddy";
           timestampMode = "discordUptime";
         #  startTime = "1759276800";
         #  endTime = "1761955200";
           type = "watching";
+          };
       };
         dearrow = {
           enable = true;

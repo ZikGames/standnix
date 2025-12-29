@@ -13,7 +13,7 @@
   ];
 
   base.enable = true;
-  winboat.enable = false;
+  winboat.enable = true;
   steam.enable = true;
   wayland.enable = true;
   qemu.enable = true;

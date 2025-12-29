@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
  options = {
    firefox.enable =
  lib.mkEnableOption "firefox declared";
@@ -58,18 +58,19 @@
       '';                                      
 
 
-    #   extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-    #    stylus
-    #    return-youtube-dislikes
-    #    ublock-origin
-    #    darkreader
-    #    youtube-remix
-    #    translate-web-pages
-    #    steamdb
-    #    tampermonkey
-    #    gsconnect
-    #    keepassxc-browser
-    #  ];
+     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      stylus
+      return-youtube-dislikes
+      ublock-origin
+      darkreader
+       youtube-redux
+       translate-web-pages
+       steam-database
+       protondb-for-steam
+       control-panel-for-twitter
+       keepassxc-browser
+
+    ];
 
     };
   };

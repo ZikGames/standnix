@@ -9,11 +9,19 @@ home.packages = with pkgs; [
       vlc
       keepassxc
       virt-manager
-      limo
+      (limo.override { withUnrar = true; })
+      protontricks
+      heroic-unwrapped
+      umu-launcher
+      fastfetch
+      scrcpy
+      tree
       archipelago
       godot_4_4-mono
       telegram-desktop
       thunderbird
+      deluge
+      mangohud
 ];
 };
 }

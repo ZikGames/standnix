@@ -7,18 +7,30 @@ let cfg = config.kde-dotfiles; in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       qogir-kde
-      dracula-qt5-theme
+      qogir-icon-theme
+      unrar
     ];
 
     programs.plasma = {
       enable = true;
       workspace = {
       lookAndFeel = "Dracula";
-      cursorTheme = "Qogir";
+      cursor.theme = "Qogir";
       iconTheme = "Qogir";
       colorScheme = "Dracula";
       };
-      panels = [ ];
+      panels = [      # Windows-like panel at the bottom
+      {
+        location = "bottom";
+        widgets = [
+          "org.kde.plasma.kickoff"
+          "org.kde.plasma.icontasks"
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+        ];
+      }
+      ];
       shortcuts = { };
       # Add more plasma-manager options as needed
     };

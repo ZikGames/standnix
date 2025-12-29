@@ -6,13 +6,15 @@
   config = lib.mkIf config.games.enable {
     home.packages = with pkgs; [
       doomretro
-      # openmw
+      openmw
       srb2
       beyond-all-reason
       tetrio-desktop
       openxray
       vcmi
       zeroad
+      jdk25
+      classicube
     ];
   };
 }

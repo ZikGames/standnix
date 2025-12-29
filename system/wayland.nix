@@ -30,12 +30,6 @@ xdg.portal.config.common.default = "*";
     wayland-utils
   	xwayland
   	# kdePackages.xwaylandvideobridge
-      swaylock
-      swayidle
-      wl-clipboard
-      wf-recorder
-      slurp
-      pavucontrol
   ];
 security.pam.services.swaylock = {};
 

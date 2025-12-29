@@ -8,10 +8,10 @@ virtualisation.docker = {
   enable = true;
 };
   environment.systemPackages = with pkgs; [
-    docker-compose
     freerdp
-    appimage-run
-    gparted
+    docker-compose
+    winboat
+    # (winboat.override { electron = electron_37; nodejs_24 = nodejs_24; })
   ];
   boot.kernelModules = [ "iptable_nat" "iptables" ];
   };

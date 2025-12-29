@@ -1,9 +1,15 @@
 { config, lib, pkgs, ... }:{
  options = {
-  xfce.enable =
+  xfce-dotfiles.enable =
  lib.mkEnableOption "xfce";
  };
-  config = lib.mkIf config.xfce.enable {
-    
+  config = lib.mkIf config.xfce-dotfiles.enable {
+      xfconf.settings = {
+      settings = {
+    "Net/ThemeName"      = "Chicago95";
+    "Net/IconThemeName"  = "Chicago95-tux";
+    "Gtk/CursorThemeName" = "Adwaita";
+  };
+  };
   };
 }

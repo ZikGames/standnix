@@ -7,7 +7,7 @@
       services.xserver = {
         enable = true;
         xkb.layout = "us,ru";
-        xkb.options = "";
+        xkb.options = "grp:shift_alt_toggle";
       };
   };
 }

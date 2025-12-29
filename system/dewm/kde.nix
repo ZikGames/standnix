@@ -10,11 +10,15 @@ let cfg = config.kde; in {
     wayland.enable = true; # Enable Wayland (preferred)
   };
   services.desktopManager.plasma6.enable = true;
+  programs.kdeconnect.enable = true;
+  environment.systemPackages = with pkgs; [
+    kdotool
+  ];
   
   # Optional: Exclude unwanted KDE applications
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa   
-    konsole 
+    okular 
   ];
   };
   }

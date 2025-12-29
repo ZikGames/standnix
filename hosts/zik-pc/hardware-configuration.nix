@@ -28,6 +28,10 @@
     { device = "/dev/disk/by-uuid/26540ed8-5b3b-473e-8aae-e0291908fc80";
       fsType = "btrfs";
     };
+  fileSystems."/win" =
+    { device = "/dev/disk/by-uuid/7D9EF907580C0251";
+      fsType = "ntfs";
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/4b129734-69cc-4ca0-afe2-4d814ce5cbfb"; }

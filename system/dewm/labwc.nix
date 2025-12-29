@@ -22,6 +22,12 @@ let cfg = config.labwc; in {
       file-roller
       dracula-theme
       qogir-icon-theme
+      swaylock
+      swayidle
+      wl-clipboard
+      wf-recorder
+      slurp
+      pavucontrol
     ];
 programs.labwc = {
   enable = true;

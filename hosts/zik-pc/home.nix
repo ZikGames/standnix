@@ -22,15 +22,17 @@
 
   programs.git = {
     enable = true;
-    userName = "Zik";
-    userEmail = "zik1213@outlook.com";
+    settings.user = {
+    name = "Zik";
+    email = "zik1213@outlook.com";
+  };
   };
 
   home = {
     username = "zik";
     homeDirectory = "/home/zik";
   };
-  
+
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;

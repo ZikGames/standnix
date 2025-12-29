@@ -17,13 +17,21 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium = {
+      url = "git+https://github.com/SteamClientHomebrew/Millennium?ref=legacy";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, ... }@inputs: {
+  outputs = { self, nixpkgs, nixos-wsl, home-manager, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
   nixosConfigurations = {
       zik-wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -45,5 +53,12 @@
       ];
     };
         };
+    homeConfigurations."zik" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+
+        modules = [ ./hosts/zik-pc/home.nix ];
+
+      };
   };
 }

@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}: {
+{pkgs, lib, config, my-packages, ...}: {
  options = {
   base.enable =
  lib.mkEnableOption "the stand of the nix(OS)";
@@ -64,6 +64,7 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
   networking.firewall = {
   enable = true;
   allowedTCPPorts = [ 80 443 ];
+  allowedUDPPorts = [ 16261 16262 ];
   allowedTCPPortRanges = [
    {
     from = 6531;
@@ -100,9 +101,10 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
 #v2ray
  services.v2raya = {
    enable = true;
-  cliPackage = pkgs.xray;
- };
+   cliPackage = pkgs.xray;
+
+};
 boot.kernelPackages = pkgs.linuxPackages_zen;
-system.stateVersion = "25.11";
+system.stateVersion = "26.05";
  };
  }

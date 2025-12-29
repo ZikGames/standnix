@@ -7,6 +7,7 @@
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   console = {
      font = "cyr-sun16";
      keyMap = "ruwin_alt_sh-UTF-8";
@@ -17,7 +18,7 @@
   grub = {
      device = "/dev/sda";
      useOSProber = true;
-
+    
      };
 };
 boot.supportedFilesystems = ["ntfs" "btrfs"];
@@ -37,21 +38,19 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
     LC_TIME = "ru_RU.UTF-8";
   };
   # network
-  networking.hostName = "zik-pc";
   hardware.bluetooth.enable = true;
+  networking.hostName = "zik-pc";
   networking.wireless.iwd.enable = true;
-  # networking = {
-  #   hostName = "zik-pc";
-  #   interfaces.wlan0 = {
-  #     useDHCP = true;
-  #     ipv4.addresses = [{
-  #   address = "62.183.96.183";
-  #   prefixLength = 24;  
-  # }];
-  #  };
-  
-  #    nameservers = [ "77.88.8.8" "77.88.8.1" ];
-  #    defaultGateway = "192.168.0.1";
+ # networking = {
+ #   hostName = "zik-pc";
+ #   interfaces.wlan0 = {
+ #     useDHCP = true;
+ #     ipv4.addresses = [{
+ #   address = "62.183.96.183";
+ #   prefixLength = 24;
+ # }];
+ #  };
+ #  };
   #   wireless = {
   #     enable = true;
   #     interfaces = ["wlp3s0"];
@@ -62,6 +61,23 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
   #     };
   #   };
   # };
+  networking.firewall = {
+  enable = true;
+  allowedTCPPorts = [ 80 443 ];
+  allowedTCPPortRanges = [
+   {
+    from = 6531;
+    to = 8800;
+   }
+  ];
+  allowedUDPPortRanges = [
+  {
+    from = 6531;
+    to = 8800;
+  }
+  ];
+};
+
   services.openssh = {
   enable = true;
   ports = [ 22 ];
@@ -81,6 +97,12 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
+#v2ray
+ services.v2raya = {
+   enable = true;
+  cliPackage = pkgs.xray;
+ };
+boot.kernelPackages = pkgs.linuxPackages_zen;
+system.stateVersion = "25.11";
  };
  }

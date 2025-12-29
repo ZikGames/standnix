@@ -1,17 +1,13 @@
-  { config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.prismlauncher;
-in
-{
-  options.services.prismlauncher = {
-    enable = lib.mkEnableOption "prism launcher";
-  };
-
-  config = lib.mkIf cfg.enable {
-      (prismlauncher.override {
+{ config, lib, pkgs, ... }:{
+ options = {
+  prismlauncher.enable =
+ lib.mkEnableOption "the best minecraft launcher";
+ };
+  config = lib.mkIf config.prismlauncher.enable {
+    home.packages = with pkgs; [
+    (prismlauncher.override {
     # Add binary required by some mod
-    additionalPrograms = [ ffmpeg  ];
+    additionalPrograms = [ ffmpeg mangohud ];
     additionalLibs = [vulkan-loader glfw3-minecraft openal];
     controllerSupport = true;
 
@@ -24,5 +20,6 @@ in
       zulu
     ];
   })
+    ];
   };
 }

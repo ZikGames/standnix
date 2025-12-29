@@ -29,7 +29,7 @@ xdg.portal.config.common.default = "*";
   environment.systemPackages = with pkgs; [
     wayland-utils
   	xwayland
-  	xwaylandvideobridge
+  	# kdePackages.xwaylandvideobridge
       swaylock
       swayidle
       wl-clipboard

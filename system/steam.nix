@@ -23,14 +23,13 @@
   ];
   extraPackages = with pkgs; [
     steam-unwrapped
-    proton-ge-custom-bin
+    protonup-ng
     mangohud
   ];
-hardware.graphics = {
-  extraPackages = [ pkgs.amdvlk ];
-  extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
 };
-};
-
+# hardware.graphics = {
+#   extraPackages = [ pkgs.amdvlk ];
+#   extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+# }; # deprecated
 };
 }

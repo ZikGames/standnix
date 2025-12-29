@@ -1,19 +1,14 @@
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.nh;
-in
-{
-  options.services.nh = {
-    enable = lib.mkEnableOption "nh - shorter updater";
-  };
-
-  config = lib.mkIf cfg.enable {
+{ config, lib, pkgs, ... }:{
+ options = {
+  nh.enable =
+ lib.mkEnableOption "casual thing";
+ };
+  config = lib.mkIf config.nh.enable {
 programs.nh = {
     enable = true;
-    autoUpdate = true;
     clean.enable = true;
-    flake = "null";
-}
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/zik/standnix";
+};
   };
 }

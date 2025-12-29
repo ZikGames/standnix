@@ -9,7 +9,9 @@
   imports = [
    inputs.nixcord.homeModules.nixcord
    inputs.nix-colors.homeManagerModules.default
-   plasma-manager.homeModules.plasma-manager
+   inputs.plasma-manager.homeModules.plasma-manager
+    ./../../programs
+    ./../../programs/dewm
   ];
 
   nixpkgs = {
@@ -18,10 +20,17 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    userName = "Zik";
+    userEmail = "zik1213@outlook.com";
+  };
+
   home = {
     username = "zik";
     homeDirectory = "/home/zik";
   };
+  
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;

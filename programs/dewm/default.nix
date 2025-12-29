@@ -1,8 +1,7 @@
 {
-  imports = [ ./labwc.nix ./labwc-dotfiles.nix  ./gnome.nix ./gnome-dotfiles.nix ./kde.nix ./kde-dotfiles.nix];
-  labwc.enable = true;
-  labwc-dotfiles.enable = true;
-  gnome.enable = false;
-  kde.enable = false;
+  imports = [ ./labwc-dotfiles.nix ./gnome-dotfiles.nix ./kde-dotfiles.nix ./xfce-dotfiles.nix ];
+  labwc-dotfiles.enable = false;
+  gnome-dotfiles.enable = true;
   kde-dotfiles.enable = false;
+  xfce-dotfiles.enable = false;
 }

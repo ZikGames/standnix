@@ -5,7 +5,7 @@ let cfg = config.labwc; in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
 	    dunst
       grim
       alacritty
@@ -20,8 +20,8 @@ let cfg = config.labwc; in {
       nemo-with-extensions
       nemo-fileroller
       file-roller
-      dracula-gtk-theme
-      Qogir-icon-theme
+      dracula-theme
+      qogir-icon-theme
     ];
 programs.labwc = {
   enable = true;

@@ -1,14 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.firefox;
-in
-{
-  options.services.firefox = {
-    enable = lib.mkEnableOption "firefox declared";
-  };
-
-  config = lib.mkIf cfg.enable {
+{ config, lib, pkgs, ... }: {
+ options = {
+   firefox.enable =
+ lib.mkEnableOption "firefox declared";
+ };
+  config = lib.mkIf config.firefox.enable {
   programs.firefox = {
     enable = true;
     profiles.zik = {
@@ -43,7 +38,9 @@ in
       };
       search.force = true;
 
-      bookmarks = [
+      bookmarks = {
+	force = true;
+	settings = [
         {
           name = "wikipedia";
           tags = [ "wiki" ];
@@ -51,6 +48,7 @@ in
           url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
         }
       ];
+};
 
       settings = {
       };
@@ -59,15 +57,19 @@ in
         /* some css */                        
       '';                                      
 
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-        stylus
-        ublock-origin
-        darkreader
-        youtube-remix
-        twp-translate
-        steamdb
-        tampermonkey
-      ];
+
+    #   extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+    #    stylus
+    #    return-youtube-dislikes
+    #    ublock-origin
+    #    darkreader
+    #    youtube-remix
+    #    translate-web-pages
+    #    steamdb
+    #    tampermonkey
+    #    gsconnect
+    #    keepassxc-browser
+    #  ];
 
     };
   };

@@ -1,17 +1,13 @@
-{pkgs, lib, config, ... }: {
-
-
+{ config, lib, pkgs, ... }:{
  options = {
   wine.enable =
-  lib.mkEnableOption "wine";
-};
-
- config = lib.mkIf config.wine.enable
-{
-environment.systemPackages = with pkgs; [
-    wineWowPackages.stable
-    wineWowPackages.waylandFull
-    bottles
+ lib.mkEnableOption "winebotle";
+ };
+  config = lib.mkIf config.wine.enable {
+home.packages = with pkgs; [
+#  wineWowPackages.stable
+#  wineWowPackages.waylandFull
+  (bottles.override {removeWarningPopup = true;})
 ];
 };
 }

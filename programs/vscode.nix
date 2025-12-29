@@ -1,17 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.vscode;
-in
-{
-  options.services.vscode = {
-    enable = lib.mkEnableOption "vscode + blockbench";
-  };
-
-  config = lib.mkIf cfg.enable {
+{ config, lib, pkgs, ... }:{
+ options = {
+  vscode.enable =
+ lib.mkEnableOption "i use vscode btw";
+ };
+  config = lib.mkIf config.vscode.enable {
 programs.vscode = {
   enable = true;
   package = pkgs.vscode.fhs;
+  profiles.default = {
   extensions = with pkgs.vscode-extensions; [ 
     sumneko.lua
     ms-dotnettools.csharp
@@ -22,6 +18,10 @@ programs.vscode = {
   userSettings = {
     # Custom settings
   };
+  };
 };
+home.packages = with pkgs; [
+blockbench
+];
   };
 }

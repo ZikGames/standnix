@@ -1,0 +1,22 @@
+{ pkgs, lib, config, ...}: 
+let cfg = config.qemu; in {
+  options = {
+    qemu.enable = lib.mkEnableOption "Enable Module";
+  };
+
+  config = lib.mkIf cfg.enable {  
+    environment.systemPackages = with pkgs; [
+qemu
+libvirt
+deluge
+virtiofsd
+mangohud
+];
+
+users.groups.libvirtd.members = ["zik"];
+  
+virtualisation.libvirtd.enable = true;
+
+virtualisation.spiceUSBRedirection.enable = true;
+  };
+}

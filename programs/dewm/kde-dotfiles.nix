@@ -19,7 +19,7 @@ let cfg = config.kde-dotfiles; in {
       iconTheme = "Qogir";
       colorScheme = "Dracula";
       };
-      panels = [      # Windows-like panel at the bottom
+      panels = [ 
       {
         location = "bottom";
         widgets = [
@@ -32,7 +32,6 @@ let cfg = config.kde-dotfiles; in {
       }
       ];
       shortcuts = { };
-      # Add more plasma-manager options as needed
     };
   };
   }

@@ -17,7 +17,6 @@ programs.vscode = {
     jnoortheen.nix-ide
   ];
   userSettings = {
-    # Custom settings
   };
   };
 };

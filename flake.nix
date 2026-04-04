@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nix-colors.url = "github:misterio77/nix-colors";
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     nixcord = {
     url = "github:kaylorben/nixcord";
   };
@@ -18,8 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     millennium = {
-      url = "git+https://github.com/SteamClientHomebrew/Millennium?ref=legacy";
-      inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:trivaris/millennium?dir=packages/nix";
+    inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,21 +28,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-wsl, home-manager, zapret-discord-youtube, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
   nixosConfigurations = {
-      zik-wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/wsl/configuration.nix
-          ./programs
-        nixos-wsl.nixosModules.default
-        inputs.home-manager.nixosModules.default
-        ];
-      };
       zik-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
@@ -49,7 +41,9 @@
         ./hosts/zik-pc/configuration.nix
         ./system
         ./system/dewm
+        ./config/something
         inputs.home-manager.nixosModules.default
+	      zapret-discord-youtube.nixosModules.default
       ];
     };
         };

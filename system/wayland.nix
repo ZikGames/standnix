@@ -9,7 +9,7 @@
  config = lib.mkIf config.wayland.enable {
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
-    NIXOS_OZONE_WL = "1";  # for VSCode Discord etc
+    NIXOS_OZONE_WL = "1";
     LD_LIBRARY_PATH = "${pkgs.chromium}/lib";
   };
 
@@ -19,8 +19,6 @@
     extraPortals = with pkgs; [
        xdg-desktop-portal
       xdg-desktop-portal-wlr
-
-      # for Firefox cursor
       xdg-desktop-portal-gtk
     ];
   };
@@ -29,7 +27,6 @@ xdg.portal.config.common.default = "*";
   environment.systemPackages = with pkgs; [
     wayland-utils
   	xwayland
-  	# kdePackages.xwaylandvideobridge
   ];
 security.pam.services.swaylock = {};
 

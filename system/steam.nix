@@ -5,16 +5,15 @@
   steam.enable =
   lib.mkEnableOption "steam";
 };
-
  config = lib.mkIf config.steam.enable
 { 
   programs.steam = {
   enable = true;
+#  millennium.enable = true;
   remotePlay.openFirewall = true; 
   dedicatedServer.openFirewall = true;
   localNetworkGameTransfers.openFirewall = true;
   gamescopeSession.enable = true;
- # package = pkgs.steam-millennium; # скоро
   fontPackages = with pkgs; [ 
       dejavu_fonts
       noto-fonts
@@ -29,12 +28,18 @@
     steamtinkerlaunch
  ];
   extraPackages = with pkgs; [
+    mangohud
     steam-unwrapped
   ];
 };
-# hardware.graphics = {
-#   extraPackages = [ pkgs.amdvlk ];
-#   extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
-# }; # deprecated
+
+services.xserver.videoDrivers = ["nvidia"];
+hardware.nvidia = {
+modesetting.enable = true;
+powerManagement.enable = true;
+powerManagement.finegrained = false;
+open = false;
+nvidiaSettings = true;
+};
 };
 }

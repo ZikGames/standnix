@@ -6,12 +6,9 @@
   config = lib.mkIf config.prismlauncher.enable {
     home.packages = with pkgs; [
     (prismlauncher.override {
-    # Add binary required by some mod
     additionalPrograms = [ ffmpeg mangohud ];
     additionalLibs = [vulkan-loader glfw3-minecraft openal];
     controllerSupport = true;
-
-    # Change Java runtimes available to Prism Launcher
     jdks = [
      graalvmPackages.graalvm-ce
       zulu8

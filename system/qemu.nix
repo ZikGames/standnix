@@ -17,5 +17,6 @@ users.groups.libvirtd.members = ["zik"];
 virtualisation.libvirtd.enable = true;
 
 virtualisation.spiceUSBRedirection.enable = true;
-  };
+
+};
 }

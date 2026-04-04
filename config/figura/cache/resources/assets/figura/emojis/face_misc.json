@@ -1,0 +1,58 @@
+{
+  "blacklist": "",
+  "emojis": {
+    "\uE000": {"names":["skull"],"shortcuts":["💀"]},
+    "\uE001": ["cold_face","freezing"],
+    "\uE002": ["clown"],
+    "\uE003": ["eyes", "looking"],
+    "\uE004": ["alien", "gnarp"],
+    "\uE005": ["nerd"],
+    "\uE006": ["cowboy"],
+    "\uE007": ["ghost","boo"],
+
+    "\uE008": ["imp"],
+    "\uE009": ["smiling_imp","imp_smiling"],
+    "\uE00A": ["anonymous","anon"],
+    "\uE00B": ["hot_face"],
+    "\uE00C": ["salute","o7"],
+    "\uE00D": ["yawn"],
+    "\uE00E": ["sleeping","eepy","sleepy"],
+    "\uE00F": ["weary"],
+
+    "\uE010": ["thinking"],
+    "\uE011": ["raised_eyebrow","ayo"],
+    "\uE012": ["monocle","mr_krabs","monopoly_man"],
+    "\uE013": ["shush", "shh"],
+    "\uE014": ["incognito"],
+    "\uE015": ["lowering_glasses","the_rock"],
+    "\uE016": ["upside_down"],
+    "\uE017": ["zipper_mouth"],
+
+    "\uE018": ["lying","long_nose","pinochio","usopp"],
+    "\uE019": ["confused"],
+    "\uE01A": ["melting"],
+    "\uE01B": ["clueless"],
+    "\uE01C": ["man_face"],
+    "\uE01D": ["kek"],
+    "\uE01E": ["devious"],
+    "\uE01F": ["cringe"],
+
+    "\uE020": ["mlg"],
+    "\uE021": ["skill_issue"],
+    "\uE022": ["blue_emoji"],
+    "\uE023": ["despair","hollow"],
+    "\uE024": ["crying_pancake"],
+    "\uE025": ["grr", "mad"],
+    "\uE026": ["smiling_+1"],
+    "\uE027": ["joyous_fella","bucktooth_smile"],
+
+    "\uE028": ["confused_fella","scared_fella"],
+    "\uE029": ["hey","smiley_man","aga"],
+    "\uE030": ["smug", "smurg"],
+    "\uE031": ["woah"],
+    "\uE032": ["anime_glasses","glowing_glasses","glasses_glowing","youfellformytrapcard"],
+    "\uE033": ["WHAT"],
+    "\uE034": ["fault","greasy"],
+    "\u0000": []
+  }
+}

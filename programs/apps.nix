@@ -5,14 +5,13 @@
  };
   config = lib.mkIf config.apps.enable {
 home.packages = with pkgs; [
-      appimage-run
       vlc
       keepassxc
       virt-manager
       (limo.override { withUnrar = true; })
       protontricks
       heroic-unwrapped
-      umu-launcher
+      # umu-launcher
       fastfetch
       scrcpy
       tree
@@ -22,6 +21,7 @@ home.packages = with pkgs; [
       thunderbird
       deluge
       mangohud
+      ytmdesktop
 ];
 };
 }

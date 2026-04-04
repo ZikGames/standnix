@@ -11,7 +11,6 @@ virtualisation.docker = {
     freerdp
     docker-compose
     winboat
-    # (winboat.override { electron = electron_37; nodejs_24 = nodejs_24; })
   ];
   boot.kernelModules = [ "iptable_nat" "iptables" ];
   };

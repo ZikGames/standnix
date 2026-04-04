@@ -12,7 +12,7 @@
       tetrio-desktop
       openxray
       vcmi
-      zeroad
+#      zeroad
       jdk25
       classicube
     ];

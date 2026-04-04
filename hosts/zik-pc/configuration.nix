@@ -11,7 +11,7 @@
     isNormalUser = true;
     initialPassword = "121312";
     description = "zik";
-    extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm" "libvirtd" "docker" "terraria" ];
     shell = pkgs.zsh;
   };
 

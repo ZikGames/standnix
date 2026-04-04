@@ -40,40 +40,24 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
   # network
   hardware.bluetooth.enable = true;
   networking.hostName = "zik-pc";
-  networking.wireless.iwd.enable = true;
- # networking = {
- #   hostName = "zik-pc";
- #   interfaces.wlan0 = {
- #     useDHCP = true;
- #     ipv4.addresses = [{
- #   address = "62.183.96.183";
- #   prefixLength = 24;
- # }];
- #  };
- #  };
-  #   wireless = {
-  #     enable = true;
-  #     interfaces = ["wlp3s0"];
-  #     networks = {
-  #       he-mnie = {
-  #         psk = "32412wdsa";
-  #       };
-  #     };
-  #   };
-  # };
+  networking.networkmanager = {
+   enable = true;
+#   dns = "none";
+   };
+  networking.nftables.enable = true;
   networking.firewall = {
   enable = true;
   allowedTCPPorts = [ 80 443 ];
   allowedUDPPorts = [ 16261 16262 ];
   allowedTCPPortRanges = [
    {
-    from = 6531;
+    from = 3030;
     to = 8800;
    }
   ];
   allowedUDPPortRanges = [
   {
-    from = 6531;
+    from = 3030;
     to = 8800;
   }
   ];
@@ -98,12 +82,12 @@ boot.supportedFilesystems = ["ntfs" "btrfs"];
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-#v2ray
- services.v2raya = {
-   enable = true;
-   cliPackage = pkgs.xray;
-
+#Throne
+programs.throne = {
+enable = true;
+tunMode.enable = true;
 };
+
 boot.kernelPackages = pkgs.linuxPackages_zen;
 system.stateVersion = "26.05";
  };

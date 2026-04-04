@@ -7,15 +7,15 @@ let cfg = config.kde; in {
   config = lib.mkIf cfg.enable {
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true; # Enable Wayland (preferred)
+    wayland.enable = true;
   };
   services.desktopManager.plasma6.enable = true;
   programs.kdeconnect.enable = true;
   environment.systemPackages = with pkgs; [
     kdotool
+    kdePackages.plasma-browser-integration
   ];
   
-  # Optional: Exclude unwanted KDE applications
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa   
     okular 

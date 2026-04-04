@@ -9,6 +9,8 @@ let cfg = config.kde-dotfiles; in {
       qogir-kde
       qogir-icon-theme
       unrar
+      python3
+      windows10-icons
     ];
 
     programs.plasma = {

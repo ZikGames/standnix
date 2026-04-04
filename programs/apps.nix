@@ -11,17 +11,16 @@ home.packages = with pkgs; [
       (limo.override { withUnrar = true; })
       protontricks
       heroic-unwrapped
-      # umu-launcher
       fastfetch
       scrcpy
-      tree
       archipelago
-      godot_4_4-mono
+      godot-mono
       telegram-desktop
       thunderbird
       deluge
       mangohud
       ytmdesktop
+      koreader
 ];
 };
 }

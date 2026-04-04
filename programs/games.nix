@@ -8,11 +8,11 @@
       doomretro
       openmw
       srb2
-      beyond-all-reason
+      # beyond-all-reason
       tetrio-desktop
       openxray
       vcmi
-#      zeroad
+      # zeroad
       jdk25
       classicube
     ];

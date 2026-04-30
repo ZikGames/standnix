@@ -1,17 +1,25 @@
 {self, inputs, options, lib, config, ...}: {
-options = {
-  labwc.enable =
-  lib.mkEnableOption "labwc";
- };
-  config = lib.mkIf config.labwc.enable {
-  # flake-file.inputs.labwc-manager.url = "github:ZikGames/labwc-manager";
-  flake.homeModules.labwc = { pkgs, lib, ...}: {
+#options = {
+#  labwc.enable =
+#  lib.mkEnableOption "labwc";
+# };
+#  config = lib.mkIf config.labwc.enable {
+  flake-file.inputs.labwc-manager.url = "github:ZikGames/labwc-manager";
+  flake.nixosModules.labwc = { pkgs, lib, ...}: {
       programs.labwc = {
         enable = true;
         # package = 
       };
-      home.packages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         wl-clipboard
+	grim
+	labwc-tweaks-gtk
+	dracula-theme
+	dracula-icon-theme
+	qogir-theme
+	qogir-icon-theme
+	alacritty
+	pcmanfm
       ];
   };
 
@@ -24,5 +32,5 @@ options = {
     # };
 
   };
-};
+#};
 }

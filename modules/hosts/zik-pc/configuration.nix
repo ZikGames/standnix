@@ -5,18 +5,14 @@
 {
   imports = [
     self.nixosModules.Zik-PC-hardware
-    self.nixosModules.steam
+    # self.nixosModules.steam 
     self.nixosModules.grub
-    self.nixosModules.wayland
+    # self.nixosModules.wayland
     self.nixosModules.zapret
+    # self.nixosModules.labwc
+    self.nixosModules.kde
   ];
-  # config = {
-  # x11.enable = false;
-  # wayland.enable = true;
-  # labwc.enable = true;
-  # };
-
-    nix.settings.auto-optimise-store = true;
+  nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
@@ -88,7 +84,6 @@
 programs.throne = {
 enable = true;
 tunMode.enable = true;
-tunMode.setuid = true;
 };
 system.stateVersion = "24.05";
 boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -114,7 +109,9 @@ boot.kernelPackages = pkgs.linuxPackages_zen;
   };
 
 };
-
+environment.systemPackages = with pkgs; [
+  cloudflare-warp
+];
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;

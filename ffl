@@ -22,29 +22,14 @@
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 }
-    imports = [
-    self.nixosModules.kde
-    self.nixosModules.gnome
-    self.homeModules.kde
-    self.homeModules.gnome
-    self.homeModules.labwc
-  ];
+
 [
-  gnome.enable = false;
-  kde.enable = false;
-  labwc.enable = true;
 ];
   imports = [
-    self.nixosModules.dwm
-    self.nixosModules.windowmaker
+
   ];
 
-  dwm.enable = false;
-  windowmaker.enable = true;
 
 
-    self.nixosModules.x11
-    self.nixosModules.wayland
 
-  x11.enable = false;
-  wayland.enable = true;
+

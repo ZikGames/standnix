@@ -26,7 +26,7 @@ xdg.portal.config.common.default = "*";
 
   environment.systemPackages = with pkgs; [
     wayland-utils
-  	# xwayland
+  	xwayland
   ];
 security.pam.services.swaylock = {};
 

@@ -1,0 +1,50 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
+{
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
+  inputs = {
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
+    labwc-manager.url = "github:ZikGames/labwc-manager";
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    nixcord.url = "github:kaylorben/nixcord";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+  };
+}
+    imports = [
+    self.nixosModules.kde
+    self.nixosModules.gnome
+    self.homeModules.kde
+    self.homeModules.gnome
+    self.homeModules.labwc
+  ];
+[
+  gnome.enable = false;
+  kde.enable = false;
+  labwc.enable = true;
+];
+  imports = [
+    self.nixosModules.dwm
+    self.nixosModules.windowmaker
+  ];
+
+  dwm.enable = false;
+  windowmaker.enable = true;
+
+
+    self.nixosModules.x11
+    self.nixosModules.wayland
+
+  x11.enable = false;
+  wayland.enable = true;

@@ -16,7 +16,7 @@ flake.nixosModules.wayland = { inputs, outputs, pkgs, lib, config, ... }: {
       kdePackages.xdg-desktop-portal-kde
     ];
   };
-# xdg.portal.config.common.default = "*";
+xdg.portal.config.common.default = "KDE";
 
   environment.systemPackages = with pkgs; [
     wayland-utils

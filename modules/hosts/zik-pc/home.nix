@@ -3,12 +3,12 @@
   flake.homeModules.zik = { inputs, outputs, pkgs, lib, config, ... }:
   {
     imports = [
-    self.homeModules.prismlauncher
-    self.homeModules.keepassxc
-    self.homeModules.firefox
-    self.homeModules.discord
-    self.homeModules.throne
-    self.homeModules.vscode
+    # self.homeModules.prismlauncher
+    # self.homeModules.keepassxc
+    # self.homeModules.firefox
+    # self.homeModules.discord
+    # self.homeModules.throne
+    # self.homeModules.vscode
   ];
   nixpkgs = {
     config = {

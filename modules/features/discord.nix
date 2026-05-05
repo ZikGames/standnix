@@ -4,7 +4,7 @@
   flake.homeModules.nixcord = { inputs, outputs, pkgs, lib, config, ... }: {
     programs.nixcord = {
     enable = true;
-    # discord.vencord.enable = false;
+    discord.vencord.enable = false;
     discord.equicord.enable = true;
     equibop.enable = true;
     vesktop.enable = true;
@@ -54,6 +54,11 @@
         unlockedAvatarZoom.enable = true;
       };
     };
+    };
+    services.arrpc = {
+        enable = true;
+        package = pkgs.arrpc; #Default
+        systemdTarget = "graphical-session.target"; #Default
     };
   };
 }

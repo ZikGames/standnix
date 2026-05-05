@@ -41,7 +41,7 @@
   networking.hostName = "zik-pc";
   networking.networkmanager = {
    enable = true;
-#   dns = "none";
+   dns = "none";
    };
   networking.nftables.enable = false;
   networking.firewall = {

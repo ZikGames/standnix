@@ -1,5 +1,5 @@
  {self, inputs, options, ...}: {
-  flake.nixosModules.home-manager = { pkgs, lib, options, ...}: {
+  flake.nixosModules.home-manager = { pkgs, lib, options, inputs, outputs, ...}: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

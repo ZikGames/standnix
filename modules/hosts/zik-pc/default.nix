@@ -10,7 +10,6 @@
       # inputs.minegrub-world-sel-theme.nixosModules.default
       inputs.zapret-discord-youtube.nixosModules.default
       inputs.minegrub-theme.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
     ];
   };
   flake.homeConfigurations.zik = inputs.nixpkgs.lib.homeConfiguration {

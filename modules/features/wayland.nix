@@ -1,11 +1,4 @@
 {self, inputs, lib, config, ...}: {
-
-#  options = {
-#   wayland.enable =
-#   lib.mkEnableOption "wayland";
-# };
-
-#  config = lib.mkIf config.wayland.enable {
 flake.nixosModules.wayland = { inputs, outputs, pkgs, lib, config, ... }: {
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
@@ -17,19 +10,19 @@ flake.nixosModules.wayland = { inputs, outputs, pkgs, lib, config, ... }: {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+      # xdg-desktop-portal
+      # xdg-desktop-portal-wlr
+      # xdg-desktop-portal-gtk
+      kdePackages.xdg-desktop-portal-kde
     ];
   };
-xdg.portal.config.common.default = "*";
+# xdg.portal.config.common.default = "*";
 
   environment.systemPackages = with pkgs; [
     wayland-utils
-  	xwayland
+  	# xwayland
   ];
-security.pam.services.swaylock = {};
+# security.pam.services.swaylock = {};
 
 };
-# };
 }

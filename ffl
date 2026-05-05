@@ -26,10 +26,12 @@
 [
 ];
   imports = [
-
+minegrub-theme, minegrub-world-sel-theme,
   ];
+   _module.args.pkgs = import inputs.nixpkgs {
+    inherit system;
 
-
+  };
 
 
 

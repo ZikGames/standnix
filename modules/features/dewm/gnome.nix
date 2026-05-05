@@ -1,10 +1,5 @@
 {self, inputs, options, lib, config, ...}: {
-options = {
-  gnome.enable =
-  lib.mkEnableOption "gnome";
- };
-  config = lib.mkIf config.gnome.enable {
-    flake.nixosModules.gnome = { pkgs, lib, ...}: {
+  flake.nixosModules.gnome = { pkgs, lib, ...}: {
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.gnome.core-apps.enable = true;
@@ -68,5 +63,4 @@ options = {
       gnomeExtensions.user-themes-x
     ];
     };
-  };
-}
+  }

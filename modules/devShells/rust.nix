@@ -8,11 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
- options = {
-  rust-devshell.enable =
- lib.mkEnableOption "why not? =]";
- };
-  config = lib.mkIf config.rust-devshell.enable {
   perSystem = { self, nixpkgs, naersk, fenix }: let
     pkgs = nixpkgs.legacyPackages."x86_64-linux";
     naerskLib = pkgs.callPackage naersk {};
@@ -31,7 +26,6 @@
     src = "./dnd-rust/";
      buildInputs = [];
      nativeBuildInputs = [ pkgs.pkg-config ];
-  };
   };
   };
   }

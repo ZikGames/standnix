@@ -1,9 +1,4 @@
 {self, inputs, options, lib, config, ...}: {
-options = {
-  windowmaker.enable =
-  lib.mkEnableOption "windowmaker";
- };
-  config = lib.mkIf config.windowmaker.enable {
   flake.nixosModules.windowmaker = { pkgs, lib, ...}: {
   services.xserver.windowManager.windowmaker.enable = true;
   };
@@ -11,6 +6,5 @@ options = {
       home.packages = with pkgs; [
       dockapps.wmsystemtray
     ];
-};
 };
 }

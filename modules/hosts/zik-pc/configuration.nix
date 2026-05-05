@@ -5,12 +5,13 @@
 {
   imports = [
     self.nixosModules.Zik-PC-hardware
-    # self.nixosModules.steam 
+    self.nixosModules.steam 
     self.nixosModules.grub
-    # self.nixosModules.wayland
+    self.nixosModules.wayland
     self.nixosModules.zapret
     # self.nixosModules.labwc
     self.nixosModules.kde
+    self.nixosModules.home-manager
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
@@ -42,7 +43,7 @@
    enable = true;
 #   dns = "none";
    };
-  networking.nftables.enable = true;
+  networking.nftables.enable = false;
   networking.firewall = {
   enable = true;
   allowedTCPPorts = [ 80 443 ];
@@ -80,11 +81,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-#Throne
-programs.throne = {
-enable = true;
-tunMode.enable = true;
-};
+
 system.stateVersion = "24.05";
 boot.kernelPackages = pkgs.linuxPackages_zen;
   
@@ -94,24 +91,8 @@ boot.kernelPackages = pkgs.linuxPackages_zen;
     initialPassword = "121312";
     description = "zik";
     extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm" "libvirtd" "docker" "terraria" ];
-    shell = pkgs.zsh;
+   # shell = pkgs.zsh;
   };
-  programs.zsh = {
-  enable = true;
-  enableCompletion = true;
-  autosuggestions.enable = true;
-  syntaxHighlighting.enable = true;
-
-  ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "zsh-vi-mode" "zsh-nix-shell" ];
-    theme = "gallifrey";
-  };
-
-};
-environment.systemPackages = with pkgs; [
-  cloudflare-warp
-];
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
@@ -122,5 +103,4 @@ environment.systemPackages = with pkgs; [
     nvidiaSettings = false;
   };
 };
-
 }

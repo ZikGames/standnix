@@ -1,25 +1,26 @@
   {self, inputs, options, lib, config, ...}: {
-  flake-file.inputs = { minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+  flake-file.inputs = { 
+  minegrub-theme.url = "github:Lxtharia/minegrub-theme";
   minegrub-world-sel-theme = {
     url = "github:Lxtharia/minegrub-world-sel-theme";
     inputs.nixpkgs.follows = "nixpkgs";
   };
   };
-  # perSystem = { pkgs, lib, outputs, ...}: {
-  # 
+  # perSystem = { pkgs, lib, inputs, config, outputs, ...}: {
+
   # };
-  flake.nixosModules.grub = { inputs, outputs, pkgs, lib, config, minegrub-theme, minegrub-world-sel-theme, ... }: {
+  flake.nixosModules.grub = { inputs, outputs, pkgs, lib, config, ... }: {
   boot = {
     loader.grub = {
     device = "/dev/sda";
     useOSProber = true;
-    # minegrub-theme = {
-    #   enable = true;
-    #   splash = "100% Flakes!";
-    #   background = "background_options/1.8  - [Classic Minecraft].png";
-    #   boot-options-count = 4;
-    # };
-    #   minegrub-world-sel = {
+    minegrub-theme = {
+      enable = true;
+      splash = "100% Flakes!";
+      background = "background_options/1.8  - [Classic Minecraft].png";
+      boot-options-count = 4;
+    };
+    # minegrub-world-sel = {
     #   enable = true;
     #   customIcons = with config.system; [
     #     {

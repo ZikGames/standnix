@@ -4,11 +4,13 @@
 
   # ];
   # };
-  perSystem.rust-project = {
-    src = ./.;
-    crates = {
-      dnd-helper = {
-        path = ./dnd-helper;
+  perSystem = { config, lib, self, ... }: {
+    rust-project = {
+      src = self;
+      crates = {
+        dnd-helper = {
+          path = ./dnd-helper;
+        };
       };
     };
   };

@@ -1,6 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
+
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
@@ -323,33 +324,7 @@ minegrub-theme, minegrub-world-sel-theme,
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolPressureRangeMax = 1;
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolPressureRangeMin = 0;
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolRelativeMode = false;
-      kcminputrc.Mouse.cursorTheme = "Qogir";
-      kded5rc.Module-browserintegrationreminder.autoload = false;
-      kded5rc.Module-device_automounter.autoload = false;
-      kdeglobals.General.AccentColor = "146,110,228";
-      kdeglobals.General.LastUsedCustomAccentColor = "146,110,228";
-      kdeglobals.General.UseSystemBell = true;
-      kdeglobals.Icons.Theme = "Qogir";
-      kdeglobals.KDE.DefaultDarkLookAndFeel = "com.github.vinceliuice.Qogir-dark";
-      kdeglobals.KDE.DefaultLightLookAndFeel = "com.github.vinceliuice.Qogir-light";
-      kdeglobals.KDE.contrast = 4;
-      kdeglobals.KDE.frameContrast = 0.2;
-      kdeglobals.KDE.widgetStyle = "Windows";
-      kdeglobals."KFileDialog Settings"."Allow Expansion" = false;
-      kdeglobals."KFileDialog Settings"."Automatically select filename extension" = true;
-      kdeglobals."KFileDialog Settings"."Breadcrumb Navigation" = false;
-      kdeglobals."KFileDialog Settings"."Decoration position" = 2;
-      kdeglobals."KFileDialog Settings"."Show Full Path" = false;
-      kdeglobals."KFileDialog Settings"."Show Inline Previews" = true;
-      kdeglobals."KFileDialog Settings"."Show Preview" = false;
-      kdeglobals."KFileDialog Settings"."Show Speedbar" = true;
-      kdeglobals."KFileDialog Settings"."Show hidden files" = false;
-      kdeglobals."KFileDialog Settings"."Sort by" = "Date";
-      kdeglobals."KFileDialog Settings"."Sort directories first" = true;
-      kdeglobals."KFileDialog Settings"."Sort hidden files last" = false;
-      kdeglobals."KFileDialog Settings"."Sort reversed" = false;
-      kdeglobals."KFileDialog Settings"."Speedbar Width" = 201;
-      kdeglobals."KFileDialog Settings"."View Style" = "DetailTree";
+      
       kdeglobals.KScreen.ScreenScaleFactors = "HDMI-A-1=1;";
       kdeglobals.KScreen.XwaylandClientsScale = false;
       kdeglobals.QtQuickRendererSettings.SceneGraphBackend = "software";
@@ -547,3 +522,103 @@ minegrub-theme, minegrub-world-sel-theme,
 
 
 
+  #     rc = [ 
+  # {
+  #   theme = {
+  #   name = "qogir-dark";
+  #   cornerRadius = 8;
+  #   font = {
+  #     "@name" = "ComicSans";
+  #     "@size" = "11";
+  #   };
+  # };
+  # keyboard = {
+  #   default = true;
+  #   keybind = [
+  #     # <keybind key="W-Return"><action name="Execute" command="foot"/></keybind>
+  #     {
+  #       "@key" = "W-Return";
+  #       action = {
+  #         "@name" = "Execute";
+  #         "@command" = "foot";
+  #       };
+  #     }
+  #     # <keybind key="W-Esc"><action name="Execute" command="loot"/></keybind>
+  #     {
+  #       "@key" = "W-Esc";
+  #       action = {
+  #         "@name" = "Execute";
+  #         "@command" = "loot";
+  #       };
+  #     }
+  #   ];
+  # };
+
+  # }
+  #     ];
+  #     menu = [
+  # {
+  #   menuId = "client-menu";
+  #   label = "Client Menu";
+  #   icon = "";
+  #   items = [
+  #     {
+  #       label = "Maximize";
+  #       icon = "";
+  #       action = {
+  #         name = "ToggleMaximize";
+  #       };
+  #     }
+  #     {
+  #       label = "Fullscreen";
+  #       action = {
+  #         name = "ToggleFullscreen";
+  #       };
+  #     }
+  #     {
+  #       label = "Alacritty";
+  #       action = {
+  #         name = "Execute";
+  #         command = "alacritty";
+  #       };
+  #     }
+  #     {
+  #       label = "Move Left";
+  #       action = {
+  #         name = "SendToDesktop";
+  #         to = "left";
+  #       };
+  #     }
+  #     {
+  #       separator = { };
+  #     }
+  #     {
+  #       label = "Workspace";
+  #       menuId = "workspace";
+  #       icon = "";
+  #       items = [
+  #         {
+  #           label = "Move Left";
+  #           action = {
+  #             name = "SendToDesktop";
+  #             to = "left";
+  #           };
+  #         }
+  #       ];
+  #     }
+  #     {
+  #       separator = true;
+  #     }
+  #   ];
+  # }
+
+  #     ];
+  #     autostart = [
+  #     ];
+  #     environment = [
+  #       "XDG_CURRENT_DESKTOP=labwc:wlroots"
+  #       "XKB_DEFAULT_LAYOUT=us,ru"
+  #     ];
+  #     extraConfig = [
+        
+  #     ];

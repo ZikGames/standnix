@@ -1,10 +1,9 @@
 {self, inputs, options, lib, config, ...}: {
-  flake-file.inputs.labwc-manager.url = "github:ZikGames/labwc-manager";
   flake.nixosModules.labwc = { pkgs, lib, ...}: {
-      programs.labwc = {
-        enable = true;
-        # package = 
-      };
+   programs.labwc = {
+      enable = true;
+      # package = self.packages.${pkgs.stdenv.hostPlatform.system}.labwc-cwrapped;
+    }; 
       environment.systemPackages = with pkgs; [
         wl-clipboard
 	      grim
@@ -15,16 +14,17 @@
 	      qogir-icon-theme
 	      alacritty
 	      pcmanfm
+        gscreenshot
     ];
   };
-
-  perSystem = {pkgs, lib, ...}: {
-
-    # packages.labwc-manager = inputs.wrapper-modules.wrappers.labwc-manager.wrap {
-    #   settings = [
-
-    #   ];
+  perSystem = { pkgs, lib, self', ... }: {
+    #   packages.labwc-cwrapped = wrappers.lib.wrapPackage {
+    #   inherit pkgs;
+    #   settings = {
+    #     autostart = [
+    #       (lib.getExe self'.packages.noctalia-cwrapped)
+    #     ];
+    #   };
     # };
-
   };
 }

@@ -1,5 +1,6 @@
 {self, inputs, options, lib, config, ...}: {
   flake.nixosModules.kde = { pkgs, lib, ...}: {
+  
     services.desktopManager.plasma6.enable = true;
     services.displayManager.plasma-login-manager = {
     enable = true;
@@ -15,6 +16,7 @@
   ];
   };
   flake.homeModules.kde = { pkgs, lib, ...}: {
+    imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
     home.packages = with pkgs; [
       qogir-kde
       qogir-icon-theme

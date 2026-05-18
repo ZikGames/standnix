@@ -1,0 +1,14 @@
+ {self, inputs, options, ...}: {
+  flake.nixosModules.home-manager = { pkgs, lib, options, inputs, outputs, ...}: {
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs outputs; };
+    users.zik = {
+      imports = [ self.homeModules.zik ];
+    };
+  };
+ };
+ }

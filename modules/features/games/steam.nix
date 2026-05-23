@@ -1,17 +1,17 @@
 {self, inputs, pkgs, system, config, ...}: {
   flake-file.inputs.millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   perSystem = { system, pkgs, overlays, config, final, ... }: {
-  #  _module.args.pkgs = import inputs.nixpkgs {
-  #   inherit system;
-  #   overlays = [
-  #   inputs.millennium.overlays.default
-  #   ];
-  #   config = { };
-  # };
+#    _module.args.pkgs = import inputs.nixpkgs {
+#     inherit system;
+#     overlays = [
+#     inputs.millennium.overlays.default
+#     ];
+#     config = { };
+#   };
 };
   flake.nixosModules.steam = { inputs, outputs, pkgs, lib, config, system, ... }:
   {
-  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+  # nixpkgs.overlays = [ inputs.millennium.overlays.default ];
   programs.steam = {
   enable = true;
   # package = pkgs.millennium-steam;

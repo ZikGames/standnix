@@ -1,2 +1,2 @@
 [workspace]
-members = ["modules/devShells/rust/*"]
+members = ["."]

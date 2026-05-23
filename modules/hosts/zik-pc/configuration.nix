@@ -23,7 +23,7 @@
     self.nixosModules.qbittorrent
     # self.nixosModules.vintagestory
     self.nixosModules.qemu
-    # self.nixosModules.bottles
+    self.nixosModules.bottles
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;

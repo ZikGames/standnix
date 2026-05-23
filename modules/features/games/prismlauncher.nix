@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     (prismlauncher.override {
     additionalPrograms = [ ffmpeg mangohud ];
-    additionalLibs = [vulkan-loader glfw3-minecraft openal];
+    additionalLibs = [vulkan-loader glfw3-minecraft openal libxkbcommon ];
     controllerSupport = true;
     jdks = [
      graalvmPackages.graalvm-ce

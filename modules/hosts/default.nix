@@ -6,14 +6,15 @@
   inputs.rust-flake.flakeModules.default
   inputs.rust-flake.flakeModules.nixpkgs
   ];
-  # flake.nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-  # specialArgs = { inherit inputs; };
-  # modules = [
-  #   self.nixosModules.nix-on-droid
-  #   self.nixosModules.home-manager
-  # ];
+
+  # nixOnDroidConfigurations.default = inputs.nixpkgs.lib.nixOnDroidConfiguration {
+  #   specialArgs = { inherit inputs; };
+  #   modules = [
+  #     self.nixosModules.nix-on-droid
+  #     self.nixosModules.home-manager
+  #   ];
   # };
-  flake.nixosConfigurations.Zik-PC = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.zik-pc = inputs.nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; };
     modules = [
       self.nixosModules.Zik-PC

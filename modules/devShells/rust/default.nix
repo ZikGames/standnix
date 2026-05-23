@@ -6,10 +6,12 @@
   # };
   perSystem = { config, lib, self, ... }: {
     rust-project = {
-      src = self;
+      src =  ./modules/devShells/rust;
+      crateNixFile = "crate.nix";
       crates = {
         dnd-helper = {
           path = ./dnd-helper;
+          cargoToml = ./dnd-helper/Cargo.toml;
         };
       };
     };

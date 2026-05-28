@@ -6,7 +6,7 @@
   # };
   perSystem = { config, lib, self', ... }: {
     rust-project = {
-      src =  ./modules/devShells/rust;
+      src =  ./.;
       crateNixFile = "crate.nix";
       crates = {
         dnd-helper = {

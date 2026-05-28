@@ -2,7 +2,6 @@
 flake.nixosModules.wayland = { inputs, outputs, pkgs, lib, config, ... }: {
 imports = [
   self.nixosModules.labwc
-  self.nixosModules.kde
 ];
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

@@ -10,7 +10,7 @@
     self.nixosModules.wayland
     # self.nixosModules.throne
     self.nixosModules.zapret
-    self.nixosModules.dlbeb
+    self.nixosModules.minecraft
     # self.nixosModules.wine
     self.nixosModules.fallout2
     self.nixosModules.heroic
@@ -21,14 +21,15 @@
     # self.nixosModules.vcmi
     self.nixosModules.nitter
     self.nixosModules.qbittorrent
-    # self.nixosModules.vintagestory
+    self.nixosModules.vintagestory
     self.nixosModules.qemu
     self.nixosModules.bottles
+    self.nixosModules.kde
   ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
   console = {
      font = "cyr-sun16";
      keyMap = "ruwin_alt_sh-UTF-8";
@@ -53,6 +54,8 @@
   networking.hostName = "zik-pc";
   networking.networkmanager = {
    enable = true;
+   dns = "dnsmasq";
+   nameservers = [ "8.8.8.8" "8.8.4.4" ];
    };
   networking.firewall = {
   enable = true;
@@ -114,7 +117,7 @@ boot.kernelPackages = pkgs.linuxPackages_zen;
     isNormalUser = true;
     initialPassword = "121312";
     description = "zik";
-    extraGroups = [ "networkmanager" "pipewire" "wheel" "adbusers" "sudoers" "video" "audio" "kvm" "libvirtd" "docker" "terraria" "minecraft" ];
+    extraGroups = [ "networkmanager" "pipewire" "wheel" "sudoers" "video" "audio" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };

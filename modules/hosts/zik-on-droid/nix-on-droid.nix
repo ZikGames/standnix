@@ -5,6 +5,7 @@ flake.nixosModules.nix-on-droid = { config, lib, pkgs, ... }:
 {
 imports = [
   self.nixosModules.x11
+  self.nixosModules.tuifimanager
 ];
   # Simply install just the packages
   environment.packages = with pkgs; [
@@ -20,8 +21,6 @@ imports = [
   vulkan-validation-layers
   vulkan-extension-layer
   shaderc
-
-    # Some common stuff that people expect to have
     #procps
     #killall
     #diffutils

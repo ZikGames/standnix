@@ -1,16 +1,8 @@
   {self, inputs, options, lib, config, ...}: {
-  flake-file.inputs = { 
-  minegrub-theme.url = "github:Lxtharia/minegrub-theme";
-  minegrub-world-sel-theme = {
-    url = "github:Lxtharia/minegrub-world-sel-theme";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-  };
-  # perSystem = { pkgs, lib, inputs, config, outputs, ...}: {
+  flake-file.inputs.minegrub-theme.url = "github:Lxtharia/minegrub-theme";
 
-  # };
   flake.nixosModules.grub = { inputs, outputs, pkgs, lib, config, ... }: {
-  imports = [ inputs.minegrub-world-sel-theme.nixosModules.default  inputs.minegrub-theme.nixosModules.default ];
+  imports = [ inputs.minegrub-theme.nixosModules.default ];
   boot = {
     loader.grub = {
     device = "/dev/sda";
@@ -20,23 +12,7 @@
       splash = "100% Flakes!";
       background = "background_options/1.8  - [Classic Minecraft].png";
       boot-options-count = 4;
-    };
-    # minegrub-world-sel = {
-    #   enable = true;
-    #   customIcons = with config.system; [
-    #     {
-    #       inherit name;
-    #       lineTop = with nixos; distroName + " " + codeName + " (" + version + ")";
-    #       lineBottom = "Survival Mode, No Cheats, Version: " + nixos.release;
-    #       # Icon: you can use an icon from the remote repo, or load from a local file
-    #       imgName = "nixos";
-    #       # customImg = builtins.path {
-    #       #   path = ./nixos-logo.png;
-    #       #   name = "nixos-img";
-    #       # };
-    #     }
-    #   ];
-    # };  
+    }; 
     };
     plymouth = {
       enable = true;

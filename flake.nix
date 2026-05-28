@@ -32,14 +32,13 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-  minegrub-theme.url = "github:Lxtharia/minegrub-theme";
-  minegrub-world-sel-theme = {
-    url = "github:Lxtharia/minegrub-world-sel-theme";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-  nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-  wrappers.url = "github:lassulus/wrappers";
-  rust-flake.url = "github:juspay/rust-flake";
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    wrappers.url = "github:lassulus/wrappers";
+    rust-flake.url = "github:juspay/rust-flake";
+    conan-flake.url = "git+https://codeberg.org/tarcisio/conan-flake";
+    # files.url = "github:mightyiam/files";
+    # disko.url = "github:nix-community/disko";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);

@@ -1,5 +1,8 @@
 {self, inputs, options, lib, config, ...}: {
   flake.nixosModules.CSharp = {pkgs, lib, imports, ...}: {
+imports = [
+  inputs.conan-flake.flakeModule
+];
   environment.sessionVariables = {
   DOTNET_ROOT = "${pkgs.dotnet-sdk}/share/dotnet";
   };

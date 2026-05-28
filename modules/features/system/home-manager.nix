@@ -6,8 +6,13 @@
     useUserPackages = true;
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs outputs; };
-    users.zik = {
+    users = {
+    zik = {
       imports = [ self.homeModules.zik ];
+    };
+    zik-iso = {
+      imports = [ self.homeModules.zik-iso ];
+    };
     };
   };
  };

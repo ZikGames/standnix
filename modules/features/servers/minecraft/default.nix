@@ -1,8 +1,9 @@
 {self, inputs, options, lib, config, ...}: {
-flake.nixosModules.dlbeb = { pkgs, lib, inputs, outputs, ...}:
+flake.nixosModules.minecraft = { pkgs, lib, inputs, outputs, ...}:
  {
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+  users.users.zik.extraGroups = [ "minecraft" ];
   services.minecraft-servers = {
     enable = true;
     eula = true;

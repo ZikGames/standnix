@@ -5,14 +5,4 @@
       # self.packages.${pkgs.stdenv.hostPlatform.system}.vintagestory-cwrapped
     ];
   };
-  perSystem = { pkgs, lib, wrappers, ...}: {
-
-#     packages.vintagestory-cwrapped = inputs.wrappers.lib.wrapPackage {
-#   inherit pkgs;
-#   package = pkgs.vintagestory;
-#   exePath = "./Playvintagestory";
-#   binName = "playvintagestory";
-# };
-
-  };
 }

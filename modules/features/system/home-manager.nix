@@ -10,9 +10,6 @@
     zik = {
       imports = [ self.homeModules.zik ];
     };
-    zik-iso = {
-      imports = [ self.homeModules.zik-iso ];
-    };
     };
   };
  };

@@ -5,7 +5,15 @@
   imports = [
     self.nixosModules.wayland
     self.nixosModules.iso-hardware
+    inputs.home-manager.nixosModules.home-manager
   ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs outputs; };
+    users.zik-iso.imports = [ self.homemodules.zik-iso ];
+  };
   programs.zsh = {
   enable = true;
   enableCompletion = true;
@@ -14,7 +22,7 @@
 
   ohMyZsh = {
     enable = true;
-    plugins = [ "git" "vi-mode" "zsh-nix-shell" ];
+    plugins = [ "git" "vi-mode" ];
     theme = "gallifrey";
   };
   };
@@ -54,7 +62,7 @@
     gparted
     htop-vim
     neovim
-
+    zsh-nix-shell
   ];
   console.colors = [
     "1e1e2e" # base

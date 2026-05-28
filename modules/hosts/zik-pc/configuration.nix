@@ -55,8 +55,8 @@
   networking.networkmanager = {
    enable = true;
    dns = "dnsmasq";
-   nameservers = [ "8.8.8.8" "8.8.4.4" ];
    };
+  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
   networking.firewall = {
   enable = true;
   backend = "iptables";
@@ -108,10 +108,13 @@ boot.kernelPackages = pkgs.linuxPackages_zen;
 
   ohMyZsh = {
     enable = true;
-    plugins = [ "git" "vi-mode" "zsh-nix-shell" ];
+    plugins = [ "git" "vi-mode" ];
     theme = "gallifrey";
   };
   };
+  environment.systemPackages = with pkgs; [
+    zsh-nix-shell
+  ];
   services.getty.autologinUser = "zik";
   users.users.zik = {
     isNormalUser = true;

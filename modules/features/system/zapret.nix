@@ -3,7 +3,7 @@
   flake.nixosModules.zapret = { inputs, pkgs, lib, config, ... }: {
   imports = [ inputs.zapret-discord-youtube.nixosModules.default ];
   networking.nameservers = [ "::1" ];
-  networking.networkmanager.dns = "none";
+  # networking.networkmanager.dns = "none";
 
   services.dnscrypt-proxy = {
     enable = true;

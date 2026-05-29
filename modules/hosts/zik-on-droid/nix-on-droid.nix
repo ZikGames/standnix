@@ -44,7 +44,6 @@ imports = [
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs outputs; };
     imports = [ self.homeModules.zik-on-droid ];
   };
 

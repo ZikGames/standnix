@@ -8,6 +8,7 @@
   ];
 
   flake.nixOnDroidConfigurations.zik-on-droid = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+    extraSpecialArgs = { inherit inputs; };
     pkgs = import inputs.nixpkgs {
     system = "aarch64-linux"; 
     config = { allowUnfree = true; };

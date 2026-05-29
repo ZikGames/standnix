@@ -9,6 +9,10 @@
 
   flake.nixOnDroidConfigurations.zik-on-droid = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
     specialArgs = { inherit inputs; };
+    pkgs = import inputs.nixpkgs {
+    system = "aarch64-linux"; 
+    config = { allowUnfree = true; };
+  };
     modules = [
       self.nixosModules.nix-on-droid
       self.nixosModules.home-manager

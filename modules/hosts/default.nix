@@ -7,7 +7,7 @@
   # inputs.disko.flakeModules.default
   ];
 
-  flake.nixOnDroidConfigurations.zik-on-droid = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+  flake.nixOnDroidConfigurations.zik-on-droid = inputs.nix-on-droid.lib.nixOnDroidConfiguration {pkgs, lib, ...}: {
     specialArgs = { inherit inputs; };
     modules = [
       self.nixosModules.nix-on-droid

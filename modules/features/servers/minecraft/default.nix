@@ -11,7 +11,7 @@ flake.nixosModules.minecraft = { pkgs, lib, inputs, outputs, ...}:
     dataDir = "/var/lib/minecraft-servers";
     servers = {
     dlbeb-create = {
-  enable = false;
+  enable = true;
   package = pkgs.neoforgeServers.neoforge-1_21_1.override { jre_headless = pkgs.openjdk25_headless; };
   serverProperties = {
     allow-flight = true;
@@ -28,7 +28,7 @@ flake.nixosModules.minecraft = { pkgs, lib, inputs, outputs, ...}:
   };
   symlinks = let
   createPack = builtins.path {
-    path = /home/zik/programs/wiz/dlbeb-create-server;
+    path = /home/zik/programs/nix/wiz/dlbeb-create-server;
   };
     modpack-create = (pkgs.fetchPackwizModpack {
       url = "file://${createPack}/pack.toml";

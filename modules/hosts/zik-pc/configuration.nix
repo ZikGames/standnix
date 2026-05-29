@@ -17,7 +17,7 @@
     self.nixosModules.limo
     self.nixosModules.openmw
     self.nixosModules.scrcpy
-    self.nixosModules.openxray
+    # self.nixosModules.openxray
     # self.nixosModules.vcmi
     self.nixosModules.nitter
     self.nixosModules.qbittorrent

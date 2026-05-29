@@ -1,4 +1,4 @@
-{self, inputs, options, lib, config, outputs, ...}: {
+{self, inputs, options, lib, config, outputs, pkgs, ...}: {
   imports = [
   inputs.home-manager.flakeModules.home-manager
   inputs.flake-parts.flakeModules.easyOverlay

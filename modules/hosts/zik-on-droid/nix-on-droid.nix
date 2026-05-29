@@ -1,4 +1,4 @@
-{self, inputs, options, lib, config, ...}: {
+{self, inputs, options, lib, config, pkgs, ...}: {
 
 flake.nixosModules.nix-on-droid = { config, lib, pkgs, ... }:
 

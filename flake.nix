@@ -21,6 +21,7 @@
 
     nixcord.url = "github:kaylorben/nixcord";
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -37,9 +38,9 @@
     wrappers.url = "github:lassulus/wrappers";
     rust-flake.url = "github:juspay/rust-flake";
     conan-flake.url = "git+https://codeberg.org/tarcisio/conan-flake";
-    # files.url = "github:mightyiam/files";
+    files.url = "github:mightyiam/files";
     # disko.url = "github:nix-community/disko";
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

@@ -3,7 +3,7 @@
    programs.labwc = {
       enable = true;
       # package = self.packages.${pkgs.stdenv.hostPlatform.system}.labwc-cwrapped;
-    }; 
+    };
       environment.systemPackages = with pkgs; [
         wl-clipboard
 	      grim
@@ -15,6 +15,7 @@
 	      alacritty
 	      pcmanfm
         gscreenshot
+        self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-cwrapped
     ];
   };
   perSystem = { pkgs, lib, self', ... }: {

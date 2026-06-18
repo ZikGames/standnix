@@ -2,6 +2,7 @@
   flake.nixosModules.wine = {pkgs, options, ...}: {
   environment.systemPackages = with pkgs; [
     wineWow64Packages.waylandFull
+    wine
   ];
 
   };

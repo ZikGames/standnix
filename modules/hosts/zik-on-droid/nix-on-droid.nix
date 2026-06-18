@@ -1,11 +1,11 @@
 {self, inputs, options, lib, config, pkgs, ...}: {
 
-flake.nixosModules.nix-on-droid = { config, lib, pkgs, ... }:
+flake.nixOnDroidConfigurations.nix-on-droid = { config, lib, pkgs, ... }:
 
 {
 imports = [
-  self.nixosModules.x11
-  self.nixosModules.tuifimanager
+  # self.nixosModules.x11
+  # self.nixosModules.tuifimanager
 ];
 
   # Simply install just the packages
@@ -26,7 +26,6 @@ imports = [
     openssh
     zsh-nix-shell
   ];
-  terminal.sshd.enable = true;
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
@@ -72,14 +71,14 @@ flake.homeModules.zik-on-droid = { config, lib, pkgs, ... }:
   home.stateVersion = "24.05";
 
 
-  
+
   programs.git = {
     enable = true;
     settings.user = {
     name = "Zik1213";
     email = "zik1213@outlook.com";
   };
-  
+
   programs.nh = {
     enable = true;
     clean.enable = true;

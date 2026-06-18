@@ -1,2 +1,0 @@
-[workspace]
-members = ["modules/devShells/rust", "modules/devShells/rust/dnd-helper"]

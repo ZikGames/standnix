@@ -36,10 +36,12 @@
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     wrappers.url = "github:lassulus/wrappers";
-    rust-flake.url = "github:juspay/rust-flake";
-    conan-flake.url = "git+https://codeberg.org/tarcisio/conan-flake";
-    files.url = "github:mightyiam/files";
+    # rust-flake.url = "github:juspay/rust-flake";
+    # conan-flake.url = "git+https://codeberg.org/tarcisio/conan-flake";
+    # files.url = "github:mightyiam/files";
     # disko.url = "github:nix-community/disko";
+    # agenix.url = "github:ryantm/agenix";
+    # agenix-rekey.url = "github:oddlama/agenix-rekey";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

@@ -114,9 +114,9 @@
             };
 
             nix = {
-              autoArchive = true;
-              flake.autoArchive = true;
-              suppress = "sema-unused-def-lambda-noarg-formal";
+              settings = {
+                nix.flake.autoarchive = true;
+              };
               binary = {
                 path_lookup = true;
               };

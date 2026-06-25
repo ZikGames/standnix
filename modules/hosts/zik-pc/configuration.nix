@@ -43,7 +43,8 @@
         self.nixosModules.bottles
         self.nixosModules.kde
         self.nixosModules.flatpak
-        self.nixosModules.jellyfin
+        # self.nixosModules.jellyfin
+        self.nixosModules.standnixpkgs
       ];
       nix.settings.auto-optimise-store = true;
       nixpkgs.config.allowUnfree = true;
@@ -118,13 +119,14 @@
         ];
       };
 
+      programs.ssh.startAgent = true;
       services.openssh = {
         enable = true;
         ports = [ 22 ];
-        openFirewall = false;
+        openFirewall = true;
         settings = {
           PasswordAuthentication = true;
-          AllowUsers = null;
+          # AllowUsers = null;
           UseDns = false;
           X11Forwarding = true;
           PermitRootLogin = "prohibit-password";

@@ -7,23 +7,78 @@
   ...
 }:
 {
-  flake.nixosModules.g3m = { }: { };
-  flake.homeModules.g3m = { }: { };
-  # perSystem = { pkgs, lib, ... }: {
-  #   pkgs.packages.g3m = pkgs.stdenv.mkDerivation {
-  #     pname = "g3m";
-  #     version = "dev";
+  perSystem = { pkgs, lib, ... }: {
 
-  #     src = fetchFromGitHub {
-  #       owner = "";
-  #       repo = "";
-  #       rev = "";
-  #       sha256 = "";
-  #     };
+    packages.g3m = pkgs.callPackage (
+      {
+        lib,
+        python3Packages,
+        fetchFromGitHub,
+        nix-update-script,
+      }:
 
-  #     buildPhase = ''
+      python3Packages.buildPythonApplication (finalAttrs: {
+        pname = "g3m";
+        version = "3.1.2";
+        pyproject = true;
+        __structuredAttrs = true;
 
-  #     '';
-  #   };
-  # };
+        src = fetchFromGitHub {
+          owner = "y114git";
+          repo = "G3M";
+          tag = finalAttrs.version;
+          hash = "sha256-CS9c3rfcKbF9D3Ux277aSQFvNEG8Il8JbE1CsfR7FUI=";
+        };
+
+        build-system = [
+          python3Packages.setuptools
+          python3Packages.wheel
+        ];
+
+        dependencies = with python3Packages; [
+          defusedxml
+          playsound3
+          psutil
+          py7zr
+          pyqt6
+          python-dotenv
+          rarfile
+          requests
+          urllib3
+        ];
+
+        optional-dependencies = with python3Packages; {
+          build = [
+            pyinstaller
+          ];
+          dev = [
+            ruff
+          ];
+          test = [
+            pytest
+            pytest-cov
+            pytest-html
+            pytest-mock
+            pytest-qt
+            responses
+          ];
+        };
+
+        pythonImportsCheck = [
+          "g3m"
+        ];
+
+        passthru.updateScript = nix-update-script { };
+
+        meta = {
+          description = "Mod Manager for GameMaker games";
+          homepage = "https://github.com/y114git/G3M";
+          changelog = "https://github.com/y114git/G3M/blob/${finalAttrs.src.rev}/CHANGELOG.md";
+          license = lib.licenses.gpl3Only;
+          # maintainers = with lib.maintainers; [ ];
+          mainProgram = "g3m";
+        };
+      })
+    );
+  };
 }

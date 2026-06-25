@@ -42,6 +42,6 @@
           platforms = lib.platforms.all;
         };
       })
-    );
+    ) { };
   };
 }

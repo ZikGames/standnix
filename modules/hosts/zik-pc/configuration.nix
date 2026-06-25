@@ -44,7 +44,7 @@
         self.nixosModules.kde
         self.nixosModules.flatpak
         # self.nixosModules.jellyfin
-        self.nixosModules.standnixpkgs
+        # self.nixosModules.standnixpkgs
       ];
       nix.settings.auto-optimise-store = true;
       nixpkgs.config.allowUnfree = true;
@@ -77,7 +77,7 @@
       networking.interfaces.enp4s0 = {
         ipv4.addresses = [
           {
-            address = "192.168.3.2";
+            address = "192.168.1.10";
             prefixLength = 24;
           }
         ];

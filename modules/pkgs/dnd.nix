@@ -40,6 +40,6 @@
           platforms = lib.platforms.all;
         };
       })
-    );
+    ) { };
   };
 }

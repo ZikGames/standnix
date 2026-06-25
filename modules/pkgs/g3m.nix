@@ -19,7 +19,7 @@
 
       python3Packages.buildPythonApplication (finalAttrs: {
         pname = "g3m";
-        version = "3.1.2";
+        version = "3.2.0";
         pyproject = true;
         __structuredAttrs = true;
 
@@ -27,7 +27,7 @@
           owner = "y114git";
           repo = "G3M";
           tag = finalAttrs.version;
-          hash = "sha256-CS9c3rfcKbF9D3Ux277aSQFvNEG8Il8JbE1CsfR7FUI=";
+          hash = "sha256-xNSQAHkBHKyuY2RojR0lmHXaRIvbNe6rMp+Y/jQex8s=";
         };
 
         build-system = [
@@ -37,7 +37,7 @@
 
         dependencies = with python3Packages; [
           defusedxml
-          playsound3
+          playsound
           psutil
           py7zr
           pyqt6
@@ -79,6 +79,6 @@
           mainProgram = "g3m";
         };
       })
-    );
+    ) { };
   };
 }

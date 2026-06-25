@@ -43,10 +43,12 @@
     ];
   }; # не проверял
 
-  flake.nixosConfigurations.rpi5 = inputs.nixos-raspberrypi.lib.nixosInstaller {
+  flake.installerImages = inputs.nixos-raspberrypi.installerImages.rpi5;
+  flake.nixosConfigurations.rpi5 = inputs.nixos-raspberrypi.lib.nixosSystemFull {
     specialArgs = { inherit (inputs) nixos-raspberrypi; };
     modules = [
       self.nixosModules.rpi5
+      self.nixosModules.rpi5-hardware
       self.nixosModules.wayland
     ];
   };

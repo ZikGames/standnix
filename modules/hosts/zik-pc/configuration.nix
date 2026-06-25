@@ -237,9 +237,12 @@
 
       programs.git = {
         enable = true;
-        settings.user = {
-          name = "Zik1213";
-          email = "zik1213@outlook.com";
+        settings = {
+          credential.helper = "keepassxc";
+          user = {
+            name = "Zik1213";
+            email = "zik1213@outlook.com";
+          };
         };
       };
 

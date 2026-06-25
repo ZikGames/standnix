@@ -15,7 +15,6 @@
       pkgs,
       lib,
       config,
-      pkgs-stable,
       ...
     }:
 

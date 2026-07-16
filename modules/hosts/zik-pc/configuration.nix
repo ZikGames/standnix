@@ -44,6 +44,7 @@
         self.nixosModules.flatpak
         # self.nixosModules.jellyfin
         # self.nixosModules.standnixpkgs
+        self.nixosModules.waydroid
       ];
       nix.settings.auto-optimise-store = true;
       nixpkgs.config.allowUnfree = true;

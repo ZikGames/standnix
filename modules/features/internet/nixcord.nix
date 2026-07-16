@@ -14,9 +14,12 @@
       imports = [ inputs.nixcord.homeModules.nixcord ];
       programs.nixcord = {
         enable = true;
-        discord.vencord.enable = false;
-        discord.equicord.enable = true;
-        equibop.enable = false;
+        discord.vencord.enable = true;
+        discord.equicord.enable = false;
+        equibop = {
+          enable = true;
+          installPackage = false;
+        };
         vesktop.enable = true;
         config = {
           themeLinks = [
@@ -64,6 +67,7 @@
             messageLogger.enable = true;
             biggerStreamPreview.enable = true;
             unlockedAvatarZoom.enable = true;
+            spotifyCrack.enable = true;
           };
         };
       };

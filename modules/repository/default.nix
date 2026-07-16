@@ -7,11 +7,19 @@
   ...
 }:
 {
-  # perSystem = { pkgs, lib, ... }: {
+  # flake = {
+  #   flake-files.inputs.files = {
+  #     url = "github:mightyiam/files";
+  #     flake = false;
+  #   };
   #   imports = [
-  #     inputs.files.flakeModules.default
+  #     "${inputs.files}/flake-module.nix"
   #   ];
+  # };
+  # perSystem = {
+
   #   files.file = {
+  #     gitToplevel = "../../.";
   #     "README.md".text = ''
   #         # standnix
 
@@ -19,7 +27,7 @@
 
   #       something
   #     '';
-  #     ".gitignore".source = ./.gitignore;
+  #     ".gitignore".source = ./gitignore;
   #     "cargo.toml".source = ./cargo.toml;
   #   };
   # };

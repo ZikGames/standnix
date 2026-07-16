@@ -7,6 +7,7 @@
   ...
 }:
 {
+  flake.flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   flake.nixosModules.rpi5 = { config, ... }: {
     # Hardware specific configuration, see section below for a more complete
     # list of modules

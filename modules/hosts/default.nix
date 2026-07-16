@@ -53,6 +53,13 @@
     ];
   };
 
+  flake.nixosConfigurations.wsl = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      self.nixosModules.nix-wsl
+    ];
+  };
+
   flake.nixosConfigurations.iso = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
     modules = [

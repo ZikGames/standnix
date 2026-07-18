@@ -4,6 +4,6 @@
 
   flake.nixosModules.steam-millennium = { pkgs, ... }: {
     programs.steam.package = pkgs.millennium-steam;
-    nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+    # nixpkgs.overlays = [ inputs.millennium.overlays.default ];
   };
 }

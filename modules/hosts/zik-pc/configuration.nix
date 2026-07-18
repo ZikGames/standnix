@@ -33,7 +33,7 @@
         self.nixosModules.limo
         self.nixosModules.openmw
         self.nixosModules.scrcpy
-        # self.nixosModules.openxray
+        self.nixosModules.openxray
         self.nixosModules.vcmi
         self.nixosModules.nitter
         self.nixosModules.qbittorrent
@@ -45,6 +45,7 @@
         # self.nixosModules.jellyfin
         # self.nixosModules.standnixpkgs
         self.nixosModules.waydroid
+        self.nixosModules.spotify
       ];
       nix.settings.auto-optimise-store = true;
       nixpkgs.config.allowUnfree = true;
@@ -212,6 +213,7 @@
         self.homeModules.koreader
         self.homeModules.ytmdesktop
         self.homeModules.zed
+        self.homeModules.labwc
       ];
       nixpkgs = {
         config = {
@@ -255,7 +257,6 @@
 
       home.packages = with pkgs; [
         steam-run
-        dotnet-sdk_8
         nix-ld
       ];
     };

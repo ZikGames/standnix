@@ -1,5 +1,16 @@
 # Trash
 
+  perSystem = { pkgs, lib, self', ... }: {
+    #   packages.labwc-cwrapped = wrappers.lib.wrapPackage {
+    #   inherit pkgs;
+    #   settings = {
+    #     autostart = [
+    #       (lib.getExe self'.packages.noctalia-cwrapped)
+    #     ];
+    #   };
+    # };
+  };
+
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
@@ -326,7 +337,7 @@ minegrub-theme, minegrub-world-sel-theme,
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolPressureRangeMax = 1;
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolPressureRangeMin = 0;
       kcminputrc."Libinput/11648/24577/Xenx X1-640 Stylus".TabletToolRelativeMode = false;
-      
+
       kdeglobals.KScreen.ScreenScaleFactors = "HDMI-A-1=1;";
       kdeglobals.KScreen.XwaylandClientsScale = false;
       kdeglobals.QtQuickRendererSettings.SceneGraphBackend = "software";
@@ -524,7 +535,7 @@ minegrub-theme, minegrub-world-sel-theme,
 
 
 
-  #     rc = [ 
+  #     rc = [
   # {
   #   theme = {
   #   name = "qogir-dark";
@@ -622,7 +633,7 @@ minegrub-theme, minegrub-world-sel-theme,
   #       "XKB_DEFAULT_LAYOUT=us,ru"
   #     ];
   #     extraConfig = [
-        
+
   #     ];
 
       procps

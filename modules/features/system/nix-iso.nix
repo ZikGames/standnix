@@ -115,7 +115,7 @@
         "nix-command"
         "flakes"
       ];
-      nixpkgs.config.allowUnfree = true;
+      # nixpkgs.config.allowUnfree = true;
       isoImage.makeEfiBootable = true;
       isoImage.makeUsbBootable = true;
       image.fileName = "labwc-nixos.iso";

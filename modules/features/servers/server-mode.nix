@@ -7,6 +7,7 @@
   ...
 }:
 {
+  # flake.flake-file.inputs.
   flake.nixosModules.server-mode =
     {
       pkgs,

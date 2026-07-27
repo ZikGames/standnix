@@ -41,7 +41,7 @@
               statusName = "Prospero";
               useListeningStatus = true;
               missingArt = "placeholder";
-              showLastFmLogo = false;
+              # showLogo = false;
             };
             accountPanelServerProfile = {
               enable = true;

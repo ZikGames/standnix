@@ -8,7 +8,6 @@
 }:
 {
   flake.nixosModules.labwc = { pkgs, lib, ... }: {
-    programs.labwc.enable = true;
     environment.systemPackages = with pkgs; [
       wl-clipboard
       grim
@@ -20,11 +19,16 @@
       alacritty
       pcmanfm
       gscreenshot
+      wlr-randr
+      swappy
+      slurp
+      swayidle
       self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-cwrapped
     ];
   };
   flake.homeModules.labwc = {
     wayland.windowManager.labwc = {
+      enable = true;
       autostart = [
         "noctalia-shell &"
       ];
@@ -32,6 +36,44 @@
         "XDG_CURRENT_DESKTOP=labwc:wlroots"
         "XKB_DEFAULT_LAYOUT=us,ru"
       ];
+      rc = {
+        theme = {
+          name = "nord";
+          cornerRadius = 8;
+          font = {
+            "@name" = "FiraCode";
+            "@size" = "11";
+          };
+        };
+        keyboard = {
+          default = true;
+          keybind = [
+            # <keybind key="W-Return"><action name="Execute" command="foot"/></keybind>
+            {
+              "@key" = "C-Print";
+              action = {
+                "@name" = "Execute";
+                "@command" = "gscreenshot -s";
+              };
+            }
+            {
+              "@key" = "C-A-t";
+              action = {
+                "@name" = "Execute";
+                "@command" = "alacritty";
+              };
+            }
+            # <keybind key="W-Esc"><action name="Execute" command="loot"/></keybind>
+            {
+              "@key" = "Print";
+              action = {
+                "@name" = "Execute";
+                "@command" = "gscreenshot";
+              };
+            }
+          ];
+        };
+      };
       menu = [
         {
           menuId = "client-menu";

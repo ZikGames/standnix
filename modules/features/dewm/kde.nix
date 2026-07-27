@@ -7,6 +7,11 @@
   ...
 }:
 {
+  flake.flake-file.inputs.plasma-manager = {
+    url = "github:nix-community/plasma-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.home-manager.follows = "home-manager";
+  };
   flake.nixosModules.kde = { pkgs, lib, ... }: {
 
     services.desktopManager.plasma6.enable = true;
@@ -22,11 +27,6 @@
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       okular
     ];
-  };
-  flake.flake-file.inputs.plasma-manager = {
-    url = "github:nix-community/plasma-manager";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.home-manager.follows = "home-manager";
   };
   flake.homeModules.kde = { pkgs, lib, ... }: {
     imports = [ inputs.plasma-manager.homeModules.plasma-manager ];

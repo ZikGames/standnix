@@ -1,20 +1,39 @@
-{self, inputs, options, lib, config, ...}: {
-  flake.homeModules.prismlauncher = { pkgs, lib, ...}: {
-  #   programs.prismlauncher = {
-  #   enable = true;
-  # };
-  home.packages = with pkgs; [
-    (prismlauncher.override {
-    additionalPrograms = [ ffmpeg mangohud ];
-    additionalLibs = [vulkan-loader glfw3-minecraft openal libxkbcommon ];
-    controllerSupport = true;
-    jdks = [
-     graalvmPackages.graalvm-ce
-      zulu8
-      zulu17
-      zulu
-    ];
-    })
-  ];
+{
+  self,
+  inputs,
+  options,
+  lib,
+  config,
+  ...
+}:
+{
+  flake.homeModules.prismlauncher = { pkgs, lib, ... }: {
+    programs.prismlauncher = {
+      enable = true;
+      package = pkgs.prismlauncher.override ({
+        additionalPrograms = with pkgs; [
+          ffmpeg
+          mangohud
+          wayland
+          libxkbcommon
+          libinput
+          wayland-protocols
+        ];
+        additionalLibs = with pkgs; [
+          vulkan-loader
+          glfw3-minecraft
+          openal
+          libxkbcommon
+          libinput
+        ];
+        controllerSupport = true;
+        jdks = with pkgs; [
+          graalvmPackages.graalvm-ce
+          zulu8
+          zulu17
+          zulu
+        ];
+      });
+    };
   };
 }

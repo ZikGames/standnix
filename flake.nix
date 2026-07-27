@@ -1,28 +1,9 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
-    flake-file.url = "github:vic/flake-file";
-
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-
-    nixcord.url = "github:kaylorben/nixcord";
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,13 +13,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    files.url = "github:mightyiam/files";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
-    # disko.url = "github:nix-community/disko";
-    # agenix.url = "github:ryantm/agenix";
-    # agenix-rekey.url = "github:oddlama/agenix-rekey";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixcord.url = "github:kaylorben/nixcord";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    home-manager.url = "github:nix-community/home-manager";
+    wrappers.url = "github:lassulus/wrappers";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
   };
-
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

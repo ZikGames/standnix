@@ -35,7 +35,7 @@
         self.nixosModules.scrcpy
         self.nixosModules.openxray
         self.nixosModules.vcmi
-        self.nixosModules.nitter
+        # self.nixosModules.nitter
         self.nixosModules.qbittorrent
         self.nixosModules.vintagestory
         self.nixosModules.qemu
@@ -124,7 +124,7 @@
       services.openssh = {
         enable = true;
         ports = [ 22 ];
-        openFirewall = true;
+        openFirewall = false;
         settings = {
           PasswordAuthentication = true;
           # AllowUsers = null;

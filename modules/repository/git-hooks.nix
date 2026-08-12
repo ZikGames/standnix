@@ -11,7 +11,10 @@
           nixfmt.enable = true;
           deadnix.enable = true;
           statix.enable = false;
-          end-of-file-fixer.enable = true;
+          end-of-file-fixer = {
+            enable = true;
+            excludes = [ "^README\.md$" ];
+          };
           trim-trailing-whitespace.enable = true;
           write-files = {
             enable = true;

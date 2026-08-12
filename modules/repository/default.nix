@@ -1,34 +1,25 @@
 {
-  self,
   inputs,
-  options,
-  lib,
-  config,
   ...
 }:
 {
-  # flake = {
-  #   flake-files.inputs.files = {
-  #     url = "github:mightyiam/files";
-  #     flake = false;
-  #   };
-  #   imports = [
-  #     "${inputs.files}/flake-module.nix"
-  #   ];
-  # };
-  # perSystem = {
+  flake-file.inputs.files.url = "github:mightyiam/files";
+  flake-file.inputs.files.flake = false;
+  imports = [ "${inputs.files}/flake-module.nix" ];
 
-  #   files.file = {
-  #     gitToplevel = "../../.";
-  #     "README.md".text = ''
-  #         # standnix
+  perSystem = {
+    files.writer.app = true;
+    files.file = {
+      "README.md".text = ''
+        # standnix
 
-  #         ## stand of the nix
+        ## stand of the nix
 
-  #       something
-  #     '';
-  #     ".gitignore".source = ./gitignore;
-  #     "cargo.toml".source = ./cargo.toml;
-  #   };
-  # };
+        Nyeh heh heh!
+      '';
+      ".gitignore".text = builtins.readFile ./gitignore;
+      "cargo.toml".text = builtins.readFile ./cargo.toml;
+    };
+  };
+
 }

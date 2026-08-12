@@ -1,12 +1,4 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
   flake.nixosModules.waydroid = { pkgs, ... }: {
     environment.systemPackages = [ pkgs.waydroid-helper ];
 

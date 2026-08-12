@@ -1,11 +1,11 @@
-{self, inputs, options, lib, config, ...}: {
-  flake.nixosModules.template = {pkgs, ...}: {};
-  flake.homeModules.template = {}: {};
-  perSystem = { pkgs, lib, ...}: {
+{
+  flake-file.inputs.nixvim.url = "github:nix-community/nixvim";
+  flake.nixosModules.nixvim = {
+    programs.nixvim = {
+      enable = true;
 
-    packages.nixvim-cwrapped = inputs.wrapper-modules.wrappers.nixvim.wrap {
-
+      colorschemes.catppuccin.enable = true;
+      plugins.lualine.enable = true;
     };
-
   };
 }

@@ -1,11 +1,6 @@
 {
   self,
   inputs,
-  options,
-  lib,
-  config,
-  outputs,
-  pkgs,
   ...
 }:
 {
@@ -13,57 +8,70 @@
     inputs.home-manager.flakeModules.home-manager
     inputs.flake-parts.flakeModules.easyOverlay
     inputs.flake-parts.flakeModules.modules
-    # inputs.files.flakeModules.default
     # inputs.disko.flakeModules.default
   ];
-
-  flake.nixOnDroidConfigurations.zik-on-droid = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-    extraSpecialArgs = { inherit inputs; };
-    pkgs = import inputs.nixpkgs {
-      system = "aarch64-linux";
-      config = {
-        allowUnfree = true;
-      };
+  flake = {
+    nixosConfigurations.zik-pc = inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        self.nixosModules.Zik-PC
+        self.nixosModules.home-manager
+      ];
     };
-    modules = [
-      self.nixOnDroidConfigurations.nix-on-droid
-      self.nixosModules.home-manager
-    ];
-  };
-  flake.nixosConfigurations.zik-pc = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
-    modules = [
-      self.nixosModules.Zik-PC
-      self.nixosModules.home-manager
-    ];
-  };
-  flake.homeConfigurations.zik = inputs.nixpkgs.lib.homeConfiguration {
-    modules = [
-      self.homeModules.zik
-    ];
-  }; # не проверял
 
-  flake.installerImages = inputs.nixos-raspberrypi.installerImages.rpi5;
-  flake.nixosConfigurations.rpi5 = inputs.nixos-raspberrypi.lib.nixosSystemFull {
-    specialArgs = { inherit (inputs) nixos-raspberrypi; };
-    modules = [
-      self.nixosModules.rpi5
-      self.nixosModules.rpi5-hardware
-      self.nixosModules.wayland
-    ];
-  };
+    nixosConfigurations.iso = inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        self.nixosModules.iso
+      ];
+    };
 
-  flake.nixosConfigurations.wsl = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      self.nixosModules.nix-wsl
-    ];
-  };
+    homeConfigurations.zik = inputs.nixpkgs.lib.homeConfiguration {
+      modules = [
+        self.homeModules.zik
+      ];
+    };
 
-  flake.nixosConfigurations.iso = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
-    modules = [
-      self.nixosModules.iso
-    ];
+    nixosConfigurations.zik-rpi5-sd = inputs.nixos-raspberrypi.lib.nixosInstaller {
+      specialArgs = {
+        inherit (inputs) nixos-raspberrypi;
+        inherit self;
+      };
+      modules = [
+        self.nixosModules.rpi5
+        self.nixosModules.rpi5-hardware
+      ];
+    };
+    nixConfig = {
+      extra-substituters = [
+        "https://nixos-raspberrypi.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+      ];
+    };
+    # nixosConfigurations.rpi5 = inputs.nixos-raspberrypi.lib.nixosSystemFull {
+    #   specialArgs = {
+    #     inherit (inputs) nixos-raspberrypi;
+    #     inherit self;
+    #   };
+    #   modules = [
+    #     self.nixosModules.rpi5
+    #     self.nixosModules.rpi5-hardware
+    #     self.nixosModules.wayland
+    #   ];
+    # };
+
+    nixOnDroidConfigurations.zik = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+      pkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
+      modules = [ self.nixOnDroidModules.zik ];
+    };
+
+    nixosConfigurations.wsl = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        self.nixosModules.nix-wsl
+      ];
+    };
   };
 }

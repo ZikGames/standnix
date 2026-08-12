@@ -1,0 +1,2 @@
+[workspace]
+members = ["develop/rust", "develop/rust/dnd-helper"]

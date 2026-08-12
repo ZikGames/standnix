@@ -1,13 +1,5 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
-  flake.nixosModules.nitter = { pkgs, outputs, ... }: {
+  flake.nixosModules.nitter = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       nitter
     ];

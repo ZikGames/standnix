@@ -1,21 +1,10 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
   flake-file.inputs.minegrub-theme.url = "github:Lxtharia/minegrub-theme";
 
   flake.nixosModules.grub =
     {
       inputs,
-      outputs,
       pkgs,
-      lib,
-      config,
       ...
     }:
     {
@@ -25,6 +14,9 @@
           device = "nodev";
           efiSupport = true;
           useOSProber = true;
+          extraConfig = ''
+            GRUB_DISABLE_OS_PROBER=false
+          '';
           minegrub-theme = {
             enable = true;
             splash = "100% Flakes!";

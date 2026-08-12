@@ -1,18 +1,11 @@
 {
   self,
-  inputs,
-  lib,
-  config,
   ...
 }:
 {
   flake.nixosModules.wayland =
     {
-      inputs,
-      outputs,
       pkgs,
-      lib,
-      config,
       ...
     }:
     {

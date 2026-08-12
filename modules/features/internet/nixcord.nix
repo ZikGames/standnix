@@ -1,26 +1,21 @@
-{ self, inputs, ... }:
 {
   flake-file.inputs.nixcord.url = "github:kaylorben/nixcord";
   flake.homeModules.nixcord =
     {
       inputs,
-      outputs,
-      pkgs,
-      lib,
-      config,
       ...
     }:
     {
       imports = [ inputs.nixcord.homeModules.nixcord ];
       programs.nixcord = {
         enable = true;
-        discord.vencord.enable = true;
-        discord.equicord.enable = false;
+        discord.vencord.enable = false;
+        discord.equicord.enable = true;
         equibop = {
           enable = true;
-          installPackage = false;
+          installPackage = true;
         };
-        vesktop.enable = true;
+        vesktop.enable = false;
         config = {
           themeLinks = [
             "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-vencord.theme.css"
@@ -30,12 +25,9 @@
             betterRoleDot.enable = true;
             betterSessions.enable = true;
             betterSettings.enable = true;
-            ClearURLs.enable = true;
-            AutoDNDWhilePlaying = {
-              enable = true;
-              excludeInvisible = true;
-            };
-            LastFMRichPresence = {
+            clearUrls.enable = true;
+            autoDndWhilePlaying.enable = true;
+            musicRichPresence = {
               enable = true;
               username = "Zik1213";
               statusName = "Prospero";
@@ -51,7 +43,7 @@
               enable = true;
               hideButton = true;
             };
-            ReviewDB = {
+            reviewDb = {
               enable = true;
               hideTimestamps = true;
             };
@@ -60,14 +52,15 @@
             noF1.enable = true;
             openInApp.enable = true;
             relationshipNotifier.enable = true;
-            # IRememberYou.enable = true;
-            BlurNSFW.enable = true;
+            iRememberYou.enable = true;
+            blurNsfw.enable = true;
             roleColorEverywhere.enable = true;
             sendTimestamps.enable = true;
             messageLogger.enable = true;
             biggerStreamPreview.enable = true;
             unlockedAvatarZoom.enable = true;
             spotifyCrack.enable = true;
+            questify.enable = true;
           };
         };
       };

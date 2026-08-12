@@ -1,13 +1,17 @@
-{self, inputs, options, lib, config, ...}: {
+{
+  inputs,
+  ...
+}:
+{
   flake-file.inputs.nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-  flake.nixosModules.flatpak = {pkgs, imports, ...}: {
-  imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+  flake.nixosModules.flatpak = {
+    imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
     services.flatpak = {
       enable = true;
-      # packages = [
-      #   "org.vinegarhq.vinegar"
-      #   "org.vinegarhq.Sober"
-      # ];
+      packages = [
+        "org.vinegarhq.Vinegar"
+        "org.vinegarhq.Sober"
+      ];
     };
   };
 }

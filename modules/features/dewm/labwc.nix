@@ -1,20 +1,16 @@
 {
   self,
-  inputs,
-  options,
-  lib,
-  config,
   ...
 }:
 {
-  flake.nixosModules.labwc = { pkgs, lib, ... }: {
+  flake.nixosModules.labwc = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       wl-clipboard
       grim
       labwc-tweaks-gtk
-      dracula-theme
-      dracula-icon-theme
-      qogir-theme
+      # dracula-theme
+      # dracula-icon-theme
+      # qogir-theme
       qogir-icon-theme
       alacritty
       pcmanfm

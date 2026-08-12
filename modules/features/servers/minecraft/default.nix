@@ -1,18 +1,9 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
+  flake-file.inputs.nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   flake.nixosModules.minecraft =
     {
       pkgs,
-      lib,
       inputs,
-      outputs,
       ...
     }:
     {

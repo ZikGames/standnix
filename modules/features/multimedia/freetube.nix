@@ -1,5 +1,5 @@
-{self, inputs, options, lib, config, ...}: {
-  flake.homeModules.freetube = {pkgs, outputs, ...}: {
+{
+  flake.homeModules.freetube = {
     programs.freetube = {
       enable = true;
     };

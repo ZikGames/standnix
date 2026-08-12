@@ -1,17 +1,9 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
   flake.nixosModules.bottles = { pkgs, ... }: {
     nixpkgs.overlays = [
-      (final: prev: {
+      (_final: prev: {
         pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-          (python-final: python-prev: {
+          (_python-final: python-prev: {
             patool = python-prev.patool.overrideAttrs (_: {
               doCheck = false;
             });

@@ -1,47 +1,63 @@
 {
   self,
-  inputs,
-  options,
-  lib,
-  config,
   ...
 }:
 {
-  # flake.flake-file.inputs.
-  flake.nixosModules.server-mode =
-    {
-      pkgs,
-      options,
-      lib,
-      ...
-    }:
-    {
-      specialisation.server = {
-        inheritParentConfig = false;
-        configuration = {
-          imports = [
-            self.nixosModules.minecraft
-            self.nixosModules.grub
-            self.nixosModules.Zik-PC-hardware
-          ];
-          environment.systemPackages = with pkgs; [
-            jdk25_headless
-          ];
-          users.users.zik = {
-            isNormalUser = true;
-            description = "zik";
-            extraGroups = [
-              "networkmanager"
-              "pipewire"
-              "wheel"
-              "sudoers"
-              "video"
-              "audio"
+  flake = {
+    nixosModules.rpi5-server = {
+      imports = [
+        self.nixosModules.pihole
+        # self.nixosModules
+        # self.nixosModules
+      ];
+      services.fail2ban.enable = true;
+      services.unbound = {
+        enable = true;
+      };
+    };
+    nixosModules.server-mode =
+      {
+        pkgs,
+        ...
+      }:
+      {
+        specialisation.server = {
+          inheritParentConfig = false;
+          configuration = {
+            imports = [
+              self.nixosModules.minecraft
+              self.nixosModules.grub
+              self.nixosModules.Zik-PC-hardware
             ];
-            shell = pkgs.zsh;
-            ignoreShellProgramCheck = true;
+            # inheritParentConfig = false means none of this comes from
+            # zik-pc/configuration.nix automatically — has to be set here.
+            system.stateVersion = "24.05";
+            networking.hostName = "zik-pc-server";
+            nix.settings.experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+
+            environment.systemPackages = with pkgs; [
+              jdk25_headless
+            ];
+
+            programs.zsh.enable = true;
+
+            users.users.zik = {
+              isNormalUser = true;
+              description = "zik";
+              extraGroups = [
+                "networkmanager"
+                "pipewire"
+                "wheel"
+                "video"
+                "audio"
+              ];
+              shell = pkgs.zsh;
+            };
           };
         };
       };
-    };
+  };
 }

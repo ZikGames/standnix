@@ -1,19 +1,8 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
   flake.homeModules.zed =
     {
-      inputs,
-      outputs,
       pkgs,
       lib,
-      config,
       ...
     }:
     {

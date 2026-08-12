@@ -1,13 +1,5 @@
 {
-  self,
-  inputs,
-  options,
-  lib,
-  config,
-  ...
-}:
-{
-  flake.homeModules.prismlauncher = { pkgs, lib, ... }: {
+  flake.homeModules.prismlauncher = { pkgs, ... }: {
     programs.prismlauncher = {
       enable = true;
       package = pkgs.prismlauncher.override ({

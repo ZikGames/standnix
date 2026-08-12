@@ -1,8 +1,8 @@
-{self, inputs, options, lib, config, ...}: {
-  flake.nixosModules.openmw = {pkgs, ...}: {
-  environment.systemPackages = [
-    pkgs.openmw
-    pkgs.portmod
-  ];
+{
+  flake.nixosModules.openmw = { pkgs, ... }: {
+    environment.systemPackages = [
+      pkgs.openmw
+      # pkgs.portmod
+    ];
   };
 }

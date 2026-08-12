@@ -1,26 +1,14 @@
 {
-  self,
-  inputs,
-  pkgs,
-  system,
-  config,
-  ...
-}:
-{
 
   flake.nixosModules.steam =
     {
-      inputs,
-      outputs,
       pkgs,
-      lib,
-      config,
-      system,
       ...
     }:
     {
       programs.steam = {
         enable = true;
+        # package = pkgs.millennium-steam;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;

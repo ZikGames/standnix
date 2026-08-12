@@ -1,17 +1,9 @@
 {
-  self,
-  inputs,
-  options,
-  ...
-}:
-{
   flake-file.inputs.zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
   flake.nixosModules.zapret =
     {
       inputs,
-      pkgs,
       lib,
-      config,
       ...
     }:
     {

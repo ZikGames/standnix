@@ -1,5 +1,5 @@
-{self, inputs, options, lib, config, ...}: {
- flake.nixosModules.dwm = { pkgs, lib, ...}: {
+{
+  flake.nixosModules.dwm = {
     services.xserver.windowManager.dwm.enable = true;
   };
-    }
+}

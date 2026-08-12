@@ -1,16 +1,11 @@
 {
   self,
-  inputs,
-  options,
   ...
 }:
 {
-  flake.flake-file.inputs.home-manager.url = "github:nix-community/home-manager";
+  flake-file.inputs.home-manager.url = "github:nix-community/home-manager";
   flake.nixosModules.home-manager =
     {
-      pkgs,
-      lib,
-      options,
       inputs,
       outputs,
       ...

@@ -1,10 +1,5 @@
 {
   self,
-  inputs,
-  options,
-  lib,
-  config,
-  outputs,
   ...
 }:
 {
@@ -25,7 +20,7 @@
       ];
       home-manager = {
         useGlobalPkgs = true;
-        useUserPackages = true;
+        # useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs outputs; };
         users.zik-iso.imports = [ self.homeModules.zik-iso ];
@@ -53,8 +48,6 @@
           "networkmanager"
           "pipewire"
           "wheel"
-          "adbusers"
-          "sudoers"
           "video"
           "audio"
         ];
@@ -90,7 +83,7 @@
         htop-vim
         neovim
         zsh-nix-shell
-        noctalia-shell
+        self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-cwrapped
       ];
       console.colors = [
         "1e1e2e" # base
@@ -115,10 +108,10 @@
         "nix-command"
         "flakes"
       ];
-      # nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnfree = true;
       isoImage.makeEfiBootable = true;
       isoImage.makeUsbBootable = true;
-      image.fileName = "labwc-nixos.iso";
+      image.fileName = "labwc-nixos";
       isoImage.squashfsCompression = "zstd";
       boot.zfs.forceImportRoot = false;
     };
@@ -127,7 +120,6 @@
     {
       config,
       lib,
-      pkgs,
       modulesPath,
       ...
     }:
@@ -180,10 +172,6 @@
 
   flake.homeModules.zik-iso =
     {
-      inputs,
-      outputs,
-      lib,
-      config,
       pkgs,
       ...
     }:
@@ -198,7 +186,7 @@
         self.homeModules.freetube
         self.homeModules.vlc
         self.homeModules.koreader
-        self.homeModules.ytmdesktop
+        # self.homeModules.ytmdesktop
         self.homeModules.zed
       ];
 

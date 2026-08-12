@@ -1,6 +1,6 @@
-{self, inputs, options, lib, config, ...}: {
+{
   flake-file.inputs.wrappers.url = "github:lassulus/wrappers";
-  flake.nixosModules.vintagestory = {pkgs, ...}: {
+  flake.nixosModules.vintagestory = {
     environment.systemPackages = [
       # self.packages.${pkgs.stdenv.hostPlatform.system}.vintagestory-cwrapped
     ];

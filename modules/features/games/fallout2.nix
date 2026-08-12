@@ -1,7 +1,7 @@
-{self, inputs, options, lib, config, ...}: {
-flake.nixosModules.fallout2 = {pkgs, ...}: {
+{
+  flake.nixosModules.fallout2 = { pkgs, ... }: {
     environment.systemPackages = [
-    pkgs.fallout2-ce
-  ];
-};
+      pkgs.fallout2-ce
+    ];
+  };
 }

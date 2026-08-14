@@ -12,12 +12,12 @@
         }:
         buildPythonPackage rec {
           pname = "playsound3";
-          version = "3.3.1";
+          version = "3.3.2";
           pyproject = true;
 
           src = fetchPypi {
             inherit pname version;
-            hash = "sha256-Pw64fV/yBh0HZjxLAQuOfWbCdDRHErAdVhoKc0R+9B0=";
+            hash = "sha256-oZ2fVCvrPOXstMp4C0cJLHhXJSY+M5vtjn00CzIsT50=";
           };
 
           build-system = [ hatchling ];

@@ -14,6 +14,7 @@
     {
 
       imports = [
+        self.nixosModules.labwc
         self.nixosModules.wayland
         self.nixosModules.iso-hardware
         inputs.home-manager.nixosModules.home-manager
@@ -23,7 +24,7 @@
         # useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs outputs; };
-        users.zik-iso.imports = [ self.homeModules.zik-iso ];
+        users.zik.imports = [ self.homeModules.zik-iso ];
       };
       programs.zsh = {
         enable = true;
@@ -36,11 +37,16 @@
           plugins = [
             "git"
             "vi-mode"
+            {
+              name = "zsh-nix-shell";
+              file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+              src = pkgs.zsh-nix-shell;
+            }
           ];
           theme = "gallifrey";
         };
       };
-      users.users.zik-iso = {
+      users.users.zik = {
         isNormalUser = true;
         initialPassword = "121312";
         description = "zik";
@@ -82,9 +88,9 @@
         gparted
         htop-vim
         neovim
-        zsh-nix-shell
-        self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-cwrapped
       ];
+
+      programs.nix-ld.enable = true;
       console.colors = [
         "1e1e2e" # base
         "181825" # mantle
@@ -108,12 +114,19 @@
         "nix-command"
         "flakes"
       ];
+      services.getty.autologinUser = "zik";
+      security.sudo.wheelNeedsPassword = false;
       nixpkgs.config.allowUnfree = true;
-      isoImage.makeEfiBootable = true;
-      isoImage.makeUsbBootable = true;
-      image.fileName = "labwc-nixos";
-      isoImage.squashfsCompression = "zstd";
-      boot.zfs.forceImportRoot = false;
+      image.modules.iso = {
+        # image.makeEfiBootable = true;
+        # image.makeUsbBootable = true;
+        # image.squashfsCompression = "zstd";
+        # boot.zfs.forceImportRoot = false;
+        image.baseName = "labwc-nixos.iso";
+      };
+      image.modules.iso-installer = {
+        image.fileName = "labwc-nixos-inst.iso";
+      };
     };
 
   flake.nixosModules.iso-hardware =
@@ -124,7 +137,9 @@
       ...
     }:
     {
-      imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
+      image.modules.iso = {
+        imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
+      };
       boot.initrd.availableKernelModules = [
         "ahci"
         "ohci_pci"
@@ -148,15 +163,15 @@
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-      boot.loader.systemd-boot.enable = false;
-      boot.loader.efi.canTouchEfiVariables = false;
+      # boot.loader.systemd-boot.enable = false;
+      # boot.loader.efi.canTouchEfiVariables = false;
 
-      boot.loader.grub = {
-        enable = true;
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-        devices = [ "nodev" ];
-      };
+      # boot.loader.grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   efiInstallAsRemovable = true;
+      #   devices = [ "nodev" ];
+      # };
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -185,7 +200,7 @@
         self.homeModules.thunderbird
         self.homeModules.freetube
         self.homeModules.vlc
-        self.homeModules.koreader
+        # self.homeModules.koreader
         # self.homeModules.ytmdesktop
         self.homeModules.zed
       ];
@@ -199,15 +214,14 @@
       };
 
       home = {
-        username = "zik-iso";
-        homeDirectory = "/home/zik-iso";
+        username = "zik";
+        homeDirectory = "/home/zik";
       };
 
       # Add stuff for your user as you see fit:
       # programs.neovim.enable = true;
       home.packages = with pkgs; [
         steam-run
-        nix-ld
       ];
 
       # Nicely reload system units when changing configs

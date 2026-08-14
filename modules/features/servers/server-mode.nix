@@ -6,9 +6,9 @@
   flake = {
     nixosModules.rpi5-server = {
       imports = [
-        self.nixosModules.pihole
-        # self.nixosModules
-        # self.nixosModules
+        # self.nixosModules.pihole
+        # self.nixosModules.acme
+        # self.nixosModules.syncthing-server
       ];
       services.fail2ban.enable = true;
       services.unbound = {

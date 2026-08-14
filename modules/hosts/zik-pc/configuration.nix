@@ -18,7 +18,7 @@
           self.nixosModules.grub
           self.nixosModules.wayland
           self.nixosModules.throne
-          # self.nixosModules.zapret
+          self.nixosModules.zapret
           # self.nixosModules.server-mode
           self.nixosModules.wine
           self.nixosModules.fallout2
@@ -150,6 +150,15 @@
         system.stateVersion = "24.05";
         boot.kernelPackages = pkgs.linuxPackages_zen;
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+        nix.settings = {
+          extra-substituters = [
+            "https://nixos-raspberrypi.cachix.org"
+          ];
+          extra-trusted-public-keys = [
+            "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+          ];
+        };
+
         programs.zsh = {
           enable = true;
           enableCompletion = true;
@@ -166,7 +175,6 @@
           };
         };
         environment.systemPackages = with pkgs; [
-          zsh-nix-shell
           pulseaudio
         ];
         services.getty.autologinUser = "zik";
@@ -185,6 +193,10 @@
           shell = pkgs.zsh;
           ignoreShellProgramCheck = true;
         };
+        nix.settings.trusted-users = [
+          "root"
+          "@wheel"
+        ];
         services.xserver.videoDrivers = [ "nvidia" ];
         hardware.nvidia = {
           package = config.boot.kernelPackages.nvidiaPackages.legacy_580;

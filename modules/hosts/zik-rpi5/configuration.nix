@@ -5,29 +5,39 @@
     nixosModules.rpi5 =
       {
         self,
+        lib,
         ...
       }:
       {
-        # Hardware specific configuration, see section below for a more complete
-        # list of modules
         imports = [
           self.nixosModules.rpi5-server
         ];
+
         system.stateVersion = "25.11";
+        nix.settings.auto-optimise-store = true;
+        nixpkgs.config.allowUnfree = true;
+
+        nix.settings.experimental-features = [
+          "nix-command"
+          "flakes"
+          "pipe-operators"
+        ];
+
         boot.zfs.forceImportRoot = false;
         services.openssh = {
           enable = true;
           ports = [ 2222 ];
-          openFirewall = false;
+          openFirewall = true;
           settings = {
-            PasswordAuthentication = true;
-            AllowUsers = null;
+            PasswordAuthentication = false;
+            # AllowUsers = null;
             UseDns = false;
             PermitRootLogin = "prohibit-password";
           };
         };
         networking.hostName = "zik-rpi5";
-        networking.networkmanager.unmanaged = [ "wlan0" ];
+        # networking.networkmanager.unmanaged = [ "wlan0" ];
+        networking.networkmanager.enable = lib.mkForce false;
         networking.wireless = {
           enable = true;
           networks."he-mnie" = {
@@ -37,6 +47,14 @@
           userControlled = false;
           interfaces = [ "wlan0" ];
         };
+
+        networking.dhcpcd.extraConfig = ''
+          interface wlan0
+          metric 100
+
+          interface eth0
+          metric 200
+        '';
 
         networking.interfaces.wlan0 = {
           ipv4.addresses = [
@@ -85,7 +103,13 @@
           # Allow the graphical user to login without password
           initialHashedPassword = "";
         };
+        users.users.root.openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHFk7Q0GeJunEDWZTJIQV93YrIFtnNCkcnx7wnzkderc zik@zik-pc"
+        ];
         users.users.zik = {
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHFk7Q0GeJunEDWZTJIQV93YrIFtnNCkcnx7wnzkderc zik@zik-pc"
+          ];
           initialPassword = "examle";
           isNormalUser = true;
           extraGroups = [
@@ -97,27 +121,37 @@
       {
         nixos-raspberrypi,
         self,
+        config,
         ...
       }:
       {
         imports = with nixos-raspberrypi.nixosModules; [
           # Hardware configuration
           raspberry-pi-5.base
-          # raspberry-pi-5.page-size-16k
+          raspberry-pi-5.page-size-16k
           raspberry-pi-5.bluetooth
           # raspberry-pi-5.display-vc4
           self.nixosModules.pi5-configtxt
         ];
-        services.hardware.argonone.enable = true;
-        hardware.i2c.enable = true;
-        boot.initrd.kernelModules = [
-          "i2c-dev"
-          "i2c-bcm2835"
-        ];
-        boot.kernelModules = [
-          "i2c-dev"
-          "i2c-bcm2835"
-        ];
+        system.nixos.tags =
+          let
+            cfg = config.boot.loader.raspberry-pi;
+          in
+          [
+            "raspberry-pi-${cfg.variant}"
+            cfg.bootloader
+            config.boot.kernelPackages.kernel.version
+          ];
+        # services.hardware.argonone.enable = true;
+        # hardware.i2c.enable = true;
+        # boot.initrd.kernelModules = [
+        #   "i2c-dev"
+        #   "i2c-bcm2835"
+        # ];
+        # boot.kernelModules = [
+        #   "i2c-dev"
+        #   "i2c-bcm2835"
+        # ];
       };
     nixosModules.pi5-configtxt = {
       hardware.raspberry-pi.config = {
@@ -146,23 +180,23 @@
           # https://github.com/raspberrypi/linux/blob/a1d3defcca200077e1e382fe049ca613d16efd2b/arch/arm/boot/dts/overlays/README#L132
           base-dt-params = {
 
-            i2c_arm = {
-              enable = true;
-              value = "on";
-            };
-            i2c_arm_baudrate = {
-              enable = true;
-              value = "100000";
-            };
+            # i2c_arm = {
+            #   enable = true;
+            #   value = "on";
+            # };
+            # i2c_arm_baudrate = {
+            #   enable = true;
+            #   value = "100000";
+            # };
 
-            audio = {
-              enable = true;
-              value = "on"; # Включает ALSA интерфейс для вывода звука через плату Argon
-            };
-            "gpio-shutdown" = {
-              enable = true;
-              value = "on";
-            };
+            # audio = {
+            #   enable = true;
+            #   value = "on";
+            # };
+            # "gpio-shutdown" = {
+            #   enable = true;
+            #   value = "on";
+            # };
 
             # # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-pcie
             # pciex1 = {

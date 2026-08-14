@@ -1,2 +1,4 @@
 config/figura/cache/
 result/*
+.pre-commit-config.yaml
+result

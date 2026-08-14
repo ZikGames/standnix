@@ -46,7 +46,7 @@
                 tag = finalAttrs.version;
                 hash = "sha256-n2BTI0n+4CEpKu53Iq7gEdYGVQfImUFJz+75lNRJCr0=";
               };
-              doCheck = false;
+              doCheck = true;
 
               build-system = [
                 python3Packages.setuptools
@@ -82,8 +82,8 @@
               # в sandbox'е нет ни .git, ни самого git, тесту там нечего делать
               disabledTests = [
                 "test_removed_usage_reporting_has_no_tracked_references"
-                "test_background_audio_pause_detection_accepts_child_windows"
-                "test_search_mod_card_widget_expands_on_selection_and_hides_on_focus_loss"
+                # "test_background_audio_pause_detection_accepts_child_windows"
+                # "test_search_mod_card_widget_expands_on_selection_and_hides_on_focus_loss"
               ];
               # devShells.default = pkgs.mkShell {
               #   # Drops you into a Python environment containing all production and testing dependencies

@@ -39,7 +39,7 @@
 
       '';
       ".gitignore".text = builtins.readFile ./gitignore;
-      "cargo.toml".text = builtins.readFile ./cargo.toml;
+      # "cargo.toml".text = builtins.readFile ./cargo.toml;
     };
   };
 

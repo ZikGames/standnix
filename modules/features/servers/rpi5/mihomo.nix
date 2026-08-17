@@ -1,9 +1,10 @@
 {
-  flake.nixosModules.mihomo = {
+  flake.nixosModules.mihomo = { pkgs, ... }: {
     services.mihomo = {
       enable = true;
-      # configFile = "/path/to/config.yaml";
-      #...
+      tunMode = true;
+      configFile = ./mihomo.yaml;
+      webui = pkgs.metacubexd;
     };
   };
 }

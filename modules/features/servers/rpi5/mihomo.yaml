@@ -1,0 +1,111 @@
+mode: rule
+ipv6: false
+log-level: error
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+
+tun:
+  enable: true
+  stack: system
+  device: mihomo-tun
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack: []
+  mtu: 1500
+
+dns:
+  enable: true
+  listen: 127.0.0.1:7874
+  ipv6: false
+  default-nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+  nameserver:
+    - https://dns.quad9.net/dns-query
+    - https://cloudflare-dns.com/dns-query
+
+keep-alive-idle: 30
+keep-alive-interval: 15
+
+profile:
+  store-selected: true
+  tracing: false
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+        - 8443
+      override-destination: false
+    QUIC:
+      ports:
+        - 443
+        - 8443
+      override-destination: false
+  skip-domain:
+    - Mijia Cloud
+    - +.lan
+    - +.local
+    - +.push.apple.com
+    - +.apple.com
+    - +.msftconnecttest.com
+    - +.3gppnetwork
+
+proxy-providers:
+  main:
+    type: file
+    path: /var/lib/private/mihomo/secret.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    use:
+      - main
+    proxies:
+      - DIRECT
+
+rule-providers:
+  geosite-twitch:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitch.yaml
+    interval: 86400
+  geosite-steam:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.yaml
+    interval: 86400
+
+rules:
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - DOMAIN-SUFFIX,steamcontent.com,DIRECT
+  - RULE-SET,geosite-steam,Proxy
+
+  - DOMAIN-SUFFIX,cachix.org,DIRECT
+  - DOMAIN-SUFFIX,nixos.org,DIRECT
+  - DOMAIN-KEYWORD,channels.nixos,DIRECT
+  - DST-PORT,123,DIRECT
+  - DST-PORT,53,DIRECT
+  - DOMAIN-SUFFIX,letsencrypt.org,DIRECT
+  - DOMAIN-KEYWORD,acme-v02.api.letsencrypt,DIRECT
+
+  - MATCH,Proxy

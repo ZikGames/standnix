@@ -37,15 +37,6 @@
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
-            "Яндекс" = {
-              urls = [
-                {
-                  template = "https://yandex.com/search/?text={searchTerms}";
-                }
-              ];
-              icon = "https://upload.wikimedia.org/wikipedia/commons/5/58/Yandex_icon.svg";
-              definedAliases = [ "ya" ];
-            };
             "wiki" = {
               urls = [
                 {

@@ -5,12 +5,13 @@
     nixosModules.rpi5 =
       {
         self,
-        lib,
         ...
       }:
       {
         imports = [
           self.nixosModules.rpi5-server
+          self.nixosModules.tuifimanager
+
         ];
 
         system.stateVersion = "25.11";
@@ -36,35 +37,7 @@
           };
         };
         networking.hostName = "zik-rpi5";
-        # networking.networkmanager.unmanaged = [ "wlan0" ];
-        networking.networkmanager.enable = lib.mkForce false;
-        networking.wireless = {
-          enable = true;
-          networks."he-mnie" = {
-            psk = "32412wdsa";
-            hidden = true;
-          };
-          userControlled = false;
-          interfaces = [ "wlan0" ];
-        };
 
-        networking.dhcpcd.extraConfig = ''
-          interface wlan0
-          metric 100
-
-          interface eth0
-          metric 200
-        '';
-
-        networking.interfaces.wlan0 = {
-          ipv4.addresses = [
-            {
-              address = "192.168.0.77";
-              prefixLength = 24;
-            }
-          ];
-          useDHCP = false;
-        };
         networking.interfaces.eth0 = {
           ipv4.addresses = [
             {
@@ -75,24 +48,43 @@
           useDHCP = false;
         };
 
+        boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
+        networking.firewall = {
+          enable = true;
+          backend = "iptables";
+          allowedTCPPorts = [
+            80
+            443
+            59100
+            9090
+          ];
+          allowedUDPPorts = [
+            16261
+            16262
+            59100
+            59200
+          ];
+          allowedTCPPortRanges = [
+            {
+              from = 3030;
+              to = 8800;
+            }
+          ];
+          allowedUDPPortRanges = [
+            {
+              from = 3030;
+              to = 8800;
+            }
+          ];
+        };
+
         networking.nat = {
           enable = true;
           externalInterface = "wlan0";
           internalInterfaces = [ "eth0" ];
         };
 
-        boot.kernel.sysctl = {
-          "net.ipv4.ip_forward" = true;
-          "net.ipv6.conf.all.forwarding" = true;
-        };
-
-        networking.firewall = {
-          enable = true;
-          extraCommands = ''
-            iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
-            iptables -A FORWARD -i wlan0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-          '';
-        };
         users.users.nixos = {
           isNormalUser = true;
           extraGroups = [
@@ -116,7 +108,17 @@
             "wheel"
           ];
         };
+        services.chrony.enable = false;
+        services.chrony.servers = [
+          "ntp.nict.jp"
+          "time.google.com"
+          "ntp.yandex.ru"
+        ];
+        services.chrony.extraConfig = ''
+          initstepslew 10 ntp.yandex.ru 0.ru.pool.ntp.org
+        '';
       };
+
     nixosModules.rpi5-hardware =
       {
         nixos-raspberrypi,
@@ -142,16 +144,7 @@
             cfg.bootloader
             config.boot.kernelPackages.kernel.version
           ];
-        # services.hardware.argonone.enable = true;
-        # hardware.i2c.enable = true;
-        # boot.initrd.kernelModules = [
-        #   "i2c-dev"
-        #   "i2c-bcm2835"
-        # ];
-        # boot.kernelModules = [
-        #   "i2c-dev"
-        #   "i2c-bcm2835"
-        # ];
+        services.hardware.argonone.enable = true;
       };
     nixosModules.pi5-configtxt = {
       hardware.raspberry-pi.config = {
@@ -179,24 +172,6 @@
           # Base DTB parameters
           # https://github.com/raspberrypi/linux/blob/a1d3defcca200077e1e382fe049ca613d16efd2b/arch/arm/boot/dts/overlays/README#L132
           base-dt-params = {
-
-            # i2c_arm = {
-            #   enable = true;
-            #   value = "on";
-            # };
-            # i2c_arm_baudrate = {
-            #   enable = true;
-            #   value = "100000";
-            # };
-
-            # audio = {
-            #   enable = true;
-            #   value = "on";
-            # };
-            # "gpio-shutdown" = {
-            #   enable = true;
-            #   value = "on";
-            # };
 
             # # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-pcie
             # pciex1 = {

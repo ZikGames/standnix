@@ -49,6 +49,10 @@
     tetrotui.url = "github:Strophox/tetro-tui";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     wrappers.url = "github:lassulus/wrappers";
+    yandex-browser = {
+      url = "github:sbelcl/nix-yandex-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
   };
 }

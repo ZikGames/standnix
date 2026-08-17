@@ -18,8 +18,8 @@
           self.nixosModules.grub
           self.nixosModules.wayland
           self.nixosModules.throne
-          self.nixosModules.zapret
-          # self.nixosModules.server-mode
+          # self.nixosModules.zapret
+          self.nixosModules.server-mode
           self.nixosModules.wine
           self.nixosModules.fallout2
           self.nixosModules.heroic
@@ -28,22 +28,21 @@
           self.nixosModules.scrcpy
           self.nixosModules.openxray
           self.nixosModules.vcmi
-          # self.nixosModules.nitter
           self.nixosModules.qbittorrent
           self.nixosModules.vintagestory
           self.nixosModules.qemu
           self.nixosModules.bottles
           self.nixosModules.kde
           self.nixosModules.flatpak
-          # self.nixosModules.jellyfin
           self.nixosModules.standnixpkgs
           self.nixosModules.waydroid
           self.nixosModules.spotify
           self.nixosModules.steam-millennium
+          # self.nixosModules.yandex-browser
         ];
         nix.settings.auto-optimise-store = true;
         nixpkgs.config.allowUnfree = true;
-
+        programs.nix-ld.enable = true;
         nix.settings.experimental-features = [
           "nix-command"
           "flakes"
@@ -264,7 +263,6 @@
 
         home.packages = with pkgs; [
           steam-run
-          nix-ld
         ];
       };
   };

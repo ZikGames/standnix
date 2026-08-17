@@ -1049,6 +1049,7 @@
         "tetrotui": "tetrotui",
         "wrapper-modules": "wrapper-modules",
         "wrappers": "wrappers",
+        "yandex-browser": "yandex-browser",
         "zapret-discord-youtube": "zapret-discord-youtube"
       }
     },
@@ -1271,6 +1272,26 @@
       "original": {
         "owner": "lassulus",
         "repo": "wrappers",
+        "type": "github"
+      }
+    },
+    "yandex-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786355323,
+        "narHash": "sha256-TD+D7G1iiMQeVRG5sWkPefE96iUymCL6t/3GE/vCoN8=",
+        "owner": "sbelcl",
+        "repo": "nix-yandex-browser",
+        "rev": "90abe2576cf0601beb3602ed726ddee75f0e2dd7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sbelcl",
+        "repo": "nix-yandex-browser",
         "type": "github"
       }
     },

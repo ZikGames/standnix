@@ -6,26 +6,17 @@
 
   flake.nixosModules.iso =
     {
-      inputs,
-      outputs,
       pkgs,
+      lib,
       ...
     }:
     {
 
       imports = [
-        self.nixosModules.labwc
-        self.nixosModules.wayland
+        self.nixosModules.x11
         self.nixosModules.iso-hardware
-        inputs.home-manager.nixosModules.home-manager
       ];
-      home-manager = {
-        useGlobalPkgs = true;
-        # useUserPackages = true;
-        backupFileExtension = "backup";
-        extraSpecialArgs = { inherit inputs outputs; };
-        users.zik.imports = [ self.homeModules.zik-iso ];
-      };
+
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -37,11 +28,6 @@
           plugins = [
             "git"
             "vi-mode"
-            {
-              name = "zsh-nix-shell";
-              file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
-              src = pkgs.zsh-nix-shell;
-            }
           ];
           theme = "gallifrey";
         };
@@ -114,19 +100,24 @@
         "nix-command"
         "flakes"
       ];
-      services.getty.autologinUser = "zik";
+      services.getty.autologinUser = lib.mkForce "zik";
       security.sudo.wheelNeedsPassword = false;
       nixpkgs.config.allowUnfree = true;
-      image.modules.iso = {
-        # image.makeEfiBootable = true;
-        # image.makeUsbBootable = true;
-        # image.squashfsCompression = "zstd";
-        # boot.zfs.forceImportRoot = false;
-        image.baseName = "labwc-nixos.iso";
-      };
-      image.modules.iso-installer = {
-        image.fileName = "labwc-nixos-inst.iso";
-      };
+
+      # isoImage = {
+      #   makeEfiBootable = true;
+      #   makeUsbBootable = true;
+      #   squashfsCompression = "zstd";
+      #   grubTheme = pkgs.minimal-grub-theme;
+      # };
+      boot.zfs.forceImportRoot = false;
+
+      # image.modules.iso = {
+      #   image.baseName = lib.mkForce "labwc-nixos";
+      # };
+      # image.modules.iso-installer = {
+      #   image.fileName = "labwc-nixos-inst";
+      # };
     };
 
   flake.nixosModules.iso-hardware =
@@ -162,16 +153,6 @@
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-      # boot.loader.systemd-boot.enable = false;
-      # boot.loader.efi.canTouchEfiVariables = false;
-
-      # boot.loader.grub = {
-      #   enable = true;
-      #   efiSupport = true;
-      #   efiInstallAsRemovable = true;
-      #   devices = [ "nodev" ];
-      # };
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -183,51 +164,5 @@
         "ntfs"
         "btrfs"
       ];
-    };
-
-  flake.homeModules.zik-iso =
-    {
-      pkgs,
-      ...
-    }:
-    {
-      imports = [
-        self.homeModules.keepassxc
-        self.homeModules.firefox
-        # self.homeModules.nixcord
-        # self.homeModules.vscode
-        # self.homeModules.kde
-        self.homeModules.thunderbird
-        self.homeModules.freetube
-        self.homeModules.vlc
-        # self.homeModules.koreader
-        # self.homeModules.ytmdesktop
-        self.homeModules.zed
-      ];
-
-      programs.git = {
-        enable = true;
-        settings.user = {
-          name = "Zik1213";
-          email = "zik1213@outlook.com";
-        };
-      };
-
-      home = {
-        username = "zik";
-        homeDirectory = "/home/zik";
-      };
-
-      # Add stuff for your user as you see fit:
-      # programs.neovim.enable = true;
-      home.packages = with pkgs; [
-        steam-run
-      ];
-
-      # Nicely reload system units when changing configs
-      systemd.user.startServices = "sd-switch";
-
-      # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      home.stateVersion = "26.05";
     };
 }

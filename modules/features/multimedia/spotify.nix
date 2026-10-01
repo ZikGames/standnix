@@ -13,8 +13,18 @@
         enable = true;
         enabledExtensions = with spicePkgs.extensions; [
           adblock
+          adblockify
+          hidePodcasts
+          shuffle
           lastfm
+          # spicyLyrics
+          aiBandBlocker
+          copyLyrics
+          skipStats
+          # phraseToPlaylist
+          # formatColors
         ];
+        theme = spicePkgs.themes.text;
       };
   };
 }

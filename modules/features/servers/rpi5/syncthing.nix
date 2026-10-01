@@ -3,9 +3,11 @@
     services.syncthing = {
       enable = true;
       openDefaultPorts = true;
+      user = "zik";
       # guiPasswordFile = "/etc/syncthing-gui-password";
       settings = {
         gui.user = "zik";
+        relaysEnabled = false;
         devices = {
           "redmi-13C" = {
             id = "HXIV4EF-KAKOS2Z-MGBOIVX-GTQTENZ-2A55KVD-FZG6TVN-24BB5H5-M5MLWQN";

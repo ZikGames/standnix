@@ -18,7 +18,7 @@
           self.nixosModules.grub
           self.nixosModules.wayland
           self.nixosModules.throne
-          # self.nixosModules.zapret
+          self.nixosModules.zapret
           self.nixosModules.server-mode
           self.nixosModules.wine
           self.nixosModules.fallout2
@@ -34,15 +34,18 @@
           self.nixosModules.bottles
           self.nixosModules.kde
           self.nixosModules.flatpak
-          self.nixosModules.standnixpkgs
+          # self.nixosModules.standnixpkgs
           self.nixosModules.waydroid
           self.nixosModules.spotify
           self.nixosModules.steam-millennium
           # self.nixosModules.yandex-browser
+          self.nixosModules.tailscale
+          self.nixosModules.minecraft
+          self.nixosModules.zerotier
+          self.nixosModules.g3m
         ];
         nix.settings.auto-optimise-store = true;
         nixpkgs.config.allowUnfree = true;
-        programs.nix-ld.enable = true;
         nix.settings.experimental-features = [
           "nix-command"
           "flakes"
@@ -103,12 +106,14 @@
             80
             443
             59100
+            57621
           ];
           allowedUDPPorts = [
             16261
             16262
             59100
             59200
+            5353
           ];
           allowedTCPPortRanges = [
             {
@@ -148,7 +153,6 @@
 
         system.stateVersion = "24.05";
         boot.kernelPackages = pkgs.linuxPackages_zen;
-        boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
         nix.settings = {
           extra-substituters = [
             "https://nixos-raspberrypi.cachix.org"
@@ -173,9 +177,7 @@
             theme = "gallifrey";
           };
         };
-        environment.systemPackages = with pkgs; [
-          pulseaudio
-        ];
+        programs.nix-ld.enable = true;
         services.getty.autologinUser = "zik";
         users.users.zik = {
           isNormalUser = true;
@@ -196,14 +198,21 @@
           "root"
           "@wheel"
         ];
+        boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
         services.xserver.videoDrivers = [ "nvidia" ];
-        hardware.nvidia = {
-          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-          modesetting.enable = true;
-          powerManagement.enable = true;
-          powerManagement.finegrained = false;
-          open = false;
-          nvidiaSettings = false;
+        hardware = {
+          nvidia = {
+            package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+            modesetting.enable = true;
+            powerManagement.enable = true;
+            powerManagement.finegrained = false;
+            open = false;
+            nvidiaSettings = false;
+          };
+          graphics = {
+            enable = true;
+            enable32Bit = true;
+          };
         };
       };
     homeModules.zik =
@@ -226,7 +235,9 @@
           self.homeModules.ytmdesktop
           self.homeModules.zed
           self.homeModules.labwc
+          self.homeModules.syncthing
         ];
+
         programs.nh = {
           enable = true;
           clean.enable = true;
@@ -263,6 +274,7 @@
 
         home.packages = with pkgs; [
           steam-run
+          nix-ld
         ];
       };
   };

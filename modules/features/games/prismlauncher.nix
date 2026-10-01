@@ -24,6 +24,7 @@
           zulu8
           zulu17
           zulu
+          temurin-bin-26
         ];
       });
     };

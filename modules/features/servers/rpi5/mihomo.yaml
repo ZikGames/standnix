@@ -2,29 +2,32 @@ mode: rule
 ipv6: false
 log-level: error
 allow-lan: true
+mixed-port: 7890
 unified-delay: true
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 
 tun:
-  enable: true
+  enable: false
   stack: system
   device: mihomo-tun
   auto-route: true
   auto-detect-interface: true
+  exclude-interface: ["wld0"]
   dns-hijack: []
   mtu: 1500
+  auto-redirect: true
 
 dns:
   enable: true
   listen: 127.0.0.1:7874
   ipv6: false
   default-nameserver:
-    - 1.1.1.1
-    - 1.0.0.1
+    - 9.9.9.9
+    - 149.112.112.112
   nameserver:
     - https://dns.quad9.net/dns-query
-    - https://cloudflare-dns.com/dns-query
+    - tls://dns.quad9.net
 
 keep-alive-idle: 30
 keep-alive-interval: 15
@@ -54,14 +57,14 @@ sniffer:
         - 443
         - 8443
       override-destination: false
-  skip-domain:
-    - Mijia Cloud
-    - +.lan
-    - +.local
-    - +.push.apple.com
-    - +.apple.com
-    - +.msftconnecttest.com
-    - +.3gppnetwork
+      skip-domain:
+        - Mijia Cloud
+        - +.lan
+        - +.local
+        - +.push.apple.com
+        - +.apple.com
+        - +.msftconnecttest.com
+        - +.3gppnetwork
 
 proxy-providers:
   main:
@@ -74,38 +77,69 @@ proxy-providers:
 
 proxy-groups:
   - name: Proxy
-    type: select
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
     use:
       - main
     proxies:
       - DIRECT
 
 rule-providers:
-  geosite-twitch:
-    behavior: domain
-    type: http
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitch.yaml
-    interval: 86400
   geosite-steam:
     behavior: domain
     type: http
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.yaml
     interval: 86400
+  geosite-epicgames:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/epicgames.yaml
+    interval: 86400
+  geosite-nintendo:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/nintendo.yaml
+    interval: 86400
+  geosite-ea:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ea.yaml
+    interval: 86400
+  geosite-mihoyo:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/mihoyo.yaml
+    interval: 86400
+  geosite-kurogames:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/kurogames.yaml
+    interval: 86400
+  geosite-twitch:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitch.yaml
+    interval: 86400
+  geosite-apple:
+    behavior: domain
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple.yaml
+    interval: 86400
 
 rules:
+  - RULE-SET,geosite-steam,DIRECT
+  - RULE-SET,geosite-epicgames,DIRECT
+  - RULE-SET,geosite-nintendo,DIRECT
+  - RULE-SET,geosite-ea,DIRECT
+  - RULE-SET,geosite-mihoyo,DIRECT
+  - RULE-SET,geosite-kurogames,DIRECT
+  - RULE-SET,geosite-twitch,DIRECT
+  - RULE-SET,geosite-apple,DIRECT
+  - GEOIP,RU,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
-  - DOMAIN-SUFFIX,steamcontent.com,DIRECT
-  - RULE-SET,geosite-steam,Proxy
-
-  - DOMAIN-SUFFIX,cachix.org,DIRECT
-  - DOMAIN-SUFFIX,nixos.org,DIRECT
-  - DOMAIN-KEYWORD,channels.nixos,DIRECT
-  - DST-PORT,123,DIRECT
-  - DST-PORT,53,DIRECT
-  - DOMAIN-SUFFIX,letsencrypt.org,DIRECT
-  - DOMAIN-KEYWORD,acme-v02.api.letsencrypt,DIRECT
-
   - MATCH,Proxy

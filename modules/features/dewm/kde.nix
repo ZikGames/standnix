@@ -29,12 +29,15 @@
       imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
       home.packages = with pkgs; [
         qogir-kde
+        qogir-theme
         qogir-icon-theme
+        chicago95
         unrar
         python3
       ];
       programs.plasma = {
         enable = true;
+
       };
     };
   };

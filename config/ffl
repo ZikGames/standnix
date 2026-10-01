@@ -1,5 +1,142 @@
-# Trash
+## Trash and old things
 
+## argonone daemon
+
+
+
+        hardware.i2c.enable = true;
+
+## Mihomo
+# rule-providers:
+#   geosite-twitch:
+#     behavior: domain
+#     type: http
+#     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitch.yaml
+#     interval: 86400
+#     proxy: Proxy
+#   geosite-steam:
+#     behavior: domain
+#     type: http
+#     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.yaml
+#     interval: 86400
+#     proxy: Proxy
+
+rules:
+  - GEOIP,RU,DIRECT
+  # - RULE-SET,geosite-twitch,DIRECT
+  # - RULE-SET,geosite-steam,DIRECT
+  - DOMAIN-SUFFIX,nixos.org,DIRECT
+  - DOMAIN-SUFFIX,cachix.org,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - MATCH,Proxy
+
+  ## labwc
+
+
+
+  #     rc = [
+  # {
+  #   theme = {
+  #   name = "qogir-dark";
+  #   cornerRadius = 8;
+  #   font = {
+  #     "@name" = "ComicSans";
+  #     "@size" = "11";
+  #   };
+  # };
+  # keyboard = {
+  #   default = true;
+  #   keybind = [
+  #     # <keybind key="W-Return"><action name="Execute" command="foot"/></keybind>
+  #     {
+  #       "@key" = "W-Return";
+  #       action = {
+  #         "@name" = "Execute";
+  #         "@command" = "foot";
+  #       };
+  #     }
+  #     # <keybind key="W-Esc"><action name="Execute" command="loot"/></keybind>
+  #     {
+  #       "@key" = "W-Esc";
+  #       action = {
+  #         "@name" = "Execute";
+  #         "@command" = "loot";
+  #       };
+  #     }
+  #   ];
+  # };
+
+  # }
+  #     ];
+  #     menu = [
+  # {
+  #   menuId = "client-menu";
+  #   label = "Client Menu";
+  #   icon = "";
+  #   items = [
+  #     {
+  #       label = "Maximize";
+  #       icon = "";
+  #       action = {
+  #         name = "ToggleMaximize";
+  #       };
+  #     }
+  #     {
+  #       label = "Fullscreen";
+  #       action = {
+  #         name = "ToggleFullscreen";
+  #       };
+  #     }
+  #     {
+  #       label = "Alacritty";
+  #       action = {
+  #         name = "Execute";
+  #         command = "alacritty";
+  #       };
+  #     }
+  #     {
+  #       label = "Move Left";
+  #       action = {
+  #         name = "SendToDesktop";
+  #         to = "left";
+  #       };
+  #     }
+  #     {
+  #       separator = { };
+  #     }
+  #     {
+  #       label = "Workspace";
+  #       menuId = "workspace";
+  #       icon = "";
+  #       items = [
+  #         {
+  #           label = "Move Left";
+  #           action = {
+  #             name = "SendToDesktop";
+  #             to = "left";
+  #           };
+  #         }
+  #       ];
+  #     }
+  #     {
+  #       separator = true;
+  #     }
+  #   ];
+  # }
+
+  #     ];
+  #     autostart = [
+  #     ];
+  #     environment = [
+  #       "XDG_CURRENT_DESKTOP=labwc:wlroots"
+  #       "XKB_DEFAULT_LAYOUT=us,ru"
+  #     ];
+  #     extraConfig = [
+
+  #     ];
   perSystem = { pkgs, lib, self', ... }: {
     #   packages.labwc-cwrapped = wrappers.lib.wrapPackage {
     #   inherit pkgs;
@@ -11,41 +148,7 @@
     # };
   };
 
-# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
-# Use `nix run .#write-flake` to regenerate it.
-{
-
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
-
-  inputs = {
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-file.url = "github:vic/flake-file";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    import-tree.url = "github:vic/import-tree";
-    labwc-manager.url = "github:ZikGames/labwc-manager";
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-    nixcord.url = "github:kaylorben/nixcord";
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-  };
-}
-
-[
-];
-  imports = [
-minegrub-theme, minegrub-world-sel-theme,
-  ];
-   _module.args.pkgs = import inputs.nixpkgs {
-    inherit system;
-
-  };
+  ## part of plasma-manager
       shortcuts = {
       ActivityManager.switch-to-activity-2c85e505-c5ec-4101-b353-4fa5595f5e95 = [ ];
       "KDE Keyboard Layout Switcher"."Switch keyboard layout to English (US)" = [ ];
@@ -533,109 +636,7 @@ minegrub-theme, minegrub-world-sel-theme,
       "kate/anonymous.katesession"."Plugin:katesearchplugin:MainWindow:0".UseRegExp = false;
     };
 
-
-
-  #     rc = [
-  # {
-  #   theme = {
-  #   name = "qogir-dark";
-  #   cornerRadius = 8;
-  #   font = {
-  #     "@name" = "ComicSans";
-  #     "@size" = "11";
-  #   };
-  # };
-  # keyboard = {
-  #   default = true;
-  #   keybind = [
-  #     # <keybind key="W-Return"><action name="Execute" command="foot"/></keybind>
-  #     {
-  #       "@key" = "W-Return";
-  #       action = {
-  #         "@name" = "Execute";
-  #         "@command" = "foot";
-  #       };
-  #     }
-  #     # <keybind key="W-Esc"><action name="Execute" command="loot"/></keybind>
-  #     {
-  #       "@key" = "W-Esc";
-  #       action = {
-  #         "@name" = "Execute";
-  #         "@command" = "loot";
-  #       };
-  #     }
-  #   ];
-  # };
-
-  # }
-  #     ];
-  #     menu = [
-  # {
-  #   menuId = "client-menu";
-  #   label = "Client Menu";
-  #   icon = "";
-  #   items = [
-  #     {
-  #       label = "Maximize";
-  #       icon = "";
-  #       action = {
-  #         name = "ToggleMaximize";
-  #       };
-  #     }
-  #     {
-  #       label = "Fullscreen";
-  #       action = {
-  #         name = "ToggleFullscreen";
-  #       };
-  #     }
-  #     {
-  #       label = "Alacritty";
-  #       action = {
-  #         name = "Execute";
-  #         command = "alacritty";
-  #       };
-  #     }
-  #     {
-  #       label = "Move Left";
-  #       action = {
-  #         name = "SendToDesktop";
-  #         to = "left";
-  #       };
-  #     }
-  #     {
-  #       separator = { };
-  #     }
-  #     {
-  #       label = "Workspace";
-  #       menuId = "workspace";
-  #       icon = "";
-  #       items = [
-  #         {
-  #           label = "Move Left";
-  #           action = {
-  #             name = "SendToDesktop";
-  #             to = "left";
-  #           };
-  #         }
-  #       ];
-  #     }
-  #     {
-  #       separator = true;
-  #     }
-  #   ];
-  # }
-
-  #     ];
-  #     autostart = [
-  #     ];
-  #     environment = [
-  #       "XDG_CURRENT_DESKTOP=labwc:wlroots"
-  #       "XKB_DEFAULT_LAYOUT=us,ru"
-  #     ];
-  #     extraConfig = [
-
-  #     ];
-
+    ## from nix-on-droid
       procps
     killall
     diffutils
@@ -653,3 +654,283 @@ minegrub-theme, minegrub-world-sel-theme,
     xz
     zip
     unzip
+
+
+
+## something
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
+{
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
+  inputs = {
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
+    labwc-manager.url = "github:ZikGames/labwc-manager";
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    nixcord.url = "github:kaylorben/nixcord";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+  };
+}
+
+[
+];
+  imports = [
+minegrub-theme, minegrub-world-sel-theme,
+  ];
+   _module.args.pkgs = import inputs.nixpkgs {
+    inherit system;
+
+  };
+
+
+## g3m-legacy.nix
+
+{
+  perSystem =
+    { config, pkgs, ... }:
+    {
+      packages.g3m =
+        pkgs.callPackage
+          (
+            {
+              lib,
+              python3Packages,
+              fetchFromGitHub,
+              playsound3,
+              autoPatchelfHook,
+              makeDesktopItem,
+              copyDesktopItems,
+            }:
+            let
+              pythonDeps = with pkgs.python3Packages; [
+                defusedxml
+                playsound3
+                psutil
+                py7zr
+                pyqt6
+                python-dotenv
+                rarfile
+                requests
+                urllib3
+              ];
+              # синхронизировано с [project.optional-dependencies].test —
+              # pytest-cov/pytest-html в pyproject.toml больше нет (3.3.3)
+              testDeps = with pkgs.python3Packages; [
+                pytest
+                pytest-mock
+                pytest-qt
+                responses
+              ];
+            in
+            pkgs.python3Packages.buildPythonApplication (finalAttrs: {
+
+              pname = "g3m";
+              version = "3.3.3";
+              pyproject = true;
+              __structuredAttrs = true;
+
+              src = fetchFromGitHub {
+                owner = "y114git";
+                repo = "G3M";
+                tag = finalAttrs.version;
+                # версия сменилась -> тег сменился -> старый хэш больше не
+                # подходит. Соберите один раз, возьмите "got: sha256-..."
+                # из ошибки и подставьте сюда.
+                hash = "sha256-HqL8RlOe1A90IV25cvU21BkNSCcahCUsbsraK6z1D3Q=";
+              };
+              doCheck = false;
+
+              build-system = [
+                python3Packages.setuptools
+                python3Packages.wheel
+              ];
+
+              dependencies = pythonDeps;
+
+              optional-dependencies = with python3Packages; {
+                build = [
+                  pyinstaller
+                ];
+                dev = [
+                  ruff
+                ];
+                test = testDeps;
+              };
+
+              # nixpkgs' pyqt6/defusedxml versions won't exactly match whatever
+              # version G3M's pyproject.toml pins — this tells the build to accept
+              # what's actually available instead of failing on a strict pin mismatch
+              pythonRelaxDeps = [
+                "PyQt6"
+                "defusedxml"
+                "rarfile"
+              ];
+              pythonImportsCheck = [ ]; # confirmed: no top-level "g3m" module — it's run as a script, not imported as a package
+
+              nativeCheckInputs = [
+                python3Packages.pytestCheckHook
+                # реальный X-сервер + лёгкий WM — без них focus-out события
+                # не доставляются так же, как в обычной сессии (см. preCheck)
+                pkgs.xorg.xvfb
+                pkgs.openbox
+              ]
+              ++ testDeps;
+
+              # этот тест дёргает `git` и инспектирует закоммиченные файлы —
+              # в sandbox'е нет ни .git, ни самого git, тесту там нечего делать
+              disabledTests = [
+                "test_removed_usage_reporting_has_no_tracked_references"
+                # playsound3-фикс чинит его сам по себе — оставляем включённым как регресс-проверку
+                # "test_background_audio_pause_detection_accepts_child_windows"
+              ];
+              devShells.default = pkgs.mkShell {
+                # Drops you into a Python environment containing all production and testing dependencies
+                packages = [
+                  (pkgs.python3.withPackages (ps: pythonDeps ++ testDeps))
+                ];
+              };
+              # focus-out тест ("test_search_mod_card_widget_expands_on_selection_and_hides_on_focus_loss")
+              # НЕ в disabledTests — проверяем, действительно ли ему хватает
+              # настоящего X + WM (см. preCheck ниже). Если снова упадёт —
+              # значит дело не в среде, и его стоит вернуть в disabledTests
+              # или чинить в самом коде.
+
+              # запускаем настоящий Xvfb + openbox вместо offscreen-платформы
+              # Qt — только так focus-out события доставляются так же, как
+              # в обычной desktop-сессии, а не эмулируются приблизительно
+              preCheck = ''
+                export HOME=$(mktemp -d)
+                export QT_QPA_PLATFORM=xcb
+                export DISPLAY=:99
+
+                Xvfb :99 -screen 0 1920x1080x24 &
+                xvfb_pid=$!
+                sleep 2
+
+                openbox --sm-disable &
+                wm_pid=$!
+                sleep 1
+              '';
+
+              # сборочная песочница всё равно уничтожается сразу после
+              # checkPhase, но прибраться за собой — хороший тон
+              postCheck = ''
+                kill "$wm_pid" 2>/dev/null || true
+                kill "$xvfb_pid" 2>/dev/null || true
+              '';
+
+              nativeBuildInputs = [
+                pkgs.makeWrapper
+                # G3MTool в исходниках G3M нет вообще — офиц. CI собирает
+                # его отдельно из y114git/G3MTool (это .NET/dotnet-проект,
+                # см. build-g3m.yml) и кладёт в assets/bin/g3mtool_linux/
+                # ПЕРЕД сборкой. При сборке с нуля из git-исходников
+                # "G3MTool not found" в логах — ожидаемо, не баг nix-пакета.
+                # autoPatchelfHook оставлен на случай, если G3MTool будет
+                # добавлен сюда позже (см. TODO ниже) — сейчас патчить нечего.
+                autoPatchelfHook
+                # копирует всё из desktopItems в $out/share/applications/
+                copyDesktopItems
+              ];
+
+              # .desktop-файл для меню приложений + регистрация g3m:// и
+              # deltahub:// как обработчиков схем (см. README: "g3m:// is
+              # the primary scheme, legacy deltahub:// links are still
+              # accepted" — то же самое, что PyInstaller-сборка прописывает
+              # через macOS bundle URL scheme metadata, только для Linux).
+              desktopItems = [
+                (makeDesktopItem {
+                  name = "g3m";
+                  exec = "g3m";
+                  icon = "g3m";
+                  desktopName = "G3M";
+                  genericName = "GameMaker Mod Manager";
+                  comment = "Desktop mod manager for GameMaker games";
+                  categories = [
+                    "Game"
+                    "Utility"
+                  ];
+                  mimeTypes = [
+                    "x-scheme-handler/g3m"
+                    "x-scheme-handler/deltahub"
+                  ];
+                })
+              ];
+
+              # buildPythonApplication has nothing to auto-generate bin/g3m from,
+              # since G3M has no [project.scripts] entry point (its own README
+              # runs it via `python src/main.py`, not an installed command).
+              # Real entry point is src/main.py (confirmed from source: it has
+              # `if __name__ == "__main__": sys.exit(main())`, and main() does
+              # `from app.startup import run_app`). NOTE: there is ALSO an
+              # unrelated src/app/window/main.py in the tree — an earlier
+              # version of this file located the entry via
+              # `find ... -name main.py -print -quit`, which is not guaranteed
+              # to pick the right one depending on filesystem traversal order.
+              # Hardcoding the confirmed path removes that ambiguity entirely.
+              #
+              # A plain `makeWrapper <interpreter> $out/bin/g3m --add-flags main_py`
+              # was tried first, but that bypasses buildPythonApplication's own
+              # dependency wiring entirely — its automatic PYTHONPATH injection
+              # only patches scripts it recognizes as Python entry points, and a
+              # hand-rolled makeWrapper shell script isn't one, which is why
+              # PyQt6 (and everything else in `dependencies`) built fine but
+              # wasn't importable at runtime. Fix: set PYTHONPATH explicitly
+              # using the same makePythonPath helper wrapPython uses internally.
+              postInstall = ''
+                # setuptools packages.find подхватывает только пакеты (директории) —
+                # assets/иконки/темы/языки, config/qss и сторонний бинарник
+                # G3MTool не являются python-пакетами и в wheel не попадают.
+                # Копируем весь src/ поверх site-packages как есть (cp -a
+                # сохраняет права доступа, в т.ч. +x у G3MTool).
+                cp -a src/. "$out/${python3Packages.python.sitePackages}/"
+
+                # иконка для .desktop-файла — берём готовый логотип проекта,
+                # без него значок будет пустым/generic в меню приложений
+                install -Dm644 src/assets/images/logo.png \
+                  "$out/share/pixmaps/g3m.png"
+
+                makeWrapper ${python3Packages.python.interpreter} "$out/bin/g3m" \
+                  --add-flags "$out/${python3Packages.python.sitePackages}/main.py" \
+                  --set PYTHONPATH "$out/${python3Packages.python.sitePackages}:${python3Packages.makePythonPath pythonDeps}" \
+                  --prefix PATH : ${
+                    pkgs.lib.makeBinPath [
+                      pkgs.ffmpeg-full
+                      pkgs.alsa-utils
+                      pkgs.gst_all_1.gstreamer
+                      pkgs.gst_all_1.gst-plugins-base
+                      # src/assets/bin/unrar/ в исходниках нет (CI собирает его
+                      # отдельно из pmachapman/unrar) — но archive_utils.py сам
+                      # falls back на "unrar" из PATH, если бандла нет
+                      # (см. _ensure_unrar_available), так что этого достаточно
+                      pkgs.unrar-free
+                    ]
+                  }
+              '';
+
+              meta = {
+                description = "Mod Manager for GameMaker games";
+                homepage = "https://github.com/y114git/G3M";
+                changelog = "https://github.com/y114git/G3M/blob/${finalAttrs.src.rev}/CHANGELOG.md";
+                license = lib.licenses.gpl3Plus;
+                mainProgram = "g3m";
+              };
+            })
+          )
+          {
+            inherit (config.packages) playsound3; # this is the bridge — callPackage can't see it otherwise
+          };
+    };
+}

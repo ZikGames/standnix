@@ -6,14 +6,19 @@
   perSystem = {
     pre-commit = {
       settings = {
-        excludes = [ "template.nix" ];
+        excludes = [
+          "template.nix"
+          "figura"
+        ];
         hooks = {
           nixfmt.enable = true;
           deadnix.enable = true;
           statix.enable = false;
           end-of-file-fixer = {
             enable = true;
-            excludes = [ "^README\.md$" ];
+            excludes = [
+              "^README\.md$"
+            ];
           };
           trim-trailing-whitespace.enable = true;
           write-files = {

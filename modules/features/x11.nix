@@ -7,7 +7,6 @@
       imports = [
         self.nixosModules.windowmaker
         # self.nixosModules.dwm
-        self.homeModules.windowmaker
       ];
       services.xserver = {
         enable = true;

@@ -1,17 +1,18 @@
 {
-  flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-  # flake-file.inputs.disko.url = "github:nix-community/disko";
+  flake-file.inputs = {
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+  };
   flake = {
     nixosModules.rpi5 =
       {
         self,
+        pkgs,
         ...
       }:
       {
         imports = [
           self.nixosModules.rpi5-server
           self.nixosModules.tuifimanager
-
         ];
 
         system.stateVersion = "25.11";
@@ -22,6 +23,11 @@
           "nix-command"
           "flakes"
           "pipe-operators"
+        ];
+
+        environment.systemPackages = with pkgs; [
+          # brogue-ce
+          # chess-tui
         ];
 
         boot.zfs.forceImportRoot = false;
@@ -36,53 +42,66 @@
             PermitRootLogin = "prohibit-password";
           };
         };
-        networking.hostName = "zik-rpi5";
-
-        networking.interfaces.eth0 = {
-          ipv4.addresses = [
-            {
-              address = "192.168.1.1";
-              prefixLength = 24;
-            }
+        nix.settings = {
+          extra-substituters = [
+            "https://nixos-raspberrypi.cachix.org"
           ];
-          useDHCP = false;
-        };
-
-        boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-
-        networking.firewall = {
-          enable = true;
-          backend = "iptables";
-          allowedTCPPorts = [
-            80
-            443
-            59100
-            9090
+          extra-trusted-public-keys = [
+            "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
           ];
-          allowedUDPPorts = [
-            16261
-            16262
-            59100
-            59200
-          ];
-          allowedTCPPortRanges = [
-            {
-              from = 3030;
-              to = 8800;
-            }
-          ];
-          allowedUDPPortRanges = [
-            {
-              from = 3030;
-              to = 8800;
-            }
+          trusted-users = [
+            "root"
+            "@wheel"
+            "zik"
           ];
         };
 
-        networking.nat = {
-          enable = true;
-          externalInterface = "wlan0";
-          internalInterfaces = [ "eth0" ];
+        time.timeZone = "Europe/Moscow";
+        networking = {
+          interfaces.eth0 = {
+            useDHCP = false;
+            ipv4.addresses = [
+              {
+                address = "192.168.1.1";
+                prefixLength = 24;
+              }
+            ];
+          };
+          defaultGateway = {
+            address = "192.168.0.1";
+            interface = "wld0";
+            metric = 100;
+          };
+          hostName = "zik-rpi5";
+        };
+        services.timesyncd.enable = false;
+        services.chrony = {
+          enable = false;
+          servers = [
+            "0.ru.pool.ntp.org"
+            "1.ru.pool.ntp.org"
+            "ntp.ubuntu.com"
+          ];
+        };
+        # nixpkgs.buildPlatform = {
+        #   system = "x86_64-linux";
+        # };
+        nixpkgs.hostPlatform = "aarch64-linux";
+        # programs.nh.enable = true;
+
+        systemd.services.wait-for-chrony = {
+          description = "Wait for chrony to synchronize";
+          wantedBy = [ "multi-user.target" ];
+          before = [ "mihomo.service" ];
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            ExecStart = "${pkgs.chrony}/bin/chronyc waitsync 60 0.1";
+          };
+        };
+        systemd.services.mihomo = {
+          after = [ "wait-for-chrony.service" ];
+          wants = [ "wait-for-chrony.service" ];
         };
 
         users.users.nixos = {
@@ -108,15 +127,6 @@
             "wheel"
           ];
         };
-        services.chrony.enable = false;
-        services.chrony.servers = [
-          "ntp.nict.jp"
-          "time.google.com"
-          "ntp.yandex.ru"
-        ];
-        services.chrony.extraConfig = ''
-          initstepslew 10 ntp.yandex.ru 0.ru.pool.ntp.org
-        '';
       };
 
     nixosModules.rpi5-hardware =
@@ -135,6 +145,21 @@
           # raspberry-pi-5.display-vc4
           self.nixosModules.pi5-configtxt
         ];
+        boot.tmp.useTmpfs = true;
+        # services.hardware.argonone.enable = true;
+        hardware.i2c.enable = true;
+        nixpkgs.overlays = [
+          (final: prev: {
+            pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+              (pyFinal: pyPrev: {
+                pytest-regressions = pyPrev.pytest-regressions.overridePythonAttrs (old: {
+                  doCheck = false;
+                });
+              })
+            ];
+          })
+        ];
+
         system.nixos.tags =
           let
             cfg = config.boot.loader.raspberry-pi;
@@ -144,7 +169,6 @@
             cfg.bootloader
             config.boot.kernelPackages.kernel.version
           ];
-        services.hardware.argonone.enable = true;
       };
     nixosModules.pi5-configtxt = {
       hardware.raspberry-pi.config = {
@@ -173,6 +197,15 @@
           # https://github.com/raspberrypi/linux/blob/a1d3defcca200077e1e382fe049ca613d16efd2b/arch/arm/boot/dts/overlays/README#L132
           base-dt-params = {
 
+            i2c_arm = {
+              enable = true;
+              value = "on";
+            };
+
+            i2c_arm_baudrate = {
+              enable = true;
+              value = "100000";
+            };
             # # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-pcie
             # pciex1 = {
             #   enable = true;

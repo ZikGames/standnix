@@ -18,6 +18,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    g3m.url = "github:ZikGames/G3M/python-nix";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
     home-manager.url = "github:nix-community/home-manager";
     import-tree.url = "github:vic/import-tree";

@@ -47,6 +47,10 @@
               enable = true;
               hideTimestamps = true;
             };
+            userPfp = {
+              enable = true;
+
+            };
             decor.enable = true;
             fakeNitro.enable = true;
             noF1.enable = true;
@@ -61,6 +65,7 @@
             unlockedAvatarZoom.enable = true;
             spotifyCrack.enable = true;
             questify.enable = true;
+            usrbg.enable = true;
           };
         };
       };

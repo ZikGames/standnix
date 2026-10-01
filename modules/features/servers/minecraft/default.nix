@@ -4,6 +4,7 @@
     {
       pkgs,
       inputs,
+      # lib,
       ...
     }:
     {
@@ -16,8 +17,76 @@
         openFirewall = true;
         dataDir = "/var/lib/minecraft-servers";
         servers = {
+
+          icarus-menu-wiund = {
+            enable = false;
+            package = pkgs.neoforgeServers.neoforge-1_21_1.override { jre_headless = pkgs.openjdk25_headless; };
+            serverProperties = {
+              allow-flight = true;
+              server-port = 6636;
+              difficulty = 2;
+              gamemode = 0;
+              max-players = 6;
+              motd = "lelele";
+              white-list = false;
+              online-mode = false;
+              allow-cheats = false;
+              #    world-seed = 5289485976029100916;
+              max-world-size = 35000;
+            };
+            # symlinks = {
+            #   # "mods" = "/home/zik/.local/share/PrismLauncher/instances/Icarus_Server-1.0.0/minecraft/mods/";
+            # };
+            symlinks =
+              let
+                # pack = builtins.path {
+                #   path = /home/zik/programs/nix/wiz/dlbeb-create-server;
+                # };
+                modpack = pkgs.fetchPackwizModpack {
+                  # url = "file://${pack}/pack.toml";
+                  url = "https://raw.githubusercontent.com/ZikGames/minecraft-modpacks/refs/heads/main/icarus_server/pack.toml";
+                  # packHash = lib.fakeSha256; # раскомментить при необходимости обновления
+                  packHash = "sha256-HcizW7Y5k4s6zhbWbMRqGc4fyjP9ts7oIfYfQdqWDiA="; # раскомментить при необходимости кое какого персиста между обновлениями
+                };
+              in
+              {
+                "mods" = "${modpack}/mods";
+              };
+
+            jvmOpts = "-Xms8192M -Xmx8192M -XX:+UseG1GC"; # настраивай как нибудь сам
+          };
+
+          rwl = {
+            enable = false;
+            package = pkgs.fabricServers.fabric-26_2.override { jre_headless = pkgs.openjdk25_headless; };
+            serverProperties = {
+              allow-flight = true;
+              server-port = 5432;
+              difficulty = 2;
+              gamemode = 0;
+              max-players = 3;
+              motd = "il";
+              white-list = false;
+              online-mode = true;
+              allow-cheats = false;
+              #    world-seed = 5289485976029100916;
+              max-world-size = 35000;
+            };
+            # symlinks =
+            # let
+            #   modpack = pkgs.fetchPackwizModpack {
+            #     url = "https://github.com/ZikGames/minecraft-modpacks/raw/refs/heads/main/rwl/pack.toml";
+            #   };
+            # in
+            # {
+            # "mods" = "${modpack}/mods";
+            # "mods" = "/home/zik/.local/share/PrismLauncher/instances/Rwl-1.0.0/minecraft/mods/";
+            # };
+            jvmOpts = "-Xms4096M -Xmx4096M -XX:+UseG1GC -Djava.net.preferIPv4Stack=true";
+          };
+
           compound-v = {
-            enable = true;
+            enable = false;
             package = pkgs.neoforgeServers.forge-1_21_1.override { jre_headless = pkgs.openjdk25_headless; };
             serverProperties = {
               allow-flight = true;
@@ -36,15 +105,15 @@
               let
                 modpack = pkgs.fetchPackwizModpack {
                   url = "https://github.com/ZikGames/minecraft-modpacks/compound_v-server/pack.toml";
-                  packHash = "sha256-11101f0583c6b9efb6ed4470b28f246e3f0756e2024e07f1964e5ed8e6897be3";
+                  packHash = "11101f0583c6b9efb6ed4470b28f246e3f0756e2024e07f1964e5ed8e6897be3";
                 };
               in
               {
-                symlinks = {
-                  "mods" = "${modpack}/mods";
-                };
+                "mods" = "${modpack}/mods";
               };
+            jvmOpts = "-Xms8192M -Xmx8192M -XX:+UseG1GC";
           };
+
           dlbeb-create = {
             enable = false;
             package = pkgs.neoforgeServers.neoforge-1_21_1.override { jre_headless = pkgs.openjdk25_headless; };
@@ -82,6 +151,7 @@
             };
             jvmOpts = "-Xms8036M -Xmx8036M -XX:+UseG1GC -Djava.locale.providers=JRE";
           };
+
           dlbeb-surv = {
             enable = false;
             package = pkgs.fabricServers.fabric-26_1_2.override { jre_headless = pkgs.openjdk25_headless; };
@@ -101,7 +171,7 @@
             symlinks =
               let
                 survPack = builtins.path {
-                  path = /home/zik/programs/wiz/dlbeb-surv-server;
+                  path = /home/zik/programs/nix/wiz/dlbeb-surv-server;
                 };
                 modpack-surv = (
                   pkgs.fetchPackwizModpack {

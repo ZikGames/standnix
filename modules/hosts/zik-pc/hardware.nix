@@ -27,7 +27,6 @@
         boot.initrd.kernelModules = [ ];
         boot.kernelModules = [ "kvm-amd" ];
         boot.extraModulePackages = [ ];
-
         fileSystems."/" = {
           device = "/dev/disk/by-uuid/c3206eda-bbdf-4914-8c6f-b99c8f8be9fc";
           fsType = "ext4";
@@ -45,10 +44,6 @@
         fileSystems."/home" = {
           device = "/dev/disk/by-uuid/26540ed8-5b3b-473e-8aae-e0291908fc80";
           fsType = "btrfs";
-        };
-        fileSystems."/win" = {
-          device = "/dev/disk/by-uuid/7D9EF907580C0251";
-          fsType = "ntfs";
         };
 
         swapDevices = [

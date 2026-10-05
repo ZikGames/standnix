@@ -26,8 +26,8 @@
         ];
 
         environment.systemPackages = with pkgs; [
-          # brogue-ce
-          # chess-tui
+          brogue-ce
+          chess-tui
         ];
 
         boot.zfs.forceImportRoot = false;

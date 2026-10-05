@@ -23,7 +23,7 @@
           self.nixosModules.wine
           self.nixosModules.fallout2
           self.nixosModules.heroic
-          self.nixosModules.limo
+          # self.nixosModules.limo
           self.nixosModules.openmw
           self.nixosModules.scrcpy
           self.nixosModules.openxray
@@ -34,7 +34,7 @@
           self.nixosModules.bottles
           self.nixosModules.kde
           self.nixosModules.flatpak
-          # self.nixosModules.standnixpkgs
+          self.nixosModules.standnixpkgs
           self.nixosModules.waydroid
           self.nixosModules.spotify
           self.nixosModules.steam-millennium
@@ -234,8 +234,9 @@
           self.homeModules.koreader
           self.homeModules.ytmdesktop
           self.homeModules.zed
-          self.homeModules.labwc
+          # self.homeModules.labwc
           self.homeModules.syncthing
+          self.homeModules.wallpapers
         ];
 
         programs.nh = {

@@ -1,0 +1,7 @@
+{
+  flake-file.inputs.deltarune-nix.url = "github:MichailiK/deltarune-nix";
+
+  perSystem = { inputs, ... }: {
+    packages.deltarune = inputs.deltarune-nix.packages.default;
+  };
+}

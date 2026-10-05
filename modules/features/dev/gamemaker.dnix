@@ -3,24 +3,7 @@
     gamemaker-nix.url = "github:skirlez/gamemaker-flake";
     yoyo-games-runner.url = "github:MichailiK/yoyo-games-runner-nix";
   };
-  perSystem =
-    { yoyo-games-runner, ... }:
-    let
-      deltarune = "/home/zik/.steam/steam/steamapps/common/DELTARUNE";
-    in
-    {
-      packages.x86_64-linux.deltarune = yoyo-games-runner.mkYoYoGamesRunner {
-        # Required arguments
-        system = "x86_64-linux";
-        src = ./path/to/yoyo-games-runner-binary;
-        # Optional arguments
-        name = "deltarune";
-        version = "1.04";
-        # You may provide a directory of the game assets to copy into the derivation.
-        # Consider using `pkgs.requireFile` to require users to provide the assets themselves.
-        gameAssets = deltarune;
-        # For games that make use of videos
-        includeFFmpeg = true;
-      };
-    };
+  perSystem = { inputs, ... }: {
+    packages.gamemaker = inputs.gamemaker-nix.packages.default;
+  };
 }

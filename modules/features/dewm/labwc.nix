@@ -3,7 +3,11 @@
   ...
 }:
 {
-  flake.nixosModules.labwc = { pkgs, ... }: {
+  flake.nixosModules.labwc = { pkgs, lib, ... }: {
+    xdg.portal.config.wlroots.default = lib.mkForce [
+      "wlr"
+      "gtk"
+    ];
     environment.systemPackages = with pkgs; [
       wl-clipboard
       grim

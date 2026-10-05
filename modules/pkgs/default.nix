@@ -1,4 +1,4 @@
-# { self, ... }:
+{ self, ... }:
 {
   perSystem = { config, pkgs, ... }: {
     devShells.default = pkgs.mkShell {
@@ -8,7 +8,7 @@
 
   flake.nixosModules.standnixpkgs = { pkgs, ... }: {
     environment.systemPackages = [
-      # self.packages.${pkgs.system}.g3m
+      self.packages.${pkgs.system}.deltarune
       pkgs.nix-output-monitor
 
       # self.packages.${pkgs.system}.tf2-preloader
